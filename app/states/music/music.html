@@ -1,0 +1,38 @@
+  <div id="music">
+    <header>
+        <h1>Music to add</h1>
+        <input id="new-song" type="text" ng-model="songName"  size="30"
+        placeholder="Name of the song?" ng-keyup="addSong()"/>
+        <input id="new-song" type="text" ng-model="songAuthor"  size="30"
+        placeholder="Author?" />
+        <input id="new-song" type="text" ng-model="songDuration"  size="30"
+        placeholder="Duration?" />
+        <input id="new-song" type="text" ng-model="songDate"  size="30"
+        placeholder="Date?" />
+    </header>
+
+    <section id="main" style="display: block;">
+        <div ng-show="isSong()">
+          <input id="toggle-all" type="checkbox" ng-model="markAll"
+            ng-click="toggleMarkAll()"/>
+          <label for="toggle-all">Mark all as complete</label>
+        </div>
+        
+        <ul id="song-list" class="unstyled">
+          <li ng-repeat="song in songs" ng-dblclick="toggleEditMode()">
+            <div class="view" ng-keyup="editSong()">
+              <input type="checkbox" ng-model="song.done"/>
+              <span class="done-{{song.done}}" >{{song.text}}</span>
+            </div>
+            <input class="edit" type="text" ng-model="song.text"
+              ng-keyup="editOnEnter(song)"/>
+          </li>
+        </ul>
+    </section>
+    
+    <footer style="display: block;">
+        <div class="song-count">{{remaining()}} of {{songs.length}} remaining</div>
+          <a id="clear-completed" ng-click="clear()" ng-show="hasDone()">
+              Clear <span >{{(songs.length - remaining())}} {{itemText()}}</span>.
+          </a>
+    </footer>
