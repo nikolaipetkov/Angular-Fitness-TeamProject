@@ -1,9 +1,12 @@
 music {
 
+ 	
    .input-info{
-   	margin: 10px;
-   	border: 2px solid green;
+   width:100%;
+   }
 
+   .input-info > input {
+   width:100%;
    }
     .btn-lg {
      width: 100%;
@@ -15,6 +18,18 @@ music {
     .play-ctrl{
     width: 100%;
     margin: 20px;
-    
+
+    }
+
+    #player > img{
+  	padding: 10px;
+  	margin: 5px;
+    }
+    .view{
+    min-height: 50%;
+    }
+    .btn-secondary:hover,
+    .btn-secondary:focus{
+    border-color: black;
     }
 }
