@@ -76,14 +76,27 @@
         });
         };    
 
-        $scope.toggleMarkAll = function () {
+        $scope.toggleMarkAll = function() {
             var songs = $scope.songs;
             angular.forEach(songs, function (song) {
                     song.done = true;
-                    id--;
             });
         };
 
+        $scope.editSong = function() {
+            var songs = $scope.songs;
+            angular.forEach(songs, function(song){
+                if(song.done == true){
+                    var nameNew = prompt("Please enter new name: ");
+                    song.name = nameNew;
+                    var authorNew = prompt("Please enter new author: ");
+                    song.author = authorNew;
+                    console.log(song.name);
+                    console.log(song.author);
+                }
+            });
+
+        }
 
     }
 }
