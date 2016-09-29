@@ -1,47 +1,61 @@
-<h1>Hi {{name}}! Give me {{survey.getTotalNumber()}}!</h1>
-
-    <h2>{{sayHi1()}}</h2>
-    <h2> 5 + 5 = {{ 5 + 5 }} </h2>
-
-    <p>Date: {{date}}</p>
-<br>
-<input type="text" name="datepicker" ng-model="date">
-<br>
-<button ng-click="sayHi()">Say Hi!</button><br><br>
-<!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map> -->
-<div id="map"></div>
-
+<h1 class="grand-title"> Angular Demo Home Page </h1>
 
 <!-- Third Container (Grid) -->
 <div class="container-fluid text-center">
-  <h3 class="margin">Functionalities Map</h3><br>
+  <h3 class="margin">Functionalities Map</h3>
   <div class="row">
+
     <div class="col-sm-4">
-    <p> Functionality 1 </p>
+     <div class="card">
+    <p> Calculator </p>
     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p> Collect and Show user the right training type</p>
+      </div>
     </div>
+
+  
     <div class="col-sm-4">
-   	 <p> Functionality 2 </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+     <div class="card">
+   	 <p> Music List </p>
+     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+      <p> To-Do List Style with CRUD operations </p>
+     </div>
     </div>
+
+  
     <div class="col-sm-4">
-     <p> Functionality 3 </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+     <div class="card">
+     <p> Training Calendar </p>
+     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+      <p> Interactive Calendar for types and hours of training </p>
+     </div>
     </div>
-  </div>
 </div>
 
 <div class="container-fluid  text-center">
-  <h3 class="margin">Functionalities Map</h3><br>
   <div class="row">
+  
     <div class="col-sm-6">
-    <p> Functionality 4 </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="card">
+    <p> Dictionary Page </p>
+    <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+      <p> Tuk neshto sum propusnal infoto? </p>
+      </div>
     </div>
-    <div class="col-sm-6">
-   	 <p> Functionality 5 </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+  
+  <div class="col-sm-6">
+    <div class="card">
+   	 <p> Map Locator for training centers </p>
+     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+      <p> Gym Locations and info shown on map </p>
     </div>
   </div>
+  </div>
 </div>
+
+</div>
+
+<h2>{{test1()}}</h2>
+
+<button ng-click="setBackground()">Set Background</button><br><br>
