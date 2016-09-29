@@ -1,12 +1,37 @@
-<h1>Hi {{name}}! Give me {{survey.getTotalNumber()}}!</h1>
+<div>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>	
+			<th>Description</th>
+			<th>Edit</th>
+		</tr>
+	  <tr ng-repeat="x in table" >
+	  	<td>{{ $index + 1}}</td>
+	    <td ng-if="!x.editMode">{{ x.name }}</td>
+	    <td ng-if="!x.editMode">{{ x.description }}</td>
+	    <td ng-if="!x.editMode">
+	    	<input type="button" value="Edit"  ng-click="editExercises(x)" >
+			<input type="button" value="Delete" ng-click="removeExercise(x)">
+	    </td>
 
-    <h2>{{sayHi1()}}</h2>
-    <h3 class="ho">2 + 2 = {{ 2 + 2 }}</h3>
+	    <td ng-if="x.editMode"><input type="text" ng-model="x.name" /></td>
+        <td ng-if="x.editMode"><input type="text" ng-model="x.description" /></td>
+        <td ng-if="x.editMode">
+            <button ng-click="saveChanges(x)" >Save</button>
+            <button ng-click="cancel(x)">Cancel</button>
+        </td>
+    </tr>
+	</table>
+        
+  
+<form ng-submit="addRow()">
+	<label>Name: </label>
+	<input type="text" name="name" ng-model="name">
+	<label>Description: </label>
+	<textarea name="description" ng-model="description"></textarea>
+	<input type="submit" value="Submit">
+	
+</form>
 
-    <p>Date: {{date}}</p>
-<br>
-<input type="text" name="datepicker" ng-model="date">
-<br>
-<button ng-click="sayHi()">Say Hi!</button><br><br>
-<!-- <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map> -->
-<div id="map"></div>
+</div>
