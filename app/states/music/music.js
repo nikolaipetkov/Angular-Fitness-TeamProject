@@ -31,6 +31,7 @@
 
     controller.$inject = ['$scope', 'survey', '$timeout'];
         function controller($scope, survey, $timeout) {
+            $scope.text = 'Add new song';
             var id = 1;
             $scope.songs = [
             {
@@ -51,51 +52,56 @@
             $scope.markAll = false;
 
 
-       $scope.addSong = function () {
+        $scope.addSong = function () {
         id++;
         $scope.songs.push(
             {
                 id: id,
-                name:$scope.songName,
-                author:$scope.songAuthor,
+                name:$scope.item.name,
+                author:$scope.item.author,
                 duration:$scope.songDuration,
                 date:$scope.songDate,
                 done:false
             });
+
+
         $scope.songName = '';
         $scope.songAuthor = '';
         $scope.songDate = '';
         $scope.songDuration = '';
+
         };
-           
-        $scope.removeSong = function() {
-        var oldSongs = $scope.songs;
-        $scope.songs = [];
-        angular.forEach(oldSongs, function(song) {
-            if (!song.done) {$scope.songs.push(song);}
-        });
+        
+        $scope.removeSong = function(item) {
+        var index = $scope.songs.indexOf(item);
+        $scope.songs.splice(index,1);
         };    
 
-        $scope.toggleMarkAll = function() {
-            var songs = $scope.songs;
-            angular.forEach(songs, function (song) {
-                    song.done = true;
-            });
+
+        $scope.clicked = false;
+        $scope.editSong = function(item) {
+            
+            $scope.clicked = true;
+           var doc = document.getElementById('name').focus();
+            $scope.itemRef = item;
+            $scope.item = angular.copy(item);
+            $scope.text = 'Submit';
+
+            
+
         };
 
-        $scope.editSong = function() {
-            var songs = $scope.songs;
-            angular.forEach(songs, function(song){
-                if(song.done == true){
-                    var nameNew = prompt("Please enter new name: ");
-                    song.name = nameNew;
-                    var authorNew = prompt("Please enter new author: ");
-                    song.author = authorNew;
-                    console.log(song.name);
-                    console.log(song.author);
-                }
-            });
+        $scope.submitChange = function(item) {
 
+                $scope.itemRef.name = $scope.item.name;
+                $scope.itemRef.author = $scope.item.author;
+
+
+                $scope.clicked = false;
+                $scope.item.name = '';
+                $scope.item.author = '';
+                
+                $scope.text = 'Add new song';
         }
 
     }

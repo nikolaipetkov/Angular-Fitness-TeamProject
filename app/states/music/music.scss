@@ -1,5 +1,5 @@
 music {
-
+  $button-active: #FF735C;
  	
    .input-info{
    width:100%;
@@ -8,6 +8,9 @@ music {
    .input-info > input {
    width:100%;
    }
+   .active {
+  background: $button-active;
+}
     .btn-lg {
      width: 100%;
      padding: 20px 50px 20px 20px;
