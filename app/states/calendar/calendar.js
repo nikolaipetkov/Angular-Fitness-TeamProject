@@ -30,6 +30,38 @@
 
     controller.$inject = ['$scope', 'survey', '$timeout'];
     function controller($scope, survey, $timeout) {
+        // Table 
+        var id = 1;
+        var resultOfTraining = [];
+        $scope.addWorkoutInCalendar = addWorkoutInCalendar;
+        $scope.showDayProgram = showDayProgram;
+        $scope.allDisciplineOfDay = resultOfTraining;
+
+
+
+
+        function addWorkoutInCalendar(inputs, form) {
+            var selectedDay = inputs.selectedDay;
+            var selectedTraining = inputs.selectedTrainig;
+            console.log(selectedDay);
+            console.log(selectedTraining);
+            console.log(days.two);
+            days[selectedDay].push(selectedTraining);
+            console.log('=========');
+            console.log(days[selectedDay]);
+        }
+
+        function showDayProgram(day) {
+            var trainigOfDay = days[day];
+            console.log(trainigOfDay);
+
+            resultOfTraining = trainigOfDay;
+            console.log('=========');
+            console.log(resultOfTraining);
+        }
+
+        // =================================
+
         $scope.survey = survey;
 
         $scope.sayHi = sayHi;

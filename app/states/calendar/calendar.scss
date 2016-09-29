@@ -1,0 +1,88 @@
+.chooseTrainigDay {
+	padding-left: 0;
+	li {
+		color: #31B0D5;
+		border: 2px solid #31B0D5;
+		list-style: none;
+		border-radius: 5px;
+		padding: 5px;
+		margin: 5px;
+		display: inline;
+	}
+}
+
+.chooseTrainig {
+	padding-left: 0;
+	li {
+		color: #31B0D5;
+		border: 2px solid #31B0D5;
+		list-style: none;
+		border-radius: 5px;
+		padding: 5px;
+		margin: 5px;
+		display: inline;
+	}
+}
+
+.deleteTrainig {
+	display: block;
+	font-size: 20px;
+	padding: 5px;
+	margin: 5px;
+	li {
+		color: #31B0D5;
+		padding: 2px;
+		margin: 5px;
+		list-style: none;
+		text-align: center;
+	}
+}
+
+.addForm {
+	border-right: 2px solid #31B0D5;
+}
+
+.dellForm {
+	margin-left: 5px;
+	h4 {
+		margin-top: 13%;
+	}
+	.buttonCollapse {
+		margin-bottom: 1%;
+	}
+}
+
+.daysButtons {
+	margin-top: 5%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+	.chooseTrainigDay {
+		padding-left: 0;
+		li {
+			border: 2px solid #31B0D5;
+			list-style: none;
+			border-radius: 5px;
+			padding: 5px;
+			margin: 5px;
+			display: block;
+		}
+	}
+
+	.chooseTrainig {
+		padding-left: 0;
+		li {
+			border: 2px solid #31B0D5;
+			list-style: none;
+			border-radius: 5px;
+			padding: 5px;
+			margin: 5px;
+			display: block;
+		}
+	}
+
+	.addForm {
+		border: none;
+	}	
+}

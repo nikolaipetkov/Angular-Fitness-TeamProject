@@ -1,60 +1,330 @@
-<div>
-	<div class="row">
-		<div class="col-xs-8">
-			<h1 class="pull-left">Add Training:</h1>
-			<form name="dayOfWeek">
-				<input type="radio" name="dayOne" value="1" checked>
-				<input type="radio" name="dayTwo" value="2">
-				<input type="radio" name="dayThree" value="3">
-				<input type="radio" name="dayFour" value="4"> 
-				<input type="radio" name="dayFive" value="5"> 
-				<input type="radio" name="daySix" value="6">
-				<input type="radio" name="daySeven" value="7">  
-			</form>
-			<form name="training">
-				<input type="radio" name="">
-				<input type="radio" name="">
-				<input type="radio" name="">
-			</form>
+<div class="row mainTemplate">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 addForm">
+				<h2 class="text-center">Add Training In Calendar</h2>
+				<form class="pull-left" name="trainingProgramForm">
+					<ul class="chooseTrainigDay">
+						<h4>Pick a Day:</h4>
+						<li>
+							<label for="One">Monday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="One" value="one">
+						</li>
+						<li>
+							<label for="Two">Tuesday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Two" value="two">
+						</li>
+						<li>
+							<label for="Three">Wednesday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Three" value="three">
+						</li>
+						<li>
+							<label for="Four">Thursday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Four" value="four">
+						</li>
+						<li>
+							<label for="Five">Friday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Five" value="five">
+						</li>
+						<li>
+							<label for="Six">Saturday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Six" value="six">
+						</li>
+						<li>
+							<label for="Seven">Sunday</label>
+							<input type="radio" ng-model="currentSelection.selectedDay" id="Seven" value="seven">
+						</li>
+					</ul>
+					<ul class="chooseTrainig">
+						<h4>Pick Training:</h4>
+						<li>
+							<label for="first">Fitness</label>
+							<input type="radio" ng-model="currentSelection.selectedTrainig" id="first" value="1">
+						</li>
+						<li>
+							<label for="second">Running</label>
+							<input type="radio" ng-model="currentSelection.selectedTrainig" id="second" value="2">
+						</li>
+						<li>
+							<label for="third">Swimming</label>
+							<input type="radio" ng-model="currentSelection.selectedTrainig" id="third" value="3">
+						</li>
+					</ul>
+					<div class="text-center btn-addTraining">
+						<button class="btn btn-primary" ng-click="addWorkoutInCalendar(currentSelection, trainingProgramForm)">Add Workout</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<h2 class="text-center">Delete Workout From Calendar</h2>
+				<form class="dellForm" name="deleteAllWorkoutsForDay">
+					<h4>Pick a Day:</h4>
+					<button type="button" class="row btn btn-info buttonCollapse" data-toggle="collapse" data-target="#demo">Select Day From Calendar</button>
+					<div id="demo" class="collapse">
+						<ul class="deleteTrainig">
+							<li>
+								<label for="elementOne">Monday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementOne" value="one">
+							</li>
+							<li>
+								<label for="elementTwo">Tuesday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementTwo" value="two">
+							</li>
+							<li>
+								<label for="elementThree">Wednesday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementThree" value="three">
+							</li>
+							<li>
+								<label for="elementFour">Thursday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementFour" value="four">
+							</li>
+							<li>
+								<label for="elementFive">Friday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementFive" value="five">
+							</li>
+							<li>
+								<label for="elementSix">Saturday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementSix" value="six">
+							</li>
+							<li>
+								<label for="elementSeven">Sunday</label>
+								<input type="radio" ng-model="currentSelection.selectedDayDel" id="elementSeven" value="seven">
+							</li>
+						</ul>
+					</div>
+					<br>
+					<div class="row">
+						<button class="btn btn-primary" ng-click="deleteWorkoutInCalendar(currentSelection)">Delete Workout</button>
+					</div>
+				</form>
+			</div>
 		</div>
-		<div class="col-xs-4">
-			<h1>Delete Training:</h1>
-			<form name="deleteTraining">
-				<input type="radio" name="dayOne" value="1" checked>
-				<input type="radio" name="dayTwo" value="2">
-				<input type="radio" name="dayThree" value="3">
-				<input type="radio" name="dayFour" value="4"> 
-				<input type="radio" name="dayFive" value="5"> 
-				<input type="radio" name="daySix" value="6">
-				<input type="radio" name="daySeven" value="7">
-			</form>
+
+		<div class="row daysButtons">
+			<div class="col-xs-12 btn-group btn-group-justified">
+			    <a ng-click="showDayProgram('one')" class="btn btn-primary">Mon</a>
+			    <a ng-click="showDayProgram('two')" class="btn btn-primary">Tue</a>
+			    <a ng-click="showDayProgram('three')" class="btn btn-primary">Wed</a>
+			    <a ng-click="showDayProgram('four')" class="btn btn-primary">Thu</a>
+			    <a ng-click="showDayProgram('five')" class="btn btn-primary">Fri</a>
+			    <a ng-click="showDayProgram('six')" class="btn btn-primary">Sat</a>
+			    <a ng-click="showDayProgram('seven')" class="btn btn-primary">Sun</a>
+			</div>
+		</div>
 
 
+			<div ng-show="true" id="day1" class="row tableWeek">
+				<h1>Monday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr ng-repeat="disc in allDisciplineOfDay">
+				        <td>{{disc}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day2" class="tableWeek">
+				<h1>Tuesday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day3" class="tableWeek">
+				<h1>Wednesday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day4" class="tableWeek">
+				<h1>Thursday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day5" class="tableWeek">
+				<h1>Friday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day6" class="tableWeek">
+				<h1>Saturday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
+			<div ng-show="false" id="day7" class="tableWeek">
+				<h1>Sunday:</h1>
+				<table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Discipline:</th>
+				        <th>Series:</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				      <tr>
+				        <td>{{}}</td>
+				        <td>{{}}</td>
+				      </tr>
+				    </tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div id="day1" class="col-xs-3">
-			<h1>Day 1:</h1>
-		</div>
-		<div id="day2" class="col-xs-3">
-			<h1>Day 2:</h1>
-		</div>
-		<div id="day3" class="col-xs-3">
-			<h1>Day 3:</h1>
-		</div>
-		<div id="day4" class="col-xs-3">
-			<h1>Day 4:</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div id="day5" class="col-xs-4">
-			<h1>Day 5:</h1>
-		</div>
-		<div id="day6" class="col-xs-4">
-			<h1>Day 6:</h1>
-		</div>
-		<div id="day7" class="col-xs-4">
-			<h1>Day 7:</h1>
-		</div>
-	</div>	
 </div>
