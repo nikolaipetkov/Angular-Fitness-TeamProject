@@ -20,9 +20,7 @@
             templateUrl: './states/calendar/calendar.html',
             restrict: 'E',
             controller: controller,
-            scope: {
-                name: '='
-            }
+            scope: {}
         };
 
         return directive;
@@ -30,15 +28,20 @@
 
     controller.$inject = ['$scope', 'survey', '$timeout'];
     function controller($scope, survey, $timeout) {
-        // Table 
+    
         var id = 1;
-        var resultOfTraining = [];
+        $scope.days = days;
         $scope.addWorkoutInCalendar = addWorkoutInCalendar;
-        $scope.showDayProgram = showDayProgram;
-        $scope.allDisciplineOfDay = resultOfTraining;
-
-
-
+        /*
+        $scope.allDisciplineOfMon = days.one;
+        $scope.allDisciplineOfTue = days.two;
+        $scope.allDisciplineOfWed = days.three;
+        $scope.allDisciplineOfThu = days.four;
+        $scope.allDisciplineOfFri = days.five;
+        $scope.allDisciplineOfSat = days.six;
+        $scope.allDisciplineOfSun = days.seven;
+        */
+        //console.log($scope.allDisciplineOfMon);
 
         function addWorkoutInCalendar(inputs, form) {
             var selectedDay = inputs.selectedDay;
@@ -46,19 +49,32 @@
             console.log(selectedDay);
             console.log(selectedTraining);
             console.log(days.two);
+            for (var i = selectedDay.length - 1; i >= 0; i+=1) {
+                var isAdded = false;
+                if (selectedDay[i] == selectedTraining) {
+                    isAdded = true;
+                }
+
+
+            }
             days[selectedDay].push(selectedTraining);
             console.log('=========');
             console.log(days[selectedDay]);
         }
-
+/*
         function showDayProgram(day) {
-            var trainigOfDay = days[day];
-            console.log(trainigOfDay);
-
-            resultOfTraining = trainigOfDay;
-            console.log('=========');
-            console.log(resultOfTraining);
+            //var trainigOfDay = days[day];
+            //console.log(trainigOfDay);
+            $scope.allDisciplineOfDay = days[day];
         }
+*/
+
+
+
+
+
+
+
 
         // =================================
 
