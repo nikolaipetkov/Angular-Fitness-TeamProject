@@ -29,22 +29,25 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey'];
-    function controller($scope, survey) {
+    controller.$inject = ['$scope', 'survey', 'music'];
+    function controller($scope, survey, music) {
         $scope.survey = survey;
+        $scope.music = music;
+        
 
-        $scope.setBackground = setBackground;
         $scope.test1 = test1;
+        $scope.imageClick = imageClick;
 
-//Ask Todor about this !!!
-        function setBackground() {
-            $scope.background = "url(/states/niki/bg1.jpg";
-        }
+
+
 
         function test1() {
             return 'Test Success';
         }
 
+        function imageClick() {
+        
+        }
 
     }
 

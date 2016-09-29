@@ -1,3 +1,4 @@
+<div class="whole">
 <h1 class="grand-title"> Angular Demo Home Page </h1>
 
 <!-- Third Container (Grid) -->
@@ -8,7 +9,9 @@
     <div class="col-sm-4">
      <div class="card">
     <p> Calculator </p>
+    <a ui-sref="calculator">
     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+    </a>
       <p> Collect and Show user the right training type</p>
       </div>
     </div>
@@ -17,8 +20,13 @@
     <div class="col-sm-4">
      <div class="card">
    	 <p> Music List </p>
+     <a ui-sref="music">
      <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+    </a>
       <p> To-Do List Style with CRUD operations </p>
+      <p> count is: {{music.data[0]}} </p>
+      <p> limit is: {{music.data[1]}} </p>
+      <p> available operations: {{music.data[2]}} , {{music.data[3]}}, {{music.data[4]}} </p>
      </div>
     </div>
 
@@ -26,7 +34,9 @@
     <div class="col-sm-4">
      <div class="card">
      <p> Training Calendar </p>
+     <a ui-sref="calendar">
      <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+     </a>
       <p> Interactive Calendar for types and hours of training </p>
      </div>
     </div>
@@ -38,7 +48,9 @@
     <div class="col-sm-6">
       <div class="card">
     <p> Dictionary Page </p>
+    <a ui-sref="dictionary">
     <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+    </a>
       <p> Tuk neshto sum propusnal infoto? </p>
       </div>
     </div>
@@ -47,7 +59,9 @@
   <div class="col-sm-6">
     <div class="card">
    	 <p> Map Locator for training centers </p>
+     <a ui-sref="map">
      <img src="states/niki/functionalityPic.jpg" class="img-responsive margin" style="width:100%" alt="Image"> </img>
+     </a>
       <p> Gym Locations and info shown on map </p>
     </div>
   </div>
@@ -58,4 +72,4 @@
 
 <h2>{{test1()}}</h2>
 
-<button ng-click="setBackground()">Set Background</button><br><br>
+</div>
