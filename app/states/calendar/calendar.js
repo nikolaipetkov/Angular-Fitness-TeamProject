@@ -32,29 +32,29 @@
         //var id = 1;
         $scope.days = calendarData.days;
         $scope.addDisciplineInProgram = addDisciplineInProgram;
-        $scope.checkInputIsValid = checkInputIsValid;
         $scope.addWorkoutInCalendar = addWorkoutInCalendar;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
         //console.log($scope.days);
         
         function addDisciplineInProgram(inputs) {
             //debugger;
-            var selectedDay = inputs.selectedDay;
-            var selectedTraining = inputs.selectedTrainig;
-            //console.log(selectedDay);
-            //console.log(selectedTraining);
-            checkInputIsValid(selectedDay, selectedTraining);
-        }
-
-        function checkInputIsValid(selectedDay, selectedTraining) {
-            //console.log(selectedDay);
-            //console.log(selectedTraining);
-            if (selectedDay == undefined) {
+            if (inputs == undefined) {
                 $scope.isValidDay = true;
-            } else if(selectedTraining == undefined) {
                 $scope.isValidDisc = true;
             } else {
-                addWorkoutInCalendar(selectedDay, selectedTraining);
+                var selectedDay = inputs.selectedDay;
+                if (selectedDay !== undefined) {$scope.isValidDay = false;};
+                var selectedTraining = inputs.selectedTrainig;
+                if (selectedTraining!== undefined) {$scope.isValidDisc = false;};
+                //console.log(selectedDay);
+                //console.log(selectedTraining);
+                if (selectedDay == undefined) {
+                $scope.isValidDay = true;
+                } else if(selectedTraining == undefined) {
+                    $scope.isValidDisc = true;
+                } else {
+                    addWorkoutInCalendar(selectedDay, selectedTraining);
+                }
             }
         }
 
