@@ -26,7 +26,7 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'calendarData', '$timeout'];
+    controller.$inject = ['$scope', 'calendarData'];
     function controller($scope, calendarData, $timeout) {
     
         //var id = 1;
@@ -34,13 +34,15 @@
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.checkInputIsValid = checkInputIsValid;
         $scope.addWorkoutInCalendar = addWorkoutInCalendar;
+        $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
         //console.log($scope.days);
         
         function addDisciplineInProgram(inputs) {
+            //debugger;
             var selectedDay = inputs.selectedDay;
             var selectedTraining = inputs.selectedTrainig;
-            console.log(selectedDay);
-            console.log(selectedTraining);
+            //console.log(selectedDay);
+            //console.log(selectedTraining);
             checkInputIsValid(selectedDay, selectedTraining);
         }
 
@@ -73,7 +75,26 @@
             }
         }
 
-
+        function deleteWorkoutInCalendar(inputsDel) {
+            //debugger;
+            if (inputsDel == undefined) {
+                $scope.delDayIsValid = true;
+            } else {
+                //call func
+                //calendarData.deleteWorkoutFromCalendar(selectedDayForDelete);
+                var selectedDayForDelete = inputsDel.dayDel;
+                //console.log($scope.days[selectedDayForDelete]);
+                if ($scope.days[selectedDayForDelete].length == 0) {
+                    alert('No disciplinies in this day!');
+                } else {
+                    //console.log('hi');
+                    //console.log(selectedDayForDelete);
+                    //calendarData.deleteWorkoutFromCalendar(selectedDayForDelete);
+                    $scope.days[selectedDayForDelete] = [];
+                    //console.log($scope.days[selectedDayForDelete]);
+                }
+            }
+        }
 
 
     }

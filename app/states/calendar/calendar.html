@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-xs-12 col-sm-8 addForm">
-				<h2 class="text-center">Add Training In Calendar</h2>
+				<h1 class="text-center">Add Training In Calendar</h1>
 				<form class="pull-left" name="trainingProgramForm">
 					<ul class="chooseTrainigDay">
 						<h4>Pick a Day:</h4>
@@ -58,39 +58,40 @@
 				</form>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<h2 class="text-center">Delete Workout From Calendar</h2>
+				<h1 class="text-center">Delete Workout From Calendar</h1>
 				<form class="dellForm" name="deleteAllWorkoutsForDay">
 					<h4>Pick a Day:</h4>
 					<button type="button" class="row btn btn-info buttonCollapse" data-toggle="collapse" data-target="#demo">Select Day From Calendar</button>
 					<div id="demo" class="collapse">
+						<div class="errorMes" ng-show="delDayIsValid">Please select day of the week!</div>
 						<ul class="deleteTrainig">
 							<li>
 								<label for="elementOne">Monday</label>
-								<input type="radio" name="deleteDay1" ng-model="Select.DayDel" id="elementOne" value="one">
+								<input type="radio" name="deleteDay1" ng-model="Select.dayDel" id="elementOne" value="one">
 							</li>
 							<li>
 								<label for="elementTwo">Tuesday</label>
-								<input type="radio" name="deleteDay2" ng-model="Select.DayDel" id="elementTwo" value="two">
+								<input type="radio" name="deleteDay2" ng-model="Select.dayDel" id="elementTwo" value="two">
 							</li>
 							<li>
 								<label for="elementThree">Wednesday</label>
-								<input type="radio" name="deleteDay3" ng-model="Select.DayDel" id="elementThree" value="three">
+								<input type="radio" name="deleteDay3" ng-model="Select.dayDel" id="elementThree" value="three">
 							</li>
 							<li>
 								<label for="elementFour">Thursday</label>
-								<input type="radio" name="deleteDay4" ng-model="Select.DayDel" id="elementFour" value="four">
+								<input type="radio" name="deleteDay4" ng-model="Select.dayDel" id="elementFour" value="four">
 							</li>
 							<li>
 								<label for="elementFive">Friday</label>
-								<input type="radio" name="deleteDay5" ng-model="Select.DayDel" id="elementFive" value="five">
+								<input type="radio" name="deleteDay5" ng-model="Select.dayDel" id="elementFive" value="five">
 							</li>
 							<li>
 								<label for="elementSix">Saturday</label>
-								<input type="radio" name="deleteDay6" ng-model="Select.DayDel" id="elementSix" value="six">
+								<input type="radio" name="deleteDay6" ng-model="Select.dayDel" id="elementSix" value="six">
 							</li>
 							<li>
 								<label for="elementSeven">Sunday</label>
-								<input type="radio" name="deleteDay7" ng-model="Select.DayDel" id="elementSeven" value="seven">
+								<input type="radio" name="deleteDay7" ng-model="Select.dayDel" id="elementSeven" value="seven">
 							</li>
 						</ul>
 					</div>

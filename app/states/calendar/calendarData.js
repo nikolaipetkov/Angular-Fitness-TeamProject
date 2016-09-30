@@ -10,7 +10,8 @@
     function service() {
         return {
             // example user data
-            days: days()
+            days: days(),
+            //deleteWorkoutFromCalendar: deleteWorkoutFromCalendar()
         };
     }
 
