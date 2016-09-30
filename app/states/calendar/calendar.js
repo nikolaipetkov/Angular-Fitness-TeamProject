@@ -26,80 +26,55 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', '$timeout'];
-    function controller($scope, survey, $timeout) {
+    controller.$inject = ['$scope', 'calendarData', '$timeout'];
+    function controller($scope, calendarData, $timeout) {
     
-        var id = 1;
-        $scope.days = days;
+        //var id = 1;
+        $scope.days = calendarData.days;
+        $scope.addDisciplineInProgram = addDisciplineInProgram;
+        $scope.checkInputIsValid = checkInputIsValid;
         $scope.addWorkoutInCalendar = addWorkoutInCalendar;
-        /*
-        $scope.allDisciplineOfMon = days.one;
-        $scope.allDisciplineOfTue = days.two;
-        $scope.allDisciplineOfWed = days.three;
-        $scope.allDisciplineOfThu = days.four;
-        $scope.allDisciplineOfFri = days.five;
-        $scope.allDisciplineOfSat = days.six;
-        $scope.allDisciplineOfSun = days.seven;
-        */
-        //console.log($scope.allDisciplineOfMon);
-
-        function addWorkoutInCalendar(inputs, form) {
+        //console.log($scope.days);
+        
+        function addDisciplineInProgram(inputs) {
             var selectedDay = inputs.selectedDay;
             var selectedTraining = inputs.selectedTrainig;
             console.log(selectedDay);
             console.log(selectedTraining);
-            console.log(days.two);
-            for (var i = selectedDay.length - 1; i >= 0; i+=1) {
-                var isAdded = false;
-                if (selectedDay[i] == selectedTraining) {
+            checkInputIsValid(selectedDay, selectedTraining);
+        }
+
+        function checkInputIsValid(selectedDay, selectedTraining) {
+            //console.log(selectedDay);
+            //console.log(selectedTraining);
+            if (selectedDay == undefined) {
+                $scope.isValidDay = true;
+            } else if(selectedTraining == undefined) {
+                $scope.isValidDisc = true;
+            } else {
+                addWorkoutInCalendar(selectedDay, selectedTraining);
+            }
+        }
+
+        function addWorkoutInCalendar(selectedDay, selectedTraining) {
+            $scope.isValidDay = false;
+            $scope.isValidDisc = false;
+            var isAdded = false;
+            for (var i = 0, j = $scope.days[selectedDay].length - 1; i <= j; i += 1) {
+                var cutrrentdiscipline =  $scope.days[selectedDay];
+                if (cutrrentdiscipline[i] == selectedTraining) {
                     isAdded = true;
                 }
-
-
             }
-            days[selectedDay].push(selectedTraining);
-            console.log('=========');
-            console.log(days[selectedDay]);
-        }
-/*
-        function showDayProgram(day) {
-            //var trainigOfDay = days[day];
-            //console.log(trainigOfDay);
-            $scope.allDisciplineOfDay = days[day];
-        }
-*/
-
-
-
-
-
-
-
-
-        // =================================
-
-        $scope.survey = survey;
-
-        $scope.sayHi = sayHi;
-        $scope.sayHi1 = sayHi1;
-        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-
-        function sayHi() {
-            alert('Hi to you ' + $scope.name + '! Give me ' + survey.getTotalNumber() + '!');
+            if (isAdded) {
+                alert('This discipline has been added!')
+            } else {
+                $scope.days[selectedDay].push(selectedTraining);
+            }
         }
 
-        function sayHi1() {
-            return 'Hi Maria!';
-        }
 
-        var map;
-          function initMap() {
-            console.log('qqq!');
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -34.397, lng: 150.644},
-              zoom: 8
-            });
-          }
+
 
     }
 
