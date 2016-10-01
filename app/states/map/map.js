@@ -44,7 +44,8 @@
         $scope.addresses = [{
             id: id,
             name: "Gym1",
-            address: "Bulgaria Blvd Sofia Bulgaria"
+            address: "Bulgaria Blvd Sofia Bulgaria",
+            description:"Number 1 Gym in Sofia.."
         }];
 
         // Marker on-click function.
@@ -53,10 +54,9 @@
             $scope.currentAddress = item.address;
             $scope.currentId = item.id;
             $scope.currentName = item.name;
+            $scope.currentDescription=item.description;
 
-            console.log($scope.currentId);
-            console.log($scope.currentAddress);
-            console.log($scope.currentName);
+            console.log(item);
 
             // The info window gets positioned on the
             // correct marker due to the unique id
@@ -72,13 +72,15 @@
 
         $scope.submit = function () {
 
-            var lastAddressPicked = $scope.text;
-            var lastNameGiven = $scope.name;
+            var lastAddressPicked = $scope.text,
+             lastNameGiven = $scope.name,
+            lastDescriptionGiven = $scope.description;
 
             $scope.addresses.push({
                 id: id + "1",
                 name: lastNameGiven,
-                address: lastAddressPicked
+                address: lastAddressPicked,
+                description: lastDescriptionGiven
             });
 
             // console.log($scope.addresses);
@@ -87,6 +89,7 @@
             // Reset Text and Name.
             $scope.text = "";
             $scope.name = "";
+            $scope.description="";
         }
 
     }
