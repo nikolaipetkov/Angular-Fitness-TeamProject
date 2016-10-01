@@ -1,10 +1,10 @@
 <div class="row mainTemplate">
 	<div class="col-xs-12">
 		<div class="row">
-			<div class="col-xs-12 col-sm-8 addForm">
+			<div class="col-xs-12 col-md-8 addForm">
 				<h1 class="text-center">Add Training In Calendar</h1>
 				<form class="pull-left" name="trainingProgramForm">
-					<ul class="chooseTrainigDay">
+					<ul class="col-xs-6 col-md-12 chooseTrainigDay">
 						<h4>Pick a Day:</h4>
 						<li>
 							<label for="One">Monday</label>
@@ -34,9 +34,10 @@
 							<label for="Seven">Sunday</label>
 							<input type="radio" name="clickedDay7" ng-model="currentSelection.selectedDay" id="Seven" value="seven">
 						</li>
+						<div class="errorMes" ng-show="isValidDay">Please select day of the week!</div>
 					</ul>
-					<div class="errorMes" ng-show="isValidDay">Please select day of the week!</div>
-					<ul class="chooseTrainig">
+					
+					<ul class="col-xs-6 col-md-12 chooseTrainig">
 						<h4>Pick Training:</h4>
 						<li>
 							<label for="first">Fitness</label><!-- Fitness-1 -->
@@ -50,14 +51,15 @@
 							<label for="third">Swimming</label><!-- Swimming-3-->
 							<input type="radio" name="clickedtraining3" ng-model="currentSelection.selectedTrainig" id="third" value="Swimming">
 						</li>
+						<div class="errorMes" ng-show="isValidDisc">Please select one of the disciplines!</div>
 					</ul>
-					<div class="errorMes" ng-show="isValidDisc">Please select one of the disciplines!</div>
-					<div class="text-center btn-addTraining">
+					
+					<div class="col-xs-12 text-center btn-addTraining">
 						<button class="btn btn-primary" ng-click="addDisciplineInProgram(currentSelection)">Add Workout</button>
 					</div>
 				</form>
 			</div>
-			<div class="col-xs-12 col-sm-4">
+			<div class="col-xs-12 col-md-4">
 				<h1 class="text-center">Delete Workout From Calendar</h1>
 				<form class="dellForm" name="deleteAllWorkoutsForDay">
 					<h4>Pick a Day:</h4>
