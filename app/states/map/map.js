@@ -1,8 +1,6 @@
 (function (angular) {
     'use strict';
 
-    var id = "b";
-
     angular
         .module('app')
         .directive('theMap', theMap)
@@ -14,24 +12,30 @@
         $stateProvider
             .state('theMap', {
                 url: '/theMap',
-                templateUrl: './states/map/theMap.html',
+                template:'<the-map></the-map>'
+
             });
     }
 
     function theMap() {
+
         var directive = {
+            templateUrl:'./states/map/theMap.html',
             restrict: 'E',
-            controller: controller,
-            scope: {}
+            controller: controller
 
         };
 
         return directive;
     }
 
-    controller.$inject = ['$scope', 'ngMap'];
+    controller.$inject = ['$scope', 'NgMap'];
+
 
     function controller($scope, NgMap) {
+
+        // Id initilizer for info window and markers.
+        var id="b";
 
         NgMap.getMap().then(function (map) {
             $scope.map = map;
@@ -41,7 +45,7 @@
         $scope.addresses = [{
             id: id,
             name: "Gym1",
-            address: "Bulgaria Blvd Sofia Bulgaria",
+            address: "Bulgaria Blvd Sofia Bulgaria"
         }];
 
         // Marker on-click function.
@@ -84,8 +88,7 @@
             // Reset Text and Name.
             $scope.text = "";
             $scope.name = "";
-        };
-
+        }
 
     }
 
