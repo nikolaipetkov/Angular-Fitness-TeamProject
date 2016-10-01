@@ -10,8 +10,8 @@
 
     function config($stateProvider) {
         $stateProvider
-            .state('theMap', {
-                url: '/theMap',
+            .state('map', {
+                url: '/map',
                 template:'<the-map></the-map>'
 
             });
@@ -20,10 +20,9 @@
     function theMap() {
 
         var directive = {
-            templateUrl:'./states/map/theMap.html',
+            templateUrl:'./states/map/map.html',
             restrict: 'E',
             controller: controller
-
         };
 
         return directive;
