@@ -42,6 +42,7 @@
         //Add to scope two function - for add and for delete.
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
+        
         //Function For add training in calendar. 
         function addDisciplineInProgram() {
             //Call this function to add training.
@@ -49,6 +50,8 @@
             //Unchecked radio buttons in this form.
             $scope.currentSelection.Day = undefined;
             $scope.currentSelection.Training = undefined;
+            $scope.trainingProgramForm.clickedDay.$dirty = false;
+            $scope.trainingProgramForm.clickedtraining.$dirty = false;
         }
         //Function to delete all trainings from one day ion calendar.
         function deleteWorkoutInCalendar() {
@@ -56,6 +59,7 @@
             calendarData.deleteWorkout($scope.selected.dayForDeleting);
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
+            $scope.deleteAllWorkoutsForDay.deleteDay.$dirty = false;
         }
     }
 }(angular));
