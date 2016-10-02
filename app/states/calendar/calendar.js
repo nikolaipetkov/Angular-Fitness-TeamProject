@@ -1,9 +1,10 @@
 (function (angular) {
     'use strict';
-
+    //Get 'app' mpdule and create directive with name 'calendar'.
     angular
         .module('app')
         .directive('calendar', calendar)
+        //With 'config' declare routing for this state.
         .config(config);
 
     config.$inject = ['$stateProvider'];
@@ -14,7 +15,7 @@
                 template: '<calendar></calendar>'
             });
     }
-
+    // Directive function.
     function calendar() {
         var directive = {
             templateUrl: './states/calendar/calendar.html',
@@ -25,78 +26,36 @@
 
         return directive;
     }
-
+    //Controller.
     controller.$inject = ['$scope', 'calendarData'];
-    function controller($scope, calendarData, $timeout) {
-    
-        //var id = 1;
+    function controller($scope, calendarData) {
+        //Get all days of week in this variable.
         $scope.days = calendarData.days;
+
+        $scope.currentSelection = {
+            Day: undefined,
+            Training: undefined
+        };
+        $scope.selected = {
+            dayForDeleting: undefined
+        };
+        //Add to scope two function - for add and for delete.
         $scope.addDisciplineInProgram = addDisciplineInProgram;
-        $scope.addWorkoutInCalendar = addWorkoutInCalendar;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
-        //console.log($scope.days);
-        
-        function addDisciplineInProgram(inputs) {
-            //debugger;
-            if (inputs == undefined) {
-                $scope.isValidDay = true;
-                $scope.isValidDisc = true;
-            } else {
-                var selectedDay = inputs.selectedDay;
-                if (selectedDay !== undefined) {$scope.isValidDay = false;};
-                var selectedTraining = inputs.selectedTrainig;
-                if (selectedTraining!== undefined) {$scope.isValidDisc = false;};
-                //console.log(selectedDay);
-                //console.log(selectedTraining);
-                if (selectedDay == undefined) {
-                $scope.isValidDay = true;
-                } else if(selectedTraining == undefined) {
-                    $scope.isValidDisc = true;
-                } else {
-                    addWorkoutInCalendar(selectedDay, selectedTraining);
-                }
-            }
+        //Function For add training in calendar. 
+        function addDisciplineInProgram() {
+            //Call this function to add training.
+            calendarData.addWorkoutInCalendar($scope.currentSelection);
+            //Unchecked radio buttons in this form.
+            $scope.currentSelection.Day = undefined;
+            $scope.currentSelection.Training = undefined;
         }
-
-        function addWorkoutInCalendar(selectedDay, selectedTraining) {
-            $scope.isValidDay = false;
-            $scope.isValidDisc = false;
-            var isAdded = false;
-            for (var i = 0, j = $scope.days[selectedDay].length - 1; i <= j; i += 1) {
-                var cutrrentdiscipline =  $scope.days[selectedDay];
-                if (cutrrentdiscipline[i] == selectedTraining) {
-                    isAdded = true;
-                }
-            }
-            if (isAdded) {
-                alert('This discipline has been added!')
-            } else {
-                $scope.days[selectedDay].push(selectedTraining);
-            }
+        //Function to delete all trainings from one day ion calendar.
+        function deleteWorkoutInCalendar() {
+            //Call this function and remove from selected day all disciplines
+            calendarData.deleteWorkout($scope.selected.dayForDeleting);
+            //Unchecked radio buttons in this form.
+            $scope.selected.dayForDeleting = undefined;
         }
-
-        function deleteWorkoutInCalendar(inputsDel) {
-            //debugger;
-            if (inputsDel == undefined) {
-                $scope.delDayIsValid = true;
-            } else {
-                //call func
-                //calendarData.deleteWorkoutFromCalendar(selectedDayForDelete);
-                var selectedDayForDelete = inputsDel.dayDel;
-                //console.log($scope.days[selectedDayForDelete]);
-                if ($scope.days[selectedDayForDelete].length == 0) {
-                    alert('No disciplinies in this day!');
-                } else {
-                    //console.log('hi');
-                    //console.log(selectedDayForDelete);
-                    //calendarData.deleteWorkoutFromCalendar(selectedDayForDelete);
-                    $scope.days[selectedDayForDelete] = [];
-                    //console.log($scope.days[selectedDayForDelete]);
-                }
-            }
-        }
-
-
     }
-
 }(angular));
