@@ -52,6 +52,7 @@
             $scope.currentSelection.Training = undefined;
             $scope.trainingProgramForm.clickedDay.$dirty = false;
             $scope.trainingProgramForm.clickedtraining.$dirty = false;
+            //console.log(calendarService.calendarDisciplines());
         }
         //Function to delete all trainings from one day ion calendar.
         function deleteWorkoutInCalendar() {
