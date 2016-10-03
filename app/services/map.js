@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('music', service);
+        .factory('map', service);
 
     service.$inject = ['$http'];
 

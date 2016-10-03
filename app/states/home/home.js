@@ -3,46 +3,54 @@
 
     angular
         .module('app')
-        .directive('homeState', directive)
+        .directive('home', home)
         .config(config);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
             .state('home', {
-                url: '/',
-                title: 'Home',
-                template: '<home-state></home-state>'
+                url: '/home',
+                template: '<home name="\'home\'"></home>',
+                params: {site: ''}
             });
     }
 
-    function directive() {
+    function home() {
         var directive = {
             templateUrl: './states/home/home.html',
             restrict: 'E',
             controller: controller,
-            scope: {}
+            scope: {
+                name: '='
+            }
         };
 
         return directive;
     }
 
-    controller.$inject = ['$scope', '$rootScope', 'api', '$state'];
-    function controller($scope, $rootScope, api, $state) {
-        $scope.goto = function (site) {
-            $state.go('hi', {site: site})
+    controller.$inject = ['$scope', 'survey', 'music', 'calculator', 'calendar', 'dictionary', 'map'];
+    function controller($scope, survey, music, calculator, calendar, dictionary, map) {
+        $scope.survey = survey;
+        $scope.music = music;
+        $scope.calculator = calculator;
+        $scope.calendar = calendar;
+        $scope.dictionary = dictionary;
+        $scope.map = map;
+
+        $scope.showTitle = showTitle;
+        $scope.showSubTitle = showSubTitle;
+
+
+        function showTitle() {
+            return 'Angular Demo Home Page';
+        }
+
+        function showSubTitle() {
+            return 'Functionalities Map';
         }
 
 
-        api
-        .get('users')
-        .then(function (res) {
-            console.log(res.data);
-        });
-
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
     }
 
 }(angular));

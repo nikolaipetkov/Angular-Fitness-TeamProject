@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('music', service);
+        .factory('calendar', service);
 
     service.$inject = ['$http'];
 
@@ -12,12 +12,12 @@
         return {
             // example user data
              data: [
-                   "55",
+                   "Calendar Table",
                    "110",
                    "add",
-                   "edit",
                    "delete"
-                  ]
+                  ],
+
             };
     }
 }(angular));

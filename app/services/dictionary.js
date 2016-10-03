@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('music', service);
+        .factory('dictionary', service);
 
     service.$inject = ['$http'];
 
@@ -12,8 +12,8 @@
         return {
             // example user data
              data: [
-                   "55",
-                   "110",
+                   "Training Info",
+                   "Add Form",
                    "add",
                    "edit",
                    "delete"
