@@ -41,6 +41,16 @@
         </div>
     </form>
 
+    <form ng-submit="deleteCertainMarker()">
+        <div>
+            <div>
+                <label for="certain-gym-delete"> Delete certain gym</label>
+                <input type="text" ng-model="certain" id="certain-gym-delete">
+            </div>
+            <input type="submit" id="delete-certain" value="Delete Marker" class="btn btn-default"/>
+        </div>
+    </form>
+
     <div id="panel">
 
         <input ng-click="hideMarkers()" type=button value="Hide Markers">
@@ -48,12 +58,5 @@
         <input ng-click="deleteMarkers()" type=button value="Delete Markers">
     </div>
 
-    <form ng-submit="deleteCertainMarker()">
-        <div>
-            <div>
-                <input type="text" ng-model="certain">
-            </div>
-            <input type="submit" id="delete-certain" value="Delete Marker" class="btn btn-default"/>
-        </div>
-    </form>
+
 </div>
