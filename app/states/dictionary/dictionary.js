@@ -27,47 +27,18 @@
         return directive;
     }
 
-    controller.$inject = ['$scope'];
-    function controller($scope) {
-        $scope.table =[
-        {
-            'name' : 'kljenj',
-            'description' : 'kvbejiobneriovbrnvbier'
-        },
-        {
-            'name' : 'njedogjer',
-            'description': 'klnbbbolmoebenrobvrnme'
-        },
-        {
-            'name' : 'nejvne',
-            'description': 'lkvnmoblerkn'
-        },
-        ]; 
+    controller.$inject = ['$scope', 'dictionary'];
+    function controller($scope, dictionary) {
+       
+        $scope.service = dictionary;
 
-        $scope.addRow = function() {
-            $scope.table.push({'name':$scope.name, 'description' : $scope.description});
+        $scope.add = function() {
+            dictionary.add($scope.name, $scope.description);
             $scope.name = '';
             $scope.description = '';
         }
 
-        $scope.editExercises = function(x) {
-            $scope.current = angular.copy(x);
-            x.editMode = true;
-        };
 
-         $scope.saveChanges = function(x) {
-                x.editMode = false;
-            };
-
-        $scope.removeExercise = function(index) {
-            $scope.table.splice(index, 1);
-        };
-
-        $scope.cancel = function(x) {
-            x.editMode = false;
-            x.name = $scope.current.name;
-            x.description = $scope.current.name;
-        }
     }
 
 }(angular));
