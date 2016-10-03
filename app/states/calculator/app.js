@@ -1,34 +1,39 @@
 (function (angular) {
     var app = angular.module('calculator', []);
 
-    app.service('calculatorFunctionality', function ($scope) {
-        this.input = {};
-        this.addInput = function (current,userInput) {
-            current.userInput.push(this.input);
-            this.input = {};
+    app.service('CalculatorService', function () {
+        this.user = {};
+        this.update = function (user) {
+            this.user = angular.copy(user);
         };
+        this.newUser = function () {
+        return user;
+    }
+       
+       
+       
+        var age = this.user.age;
+        if (age != null && age != undefined) {
 
-        $scope.typesOfTrainings = false;
-        this.showElement = function ($scope, typesOfTrainings) {
-            return $scope.typesOfTrainings = true;
-        };
-
-        this.checkTraining = function () {
-            checkAge = function () {
-                userInput.age <= 20
+            console.log("Age is" + age);
+            this.checkingAge = function (age) {
+                if (age <= 20) {
+                    console.log("Age equal or under 20")
+                }
             }
-            if (userInput.weight) { }
+        }
+
+    });
+
+    app.controller('CalculatorController', function ($scope, CalculatorService) {
+        $scope.user = CalculatorService.newUser();
+
+        $scope.checkAge = function () {
+            $scope.answer = CalculatorService.checkingAge($scope.user.age);
         };
-    });
-
-    app.controller('CalculatorController', function ($scope, calculatorFunctionality) {
-
-        $scope.addInput(current,userInput);
-        $scope.showElement();
-        $scope.checkTraining
 
 
     });
-    var userInput = [];
+
 })(angular);
 
