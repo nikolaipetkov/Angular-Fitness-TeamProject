@@ -90,7 +90,28 @@
             $scope.text = "";
             $scope.name = "";
             $scope.description="";
-        }
+        };
+
+        // Possibly not needed.
+        $scope.deleteMarkers = function () {
+            $scope.addresses = [];
+        };
+
+
+        $scope.showMarkers = function () {
+
+            for (var key in $scope.map.markers) {
+                $scope.map.markers[key].setMap($scope.map);
+            }
+        };
+
+        $scope.hideMarkers = function () {
+            for (var key in $scope.map.markers) {
+                $scope.map.markers[key].setMap(null);
+            }
+        };
+        // Possibly not needed.
+
 
     }
 
