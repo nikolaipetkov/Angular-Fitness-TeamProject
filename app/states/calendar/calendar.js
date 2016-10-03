@@ -27,10 +27,10 @@
         return directive;
     }
     //Controller.
-    controller.$inject = ['$scope', 'calendarData'];
-    function controller($scope, calendarData) {
+    controller.$inject = ['$scope', 'calendarService'];
+    function controller($scope, calendarService) {
         //Get all days of week in this variable.
-        $scope.days = calendarData.days;
+        $scope.days = calendarService.days;
 
         $scope.currentSelection = {
             Day: undefined,
@@ -46,7 +46,7 @@
         //Function For add training in calendar. 
         function addDisciplineInProgram() {
             //Call this function to add training.
-            calendarData.addWorkoutInCalendar($scope.currentSelection);
+            calendarService.addWorkoutInCalendar($scope.currentSelection);
             //Unchecked radio buttons in this form.
             $scope.currentSelection.Day = undefined;
             $scope.currentSelection.Training = undefined;
@@ -56,7 +56,7 @@
         //Function to delete all trainings from one day ion calendar.
         function deleteWorkoutInCalendar() {
             //Call this function and remove from selected day all disciplines
-            calendarData.deleteWorkout($scope.selected.dayForDeleting);
+            calendarService.deleteWorkout($scope.selected.dayForDeleting);
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
             $scope.deleteAllWorkoutsForDay.deleteDay.$dirty = false;

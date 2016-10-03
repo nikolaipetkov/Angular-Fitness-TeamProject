@@ -3,7 +3,7 @@
     //Get 'app' mpdule and create directive with name 'calendar'.
     angular
         .module('app')
-        .factory('calendarData', service);
+        .factory('calendarService', service);
 
     service.$inject = [];
     //Service 'factory'function
