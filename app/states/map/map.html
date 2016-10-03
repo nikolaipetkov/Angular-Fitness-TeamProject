@@ -47,4 +47,13 @@
         <input ng-click="showMarkers()" type=button value="Show All Markers">
         <input ng-click="deleteMarkers()" type=button value="Delete Markers">
     </div>
+
+    <form ng-submit="deleteCertainMarker()">
+        <div>
+            <div>
+                <input type="text" ng-model="certain">
+            </div>
+            <input type="submit" id="delete-certain" value="Delete Marker" class="btn btn-default"/>
+        </div>
+    </form>
 </div>

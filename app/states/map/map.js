@@ -32,7 +32,7 @@
 
     function controller($scope, NgMap, mapService) {
 
-        // Id initilizer for info window and markers.
+        // Id initializer for info window and markers.
         var id = 'b';
 
         NgMap.getMap().then(function (map) {
@@ -73,20 +73,24 @@
             $scope.addresses = mapService.deleteMarkers();
         };
 
-        // TODO.
+        // DOne
         $scope.deleteCertainMarker = function () {
+
+            var nameToDelete = $scope.certain;
 
             for (var key in $scope.map.markers) {
                 // Key returns address's ID which gets set randomly following id generator...
-                $scope.addresses.forEach(iteratedAddress => {
-                    // Iterate over all addresses to find the one with the matching id.
-                    if (iteratedAddress.id === key) {
-                        // Check to see if marker was deleted and return or
-                        // delete certain marker here.
+                $scope.addresses.forEach(function (iteratedAddress) {
+                    if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
+                        var index = $scope.addresses.indexOf(iteratedAddress);
+                        if (index > -1) {
+                            $scope.addresses.splice(index, 1);
+                        }
                     }
-                });
+                })
             }
         };
+
 
         $scope.showMarkers = function () {
 
@@ -105,4 +109,4 @@
 
     }
 
-} (angular));
+}(angular));
