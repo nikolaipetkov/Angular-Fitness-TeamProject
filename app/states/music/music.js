@@ -53,22 +53,29 @@
 
 
         $scope.addSong = function () {
-        id++;
-        $scope.songs.push(
-            {
-                id: id,
-                name:$scope.item.name,
-                author:$scope.item.author,
-                duration:$scope.songDuration,
-                date:$scope.songDate,
-                done:false
-            });
+            if($scope.item.name !== '' && $scope.item.author !== ''){
+                id++;
+                $scope.songs.push(
+                    {
+                        id: id,
+                        name:$scope.item.name,
+                        author:$scope.item.author,
+                        duration:$scope.songDuration,
+                        date:$scope.songDate,
+                        done:false
+                    });
 
 
         $scope.songName = '';
         $scope.songAuthor = '';
         $scope.songDate = '';
         $scope.songDuration = '';
+            }else{
+                
+                alert('Please fill in name and author');
+            }
+
+
 
         };
         
@@ -82,13 +89,10 @@
         $scope.editSong = function(item) {
             
             $scope.clicked = true;
-           var doc = document.getElementById('name').focus();
+            var doc = document.getElementById('name').focus();
             $scope.itemRef = item;
             $scope.item = angular.copy(item);
             $scope.text = 'Submit';
-
-            
-
         };
 
         $scope.submitChange = function(item) {
@@ -102,7 +106,28 @@
                 $scope.item.author = '';
                 
                 $scope.text = 'Add new song';
-        }
+        };
+
+        $("#volume").slider({
+    min: 0,
+    max: 100,
+    value: 0,
+        range: "min",
+        animate: true,
+    slide: function(event, ui) {
+      setVolume((ui.value) / 100);
+    }
+  });
+  var myMedia = document.createElement('audio');
+  $('#player').append(myMedia);
+  myMedia.id = "myMedia";
+
+    function setVolume(myVolume) {
+    var myMedia = document.getElementById('myMedia');
+    myMedia.volume = myVolume;
+    }   
+
+
 
     }
 }

@@ -1,49 +1,92 @@
+<div class="row">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/music">Music Player</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="glyphicon glyphicon-step-backward" href="#/music"></a>
+                    </li>
+                    <li>
+                        <a class="glyphicon glyphicon-play" href="#/music"></a>
+                    </li>
+                    <li>
+                        <a class="glyphicon glyphicon-step-forward" href="#/music"></a>
+                    </li>
+                     <li>
+                        <div id="player">
+                          <div id="volume"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+    <div class="row">
+                <div class="container">
+          <div id="music" class="col-lg-5 col-md-5 col-sm-6 col-xs-12" >
+
+            <div class="row">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                <h1>Music to add</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class=" input-info ">
+                  <input type="text" id="name" ng-model="item.name" 
+                  placeholder="Name of the song?"/>
+                </div>
+                <div class="row">
+                <div class=" input-info ">
+                  <input type="text" id="author" ng-model="item.author" 
+                  placeholder="Author?" />
+                </div>
+                </div>
+                <div class="row">
+                <div class=" input-info ">
+                  <input type="text" ng-model="songDuration" 
+                  placeholder="Duration?" />
+                </div>
+                </div>
+                <div class="row">
+                <div class=" input-info ">
+                  <input type="text" ng-model="songDate" 
+                  placeholder="Date?" />
+                </div>
+              </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 center-block">
+                  <button class="btn-lg" ng-class="clicked ? 'btn-primary' : 'btn-success'" ng-click="clicked ? submitChange() : addSong()" >
+                  {{text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div id="divider" class="col-lg-2 col-md-2 col-sm-2"></div>
+          <div class="container">
+            <div  id="player" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+        <div class="row">
+          <div class="container">
+            <div class="view col-lg-10">
+              <img src="/states/music/music1.jpg">
+            </div>
+          </div>
+        </div> 
+      </div>
+          </div>
+      </div>
   
-  <div id="music" class="col-lg-5 col-md-5 col-sm-5 col-xs-12" >
-  <div class="row">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-      <h1>Music to add</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class=" input-info ">
-        <input type="text" id="name" ng-model="item.name" 
-        placeholder="Name of the song?"/>
-      </div>
-      <div class="row">
-      <div class=" input-info ">
-        <input type="text" id="author" ng-model="item.author" 
-        placeholder="Author?" />
-      </div>
-      </div>
-      <div class="row">
-      <div class=" input-info ">
-        <input type="text" ng-model="songDuration" 
-        placeholder="Duration?" />
-      </div>
-      </div>
-      <div class="row">
-      <div class=" input-info ">
-        <input type="text" ng-model="songDate" 
-        placeholder="Date?" />
-      </div>
-    </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 center-block">
-        <button class="btn-lg" ng-class="clicked ? 'btn-primary' : 'btn-success'" ng-click="clicked ? submitChange() : addSong()" >
-        {{text}}
-        </button>
-      </div>
-
-    </div>
-
-
-
-
-    <section id="main" style="display: block;">
+<section id="main" style="display: block;">
         <div>
           <input id="toggle-all" type="checkbox" ng-model="markAll"
             ng-click="toggleMarkAll()"/>
@@ -53,11 +96,11 @@
         <ul id="song-list" class="unstyled">
           <li ng-repeat="song in songs">
             <div class="view">
-              <span class="done-{{song.done}} info-field " >name: {{song.name}}</span>
-              <span class="done-{{song.done}} info-field" >author: {{song.author}}</span>
-              <span class="done-{{song.done}} info-field" >duration: {{song.duration}}</span>
-              <span class="done-{{song.done}} info-field" >date: {{song.date}}</span>
-              <span class="done-{{song.done}} info-field" >id: {{song.id}}</span>
+              <span class="done-{{song.done}} info-field">name: {{song.name}}</span>
+              <span class="done-{{song.done}} info-field">author: {{song.author}}</span>
+              <span class="done-{{song.done}} info-field">duration: {{song.duration}}</span>
+              <span class="done-{{song.done}} info-field">date: {{song.date}}</span>
+              <span class="done-{{song.done}} info-field">id: {{song.id}}</span>
               <button class="btn-xs btn-danger" ng-click="removeSong(song)">Remove</button>
               <button class="btn-xs btn-info" ng-click="editSong(song)">Edit</button>
           </li>
@@ -65,6 +108,9 @@
 
        </div>
     </section>
+
+
+    
     
 
 
@@ -80,32 +126,5 @@
   </div>
 </div>
 
-<div id="divider" class="col-lg-2 col-md-2 col-sm-2"></div>
 
-<div  id="player" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-  <div class="row">
-    <div class="container">
-      <div class="view col-lg-10">
-        <img src="/states/music/music1.jpg">
-      </div>
-    </div>
-  </div>  
-  <div class="row">
-    <div class="container">
-      <div class="player-controls">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <div class="col-lg-4 col-md-4 col-sm-4">
-            <button type="button" class="btn btn-secondary play-ctrl glyphicon glyphicon-step-backward"></button>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-4">
-            <button type="button" class="btn btn-secondary play-ctrl glyphicon glyphicon-play"></button>
-          </div>        
-          <div class="col-lg-4 col-md-4 col-sm-4">
-            <button type="button" class="btn btn-secondary  play-ctrl glyphicon glyphicon-step-forward"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</div>
