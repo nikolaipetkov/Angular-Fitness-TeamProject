@@ -10,6 +10,7 @@
     function service() {
         //Return from all factory with name 'calendarData' one object with days and two function.
         return {
+            data: data,
             days: days,
             //Function for add disciplines
             addWorkoutInCalendar: addWorkoutInCalendar,
@@ -17,6 +18,12 @@
             deleteWorkout: deleteWorkout
         };
     }
+
+    var data = [
+            'Calendar Table',
+            'Add Sport Types',
+            'Delete Sport Types'
+        ];
     //Object with all days of week.
     var days = {
         one: [],

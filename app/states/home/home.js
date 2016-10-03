@@ -29,12 +29,12 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', 'music', 'calculator', 'calendar', 'dictionary', 'map'];
-    function controller($scope, survey, music, calculator, calendar, dictionary, map) {
+    controller.$inject = ['$scope', 'survey', 'music', 'calculator', 'calendarService', 'dictionary', 'map'];
+    function controller($scope, survey, music, calculator, calendarService, dictionary, map) {
         $scope.survey = survey;
         $scope.music = music;
         $scope.calculator = calculator;
-        $scope.calendar = calendar;
+        $scope.calendarService = calendarService;
         $scope.dictionary = dictionary;
         $scope.map = map;
 
