@@ -31,9 +31,12 @@
 
     controller.$inject = ['$scope', 'survey', '$timeout'];
         function controller($scope, survey, $timeout) {
+            //Text on the large button
             $scope.text = 'Add new song';
+
             var id = 1;
-            $scope.songs = [
+            //Array with songs of the player.
+            var songs = [
             {
                 id: 0,
                 name: 'nameofsong1',
@@ -49,22 +52,27 @@
                 date: '01-02-2016',
                 url: 'some/url/with/songs'
             }];
-            $scope.markAll = false;
 
+        //Adding functions and the array to the scope.
+        $scope.songs = songs;
+        $scope.addSong = addSong;
+        $scope.removeSong = removeSong;
+        $scope.editSong = editSong;
+        $scope.submitChange = submitChange;
 
-        $scope.addSong = function () {
-            if($scope.item.name !== '' && $scope.item.author !== ''){
-                id++;
-                $scope.songs.push(
-                    {
-                        id: id,
-                        name:$scope.item.name,
-                        author:$scope.item.author,
-                        duration:$scope.songDuration,
-                        date:$scope.songDate,
-                        done:false
-                    });
-
+        //Add new song
+        function addSong() {
+        if($scope.item.name !== '' && $scope.item.author !== ''){
+            id++;
+            $scope.songs.push(
+                {
+                    id: id,
+                    name:$scope.item.name,
+                    author:$scope.item.author,
+                    duration:$scope.songDuration,
+                    date:$scope.songDate,
+                    done:false
+                });
 
         $scope.songName = '';
         $scope.songAuthor = '';
@@ -74,19 +82,16 @@
                 
                 alert('Please fill in name and author');
             }
-
-
-
         };
         
-        $scope.removeSong = function(item) {
+        //Remove existing song
+        function removeSong(item) {
         var index = $scope.songs.indexOf(item);
         $scope.songs.splice(index,1);
         };    
 
-
-        $scope.clicked = false;
-        $scope.editSong = function(item) {
+        //Edit existing song
+        function editSong(item) {
             
             $scope.clicked = true;
             var doc = document.getElementById('name').focus();
@@ -95,39 +100,47 @@
             $scope.text = 'Submit';
         };
 
-        $scope.submitChange = function(item) {
+        //Submit change on existing song
+        function submitChange (item) {
 
                 $scope.itemRef.name = $scope.item.name;
                 $scope.itemRef.author = $scope.item.author;
-
-
                 $scope.clicked = false;
                 $scope.item.name = '';
                 $scope.item.author = '';
-                
                 $scope.text = 'Add new song';
+                 console.log(getTotalSongs(songs))
         };
 
+        //Volume slider with jqueryUI
         $("#volume").slider({
-    min: 0,
-    max: 100,
-    value: 0,
-        range: "min",
-        animate: true,
-    slide: function(event, ui) {
-      setVolume((ui.value) / 100);
-    }
-  });
-  var myMedia = document.createElement('audio');
-  $('#player').append(myMedia);
-  myMedia.id = "myMedia";
+        min: 0,
+        max: 100,
+        value: 0,
+            range: "min",
+            animate: true,
+        slide: function(event, ui) {
+          setVolume((ui.value) / 100);
+        }
+      });
 
-    function setVolume(myVolume) {
-    var myMedia = document.getElementById('myMedia');
-    myMedia.volume = myVolume;
-    }   
+        //Filling the new color when sliding
+        var myMedia = document.createElement('audio');
+        $('#player').append(myMedia);
+        myMedia.id = "myMedia"
+        function setVolume(myVolume) {
+        var myMedia = document.getElementById('myMedia');
+        myMedia.volume = myVolume;
+        };
 
-
+        //Total amount of songs in the songs array
+        function getTotalSongs(songs) {
+            return songs.length;
+        }
+        //Total operations
+        function returnOperations(){
+            return ['addSong', 'removeSong', 'editSong', 'submitChange','setVolume'];
+        }
 
     }
 }
