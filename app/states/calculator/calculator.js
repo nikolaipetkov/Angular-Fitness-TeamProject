@@ -9,7 +9,7 @@
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
-            .state('Calculator', {
+            .state('calculator', {
                 url: '/calculator',
                 template: '<calculator></calculator>',
             });
@@ -26,17 +26,13 @@
     }
 
     controller.$inject = ['$scope', 'calculatorService'];
-   
-    function controller($scope, calculatorService) {
 
+    function controller($scope, calculatorService) {
         $scope.user = {};
         $scope.training = [];
         $scope.checkTraining = function (user) {
             $scope.training = calculatorService.checkTraining(user);
         };
-
-
     };
-
 })(angular);
 

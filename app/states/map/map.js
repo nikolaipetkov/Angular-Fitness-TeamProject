@@ -13,7 +13,6 @@
             .state('map', {
                 url: '/map',
                 template: '<the-map></the-map>'
-
             });
     }
 
@@ -28,27 +27,19 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'NgMap'];
+    controller.$inject = ['$scope', 'NgMap', 'mapService'];
 
 
-    function controller($scope, NgMap) {
-
-        // Id initilizer for info window and markers.
-        var id = "b";
+    function controller($scope, NgMap, mapService) {
 
         NgMap.getMap().then(function (map) {
             $scope.map = map;
         });
 
-        // Initial addresses.
-        $scope.addresses = [{
-            id: id,
-            name: "Gym1",
-            address: "Bulgaria Blvd Sofia Bulgaria",
-            description: "Number 1 Gym in Sofia.."
-        }];
+        // Initial addresses received from service.
+        $scope.addresses = mapService.data;
 
-        // Marker on-click function.
+        // Marker on-click function that shows details for gym location.
         $scope.showDetail = function (e, item) {
 
             $scope.currentAddress = item.address;
@@ -63,54 +54,28 @@
 
         };
 
-        $scope.address = "Toronto Canada";
-
         // Current center map is on.
-        $scope.text = "Sofia, Bulgaria";
+        $scope.text = 'Sofia, Bulgaria';
 
         $scope.submit = function () {
+            mapService.addNewLocation($scope.text, $scope.name, $scope.description);
 
-            var lastAddressPicked = $scope.text,
-                lastNameGiven = $scope.name,
-                lastDescriptionGiven = $scope.description;
-
-            $scope.addresses.push({
-                id: id + "1",
-                name: lastNameGiven,
-                address: lastAddressPicked,
-                description: lastDescriptionGiven
-            });
-
-            // console.log($scope.addresses);
-            // Actually updating id.
-            id = id + "1";
-            // Reset Text and Name.
-            $scope.text = "";
-            $scope.name = "";
-            $scope.description = "";
+            $scope.text = '';
+            $scope.name = '';
+            $scope.description = '';
         };
 
         // Possibly not needed.
         $scope.deleteMarkers = function () {
-            $scope.addresses = [];
+            $scope.addresses = mapService.deleteLocations();
         };
 
-        // TODO.
         $scope.deleteCertainMarker = function () {
 
-            for (var key in $scope.map.markers) {
-                // Key returns address's ID which gets set randomly following id generator...
-                $scope.addresses.forEach(iteratedAddress=> {
-                    // Iterate over all addresses to find the one with the matching id.
-                    if (iteratedAddress.id === key) {
-                        // Check to see if marker was deleted and return or
-                        // delete certain marker here.
-                    }
-                });
-            }
+            mapService.deleteCertainLocation($scope.certain);
+            $scope.certain = '';
 
         };
-
 
         $scope.showMarkers = function () {
 
@@ -125,8 +90,6 @@
             }
         };
         // Possibly not needed.
-
-
     }
 
 }(angular));

@@ -1,3 +1,6 @@
+
+//Service for functionality
+
 (function (angular) {
     'use strict';
 
@@ -7,30 +10,34 @@
 
     service.$inject = [];
     function service() {
+        //Declare training arrays
         var lightTraining = ['15 push-ups', '15 crunches', '5km run'];
         var middleTraining = ['25 push-ups', '25 crunches', '10km run'];
         var hardTraining = ['35 push-ups', '35 crunches', '15km run'];
 
         return {
-            //array with soft training
+            //Array with soft training
             lightTraining: lightTraining,
-            //array with middle training
+            //Array with middle training
             middleTraining: middleTraining,
-            //array with hard training
+            //Array with hard training
             hardTraining: hardTraining,
-            //function for checking training
-            checkTraining: checkTraining
+            //Function for checking training
+            checkTraining: checkTraining,
+            //Function for functionalitist
+            listWithFunctionalities: listWithFunctionalities
         };
 
+        //Function that check training
         function checkTraining(user) {
-            var result  = [];
+            var result = [];
             if (user.age != null && user.age != undefined) {
                 result = checkAge(user.age);
             };
-
             return result;
         };
 
+        //Function that check age to output training
         function checkAge(age) {
             var result = hardTraining;
             if (age >= 40) {
@@ -38,9 +45,11 @@
             } else if (age >= 30) {
                 result = middleTraining;
             }
-
             return result;
-
+        }
+        //Function that output the functionalities of the calculator
+        function listWithFunctionalities() {
+            return ["User enter parameters in fields", "Click button check it", "Receive correct training"];
         }
     };
 })(angular);

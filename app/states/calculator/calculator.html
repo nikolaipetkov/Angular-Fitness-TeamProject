@@ -4,7 +4,7 @@
             <h2>Training calculator</h2>
             <p>Enter your weight, height, age and gender below and choose type of training</p>
         </div>
-        <div class="panel-body" >
+        <div class="panel-body">
             <form class="form-inline" ng-submit="checkTraining(user)">
                 <div class="form-group">
                     <label for="weight">Weight:</label>
@@ -20,10 +20,10 @@
                 </div>
                 <div class="radio">
                     <label>Gender:</label>
-                    <label><input ng-model="user.gender" type="radio" name="gender" value="Male">Male</label>
-                    <label><input ng-model="user.gender" type="radio" name="gender" value="Female">Female</label>
+                    <label><input ng-model="user.gender" type="radio" name="gender" value="Male" required>Male</label>
+                    <label><input ng-model="user.gender" type="radio" name="gender" value="Female" required>Female</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Check it!</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">Check it!</button>
             </form>
             <div class="well">
                 <div class="row">
@@ -33,12 +33,24 @@
                     <div class="col-md-3">Your gender is: {{user.gender}}</div>
                 </div>
             </div>
-            <div>
-                <p>The best training for you is:</p>
-                <ul>
-                    <li ng-repeat="train in training">{{train}}</li>
-                </ul>
+            <div id="resultModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">The best training for you is:</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li ng-repeat="train in training">{{train}}</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-  </div>
