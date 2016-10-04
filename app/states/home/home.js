@@ -30,13 +30,13 @@
     }
 
 //Using all the services in the project
-    controller.$inject = ['$scope', 'music', 'calculator', 'calendarService', 'dictionary', 'map'];
-    function controller($scope, music, calculator, calendarService, dictionary, map) {
+    controller.$inject = ['$scope', 'music', 'calculator', 'calendarService', 'dictionary', 'mapService'];
+    function controller($scope, music, calculator, calendarService, dictionary, mapService) {
         $scope.music = music;
         $scope.calculator = calculator;
         $scope.calendarService = calendarService;
         $scope.dictionary = dictionary;
-        $scope.map = map;
+        $scope.mapService = mapService;
 
         $scope.showTitle = showTitle;
         $scope.showSubTitle = showSubTitle;

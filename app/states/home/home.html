@@ -74,9 +74,8 @@
      <img src="states/home/assets/mapPic.jpg" class="img-responsive margin" style="height: 200px" alt="Image"> </img>
      </a>
       <p> Gym Locations and Information shown on map </p>
-      <p> Count is: {{map.data[0]}} </p>
-      <p> Limit is: {{map.data[1]}} </p>
-      <p> Available Operations: {{map.data[2]}} , {{map.data[3]}}, {{map.data[4]}} </p>
+      <p> Count is: {{mapService.data.length}} </p>
+      <p> Available Operations: {{mapService.listMapOperations()[0]}}, {{mapService.listMapOperations()[1]}}, {{mapService.listMapOperations()[2]}}, {{mapService.listMapOperations()[3]}}, {{mapService.listMapOperations()[4]}}</p>
     </div>
   </div>
   </div>
