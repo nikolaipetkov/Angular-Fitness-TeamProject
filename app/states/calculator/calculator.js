@@ -9,7 +9,7 @@
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
-            .state('Calculator', {
+            .state('calculator', {
                 url: '/calculator',
                 template: '<calculator></calculator>',
             });
