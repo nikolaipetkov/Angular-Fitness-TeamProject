@@ -67,6 +67,10 @@
             x.name = current.name;
             x.description = current.description;
         }
+
+        function whatIDo {
+            return ['Add Exercise', 'Edit Exercise', 'Delete Exercise']
+        }
     }
 
 }(angular));
