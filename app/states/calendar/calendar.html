@@ -41,7 +41,7 @@
 							<input type="radio" name="clickedDay" required="required" ng-model="currentSelection.Day" id="Seven" value="seven">
 						</li>
 						<!-- Show this message if inputs is invalid. -->
-						<div class="errorMes" ng-show="trainingProgramForm.clickedDay.$dirty && trainingProgramForm.clickedDay.$invalid">Please select day of the week!</div>
+						<div class="errorMes" ng-show="!trainingProgramForm.clickedDay.$pristine && trainingProgramForm.clickedDay.$invalid">Please select day of the week!</div>
 					</ul>
 					<!-- Radio buttons for selected discipline. -->
 					<ul class="col-xs-6 col-md-12 chooseTrainig">
@@ -59,14 +59,14 @@
 							<input type="radio" name="clickedtraining" required="required" ng-model="currentSelection.Training" id="third" value="Swimming">
 						</li>
 						<!-- Show this message if inputs is invalid. -->
-						<div class="errorMes" ng-show="trainingProgramForm.clickedtraining.$dirty && trainingProgramForm.clickedtraining.$invalid">Please select one of the disciplines!</div>
+						<div class="errorMes" ng-show="!trainingProgramForm.clickedtraining.$pristine && trainingProgramForm.clickedtraining.$invalid">Please select one of the disciplines!</div>
 					</ul>
 					<!-- Button for submit information. -->
 					<div class="col-xs-12 text-center btn-addTraining">
 						<button type="submit" 
 						class="btn btn-primary" 
 						name="subButton" 
-						ng-click="trainingProgramForm.clickedDay.$dirty=true; trainingProgramForm.clickedtraining.$dirty=true"><span class="glyphicon glyphicon-edit"></span> Add  Workout</button>
+						ng-click="trainingProgramForm.clickedDay.$pristine=false; trainingProgramForm.clickedtraining.$pristine=false"><span class="glyphicon glyphicon-edit"></span> Add  Workout</button>
 					</div>
 				</form>
 			</div>
@@ -88,7 +88,7 @@
 
 					<div id="demo" class="collapse">
 						<!-- Show this message if inputs is invalid. -->
-						<div class="errorMes" ng-show="deleteAllWorkoutsForDay.deleteDay.$dirty && deleteAllWorkoutsForDay.deleteDay.$invalid">Please select day of the week!</div>
+						<div class="errorMes" ng-show="!deleteAllWorkoutsForDay.deleteDay.$pristine && deleteAllWorkoutsForDay.deleteDay.$invalid">Please select day of the week!</div>
 						<!-- Radio buttons for select day of the week, and delete disciplies in this day -->
 						<ul class="deleteTrainig">
 							<li>
@@ -127,7 +127,7 @@
 						<button type="submit" 
 						class="btn btn-primary" 
 						name="subDelButton" 
-						ng-click="deleteAllWorkoutsForDay.deleteDay.$dirty=true">
+						ng-click="deleteAllWorkoutsForDay.deleteDay.$pristine=false">
 						<span class="glyphicon glyphicon-trash"></span> Delete Workout</button>
 					</div>
 				</form>

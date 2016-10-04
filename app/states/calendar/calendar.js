@@ -50,9 +50,7 @@
             //Unchecked radio buttons in this form.
             $scope.currentSelection.Day = undefined;
             $scope.currentSelection.Training = undefined;
-            $scope.trainingProgramForm.clickedDay.$dirty = false;
-            $scope.trainingProgramForm.clickedtraining.$dirty = false;
-            //console.log(calendarService.calendarDisciplines());
+            $scope.trainingProgramForm.$setPristine();
         }
         //Function to delete all trainings from one day ion calendar.
         function deleteWorkoutInCalendar() {
@@ -60,7 +58,7 @@
             calendarService.deleteWorkout($scope.selected.dayForDeleting);
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
-            $scope.deleteAllWorkoutsForDay.deleteDay.$dirty = false;
+            $scope.deleteAllWorkoutsForDay.$setPristine();
         }
     }
 }(angular));
