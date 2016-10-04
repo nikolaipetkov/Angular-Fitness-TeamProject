@@ -73,7 +73,7 @@
         $scope.deleteCertainMarker = function () {
 
             mapService.deleteCertainLocation($scope.certain);
-            $scope.certain = "";
+            $scope.certain = '';
 
         };
 

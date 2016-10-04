@@ -15,8 +15,8 @@
             data: data,
             addNewLocation: addNewLocation,
             deleteLocations: deleteLocations,
-            deleteCertainLocation: deleteCertainLocation
-
+            deleteCertainLocation: deleteCertainLocation,
+            listMapOperations: listMapOperations
         };
     }
 
@@ -56,11 +56,16 @@
                 if (index > -1) {
                     data.splice(index, 1);
                 } else {
-                    console.log("No such address");
+                    console.log('No such address');
                 }
             }
         })
 
+    }
+
+    // Function created for Niki to use
+    function listMapOperations() {
+        return ['Add Gym Location', 'Remove Certain Gym Location', 'Remove All Gym Locations', 'Hide All Gym Locations', 'Show All Gym Locations'];
     }
 
 }(angular));
