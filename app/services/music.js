@@ -12,11 +12,11 @@
         return {
             // example user data
              data: [
-                   "55",
-                   "110",
-                   "add",
-                   "edit",
-                   "delete"
+                   "2",
+                   "100",
+                   "Add",
+                   "Edit",
+                   "Remove"
                   ]
             };
     }
