@@ -29,9 +29,9 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', 'music', 'calculator', 'calendarService', 'dictionary', 'map'];
-    function controller($scope, survey, music, calculator, calendarService, dictionary, map) {
-        $scope.survey = survey;
+//Using all the services in the project
+    controller.$inject = ['$scope', 'music', 'calculator', 'calendarService', 'dictionary', 'map'];
+    function controller($scope, music, calculator, calendarService, dictionary, map) {
         $scope.music = music;
         $scope.calculator = calculator;
         $scope.calendarService = calendarService;
@@ -41,11 +41,12 @@
         $scope.showTitle = showTitle;
         $scope.showSubTitle = showSubTitle;
 
-
+//Function that shows the Title in the page
         function showTitle() {
             return 'Angular Demo Home Page';
         }
 
+//Function that shows the SubTitle in the page
         function showSubTitle() {
             return 'Functionalities Map';
         }

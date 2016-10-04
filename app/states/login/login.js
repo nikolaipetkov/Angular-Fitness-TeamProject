@@ -30,7 +30,7 @@
     }
 
 
-//location variable in scope variables?
+//injecting Login service in the scope
     controller.$inject = ['$scope', 'login'];
     function controller($scope, login) {
         $scope.service = login;
