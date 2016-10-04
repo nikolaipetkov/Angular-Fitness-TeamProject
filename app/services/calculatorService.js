@@ -32,7 +32,6 @@
             if (user.age != null && user.age != undefined) {
                 result = checkAge(user.age);
             };
-
             return result;
         };
 

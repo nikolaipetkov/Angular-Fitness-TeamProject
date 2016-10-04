@@ -26,7 +26,7 @@
     }
 
     controller.$inject = ['$scope', 'calculatorService'];
-   
+
     function controller($scope, calculatorService) {
         $scope.user = {};
         $scope.training = [];
