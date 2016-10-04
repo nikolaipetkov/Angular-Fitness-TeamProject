@@ -41,7 +41,8 @@
            save: save,
            remove: remove,
            cancel: cancel,
-           current: current
+           current: current,
+           whatIDo: whatIDo
         };
 
         function add(name, description) {
@@ -68,8 +69,8 @@
             x.description = current.description;
         }
 
-        function whatIDo {
-            return ['Add Exercise', 'Edit Exercise', 'Delete Exercise']
+        function whatIDo() {
+            return ['Add Exercise', 'Edit Exercise', 'Delete Exercise'];
         }
     }
 
