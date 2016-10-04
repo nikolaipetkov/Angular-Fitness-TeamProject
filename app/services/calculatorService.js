@@ -1,3 +1,6 @@
+
+//Service for functionality
+
 (function (angular) {
     'use strict';
 
@@ -7,6 +10,7 @@
 
     service.$inject = [];
     function service() {
+        //Declare training arrays
         var lightTraining = ['15 push-ups', '15 crunches', '5km run'];
         var middleTraining = ['25 push-ups', '25 crunches', '10km run'];
         var hardTraining = ['35 push-ups', '35 crunches', '15km run'];
@@ -22,8 +26,9 @@
             checkTraining: checkTraining
         };
 
+        //Function that check training
         function checkTraining(user) {
-            var result  = [];
+            var result = [];
             if (user.age != null && user.age != undefined) {
                 result = checkAge(user.age);
             };
@@ -31,6 +36,7 @@
             return result;
         };
 
+        //Function that check age to output training
         function checkAge(age) {
             var result = hardTraining;
             if (age >= 40) {
@@ -38,9 +44,7 @@
             } else if (age >= 30) {
                 result = middleTraining;
             }
-
             return result;
-
         }
     };
 })(angular);
