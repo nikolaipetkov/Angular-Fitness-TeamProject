@@ -32,15 +32,12 @@
 
     function controller($scope, NgMap, mapService) {
 
-        // Id initializer for info window and markers.
-        var id = 'b';
-
         NgMap.getMap().then(function (map) {
             $scope.map = map;
         });
 
         // Initial addresses.
-        $scope.addresses = mapService.locations;
+        $scope.addresses = mapService.data;
 
         // Marker on-click function.
         $scope.showDetail = function (e, item) {
@@ -70,25 +67,14 @@
 
         // Possibly not needed.
         $scope.deleteMarkers = function () {
-            $scope.addresses = mapService.deleteMarkers();
+            $scope.addresses = mapService.deleteLocations();
         };
 
-        // DOne
         $scope.deleteCertainMarker = function () {
 
-            var nameToDelete = $scope.certain;
+            mapService.deleteCertainLocation($scope.certain);
+            $scope.certain = "";
 
-            for (var key in $scope.map.markers) {
-                // Key returns address's ID which gets set randomly following id generator...
-                $scope.addresses.forEach(function (iteratedAddress) {
-                    if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
-                        var index = $scope.addresses.indexOf(iteratedAddress);
-                        if (index > -1) {
-                            $scope.addresses.splice(index, 1);
-                        }
-                    }
-                })
-            }
         };
 
 
@@ -105,8 +91,6 @@
             }
         };
         // Possibly not needed.
-
-
     }
 
 }(angular));

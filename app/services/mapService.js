@@ -11,41 +11,58 @@
     service.$inject = [];
 
     function service() {
-        var id = 'b';              
-        
+        var id = 'b';
+
         return {
-            locations: locations,
+            data: data,
             addNewLocation: addNewLocation,
-            deleteMarkers: deleteMarkers
+            deleteLocations: deleteLocations,
+            deleteCertainLocation: deleteCertainLocation
 
         };
-    }   
-   
-        var locations= [
-            {
-                id: id,
-                name: 'Gym1',
-                address: 'Bulgaria Blvd Sofia Bulgaria',
-                description: 'Number 1 Gym in Sofia..'
-            }];
-    
+    }
 
-     function addNewLocation(lastAddressPicked,lastNameGiven,lastDescriptionGiven) {           
+    var data = [
+        {
+            id: id,
+            name: 'Gym1',
+            address: 'Bulgaria Blvd Sofia Bulgaria',
+            description: 'Number 1 Gym in Sofia..'
+        }];
 
-            locations.push({
-                id: id + '1',
-                name: lastNameGiven,
-                address: lastAddressPicked,
-                description: lastDescriptionGiven
-            });
 
-            id = id + '1';
-        };
+    function addNewLocation(lastAddressPicked, lastNameGiven, lastDescriptionGiven) {
 
-        function deleteMarkers(){
-            locations=[];
+        data.push({
+            id: id + '1',
+            name: lastNameGiven,
+            address: lastAddressPicked,
+            description: lastDescriptionGiven
+        });
 
-            return locations;
-        };      
+        id = id + '1';
+    }
 
-} (angular));
+    function deleteLocations() {
+        data = [];
+
+        return data;
+    }
+
+    function deleteCertainLocation(nameToDelete) {
+
+        data.forEach(function (iteratedAddress) {
+            if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
+
+                var index = data.indexOf(iteratedAddress);
+                if (index > -1) {
+                    data.splice(index, 1);
+                } else {
+                    console.log("No such address");
+                }
+            }
+        })
+
+    }
+
+}(angular));
