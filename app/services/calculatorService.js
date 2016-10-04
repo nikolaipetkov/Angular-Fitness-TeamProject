@@ -16,14 +16,16 @@
         var hardTraining = ['35 push-ups', '35 crunches', '15km run'];
 
         return {
-            //array with soft training
+            //Array with soft training
             lightTraining: lightTraining,
-            //array with middle training
+            //Array with middle training
             middleTraining: middleTraining,
-            //array with hard training
+            //Array with hard training
             hardTraining: hardTraining,
-            //function for checking training
-            checkTraining: checkTraining
+            //Function for checking training
+            checkTraining: checkTraining,
+            //Function for functionalitist
+            listWithFunctionalities: listWithFunctionalities
         };
 
         //Function that check training
@@ -44,6 +46,10 @@
                 result = middleTraining;
             }
             return result;
+        }
+        //Function that output the functionalities of the calculator
+        function listWithFunctionalities() {
+            return ["User enter parameters in fields", "Click button check it", "Receive correct training"];
         }
     };
 })(angular);
