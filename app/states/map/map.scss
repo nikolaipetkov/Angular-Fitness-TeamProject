@@ -1,9 +1,29 @@
 the-map {
-    .ho {
-        color: blue;
-    }
+  .ho {
+    color: blue;
+  }
 
-    .container{
+  #map-container {
+    float: left;
+    width: 700px;
+    margin: 25px;
+  }
 
-    }
+  ng-map {
+    width: 100%;
+    height: 800px;
+  }
+
+  #leftside-menu-container {
+    position: relative;
+    width: 400px;
+    left: 15%;
+  }
+
+  #rightside-menu-container {
+    float: left;
+    height: 800px;
+    width: 350px;
+  }
+
 }
