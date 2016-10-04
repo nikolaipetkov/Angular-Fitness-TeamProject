@@ -36,10 +36,10 @@
             $scope.map = map;
         });
 
-        // Initial addresses.
+        // Initial addresses received from service.
         $scope.addresses = mapService.data;
 
-        // Marker on-click function.
+        // Marker on-click function that shows details for gym location.
         $scope.showDetail = function (e, item) {
 
             $scope.currentAddress = item.address;
@@ -76,7 +76,6 @@
             $scope.certain = "";
 
         };
-
 
         $scope.showMarkers = function () {
 

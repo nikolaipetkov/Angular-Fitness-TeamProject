@@ -3,7 +3,6 @@
 
     var id = 'b';
 
-
     angular
         .module('app')
         .factory('mapService', service);
@@ -11,7 +10,6 @@
     service.$inject = [];
 
     function service() {
-        var id = 'b';
 
         return {
             data: data,
