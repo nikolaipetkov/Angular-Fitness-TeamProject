@@ -5,7 +5,7 @@ the-map {
 
   #map-container {
     float: left;
-    width: 700px;
+    width: 650px;
     margin: 25px;
   }
 
@@ -14,16 +14,50 @@ the-map {
     height: 800px;
   }
 
-  #leftside-menu-container {
+  #topside-menu-container {
     position: relative;
     width: 400px;
+    margin-top: 20px;
     left: 15%;
   }
 
   #rightside-menu-container {
     float: left;
     height: 800px;
-    width: 350px;
+    width: 400px;
+    text-align: center;
+  }
+  #add-gym-container {
+    border-radius: 10px;
+    padding: 30px;
+    background-color: whitesmoke;
+  }
+
+  #add-gym-container > h4 {
+    margin-bottom: 20px;
+  }
+
+  #delete-gym-container {
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: whitesmoke;
+  }
+
+  #delete-gym-container > h4 {
+    margin-bottom: 20px;
+  }
+  #more-options-menu-container {
+
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: whitesmoke;
+
+  }
+
+  #more-options-menu-container > h4 {
+    margin-bottom: 30px;
   }
 
 }
