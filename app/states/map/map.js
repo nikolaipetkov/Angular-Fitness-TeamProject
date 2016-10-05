@@ -32,12 +32,14 @@
 
     function controller($scope, NgMap, mapService) {
 
+        $scope.mapService = mapService;
+
         NgMap.getMap().then(function (map) {
             $scope.map = map;
         });
 
         // Initial addresses received from service.
-        $scope.addresses = mapService.data;
+        // $scope.addresses = mapService.data;
 
         // Marker on-click function that shows details for gym location.
         $scope.showDetail = function (e, item) {
@@ -58,21 +60,21 @@
         $scope.text = 'Sofia, Bulgaria';
 
         $scope.submit = function () {
-            mapService.addNewLocation($scope.text, $scope.name, $scope.description);
+            $scope.mapService.addNewLocation($scope.text, $scope.name, $scope.description);
 
             $scope.text = '';
             $scope.name = '';
             $scope.description = '';
         };
 
-        // Possibly not needed.
         $scope.deleteMarkers = function () {
-            $scope.addresses = mapService.deleteLocations();
+
+            $scope.mapService.data = $scope.mapService.deleteLocations();
         };
 
         $scope.deleteCertainMarker = function () {
 
-            mapService.deleteCertainLocation($scope.certain);
+            $scope.mapService.deleteCertainLocation($scope.certain);
             $scope.certain = '';
 
         };
@@ -89,7 +91,7 @@
                 $scope.map.markers[key].setMap(null);
             }
         };
-        // Possibly not needed.
+
     }
 
 }(angular));

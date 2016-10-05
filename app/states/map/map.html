@@ -4,7 +4,7 @@
         <ng-map zoom="12" center="{{text}}" default-style="false">
 
             <!--Real-time marker adding-->
-            <marker ng-repeat="p in addresses" id="{{p.id}}" position="{{p.address}}" on-click="showDetail(p)">
+            <marker ng-repeat="p in mapService.data" id="{{p.id}}" position="{{p.address}}" on-click="showDetail(p)">
             </marker>
 
             <info-window id="pop-up" visible-on-marker="{{p.id}}">
