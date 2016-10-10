@@ -5,19 +5,13 @@
         .module('app')
         .factory('calendarService', service);
 
-    service.$inject = [];
+    service.$inject = ['$http'];
     //Service 'factory'function
-    function service() {
+    function service($http) {
         //Object with all days of week.
-        var data = {
-            one: [],
-            two: [],
-            three: [],
-            four: [],
-            five: [],
-            six: [],
-            seven: []
-        }
+        var data = {};
+        get();
+
         //Return from all factory with name 'calendarData' one object with days and two function.
         return {
             //Return data object with disciplines of each day.
@@ -31,6 +25,38 @@
             //Function for remove disciplines from one day of week.
             deleteWorkout: deleteWorkout
         };
+
+        function get() {
+            return $http({
+                        method: 'GET',
+                        url: 'http://localhost:3001/calendar'
+                    }).then(function successCallback(response) {
+                        _.assign(data, response.data);
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
+        }
+
+        function addDisciplines() {
+            return $http({
+                        method: 'POST',
+                        url: 'http://localhost:3001/calendar',
+                        data: {}
+                    }).then(function successCallback(response) {
+                        data = response.calendar;
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
+        }
+
+        function put() {
+            
+        }
+
+
+        function del() {
+            
+        }
 
         //Function for adding training in calendar.
         function addWorkoutInCalendar(inputs) {
