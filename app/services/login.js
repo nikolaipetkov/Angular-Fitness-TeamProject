@@ -5,9 +5,9 @@
         .module('app')
         .factory('login', service);
 
-    service.$inject = ['$timeout'];
+    service.$inject = ['$timeout', '$http', 'notify', 'conf'];
 
-    function service($timeout) {
+    function service($timeout, $http, notify, conf) {
 
         //data array containing all the data used in the service
         var data = [
@@ -33,16 +33,24 @@
         //login function : 
         //parameters: username,password
         function login(username, password) {
-           // var location = $scope.location;
-            if(username == 'admin' && password == 'admin') {
-                //$location.path('/home');
-                hideWrong();
-                showSuccess();
-                $timeout(redirectHome,2000);
-            } else {
-                showWrong();
-            }
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/users?username='+username+'&password='+password,
+            }).then(function successCallback(res) {
+                if (_.isEmpty(res.data)) {
+                    notify.error('Not Found');
+                } else {
+                    notify.info('Found');
+                    conf.user = res.data[0];
+                    //$timeout(redirectHome(),500);
+                }
+                
+            }, function errorCallback(res) {
+                notify.error('noooo!');   
+            })
         }
+
+
 
         //shows a div that tells the user username/pass is wrong
         function showWrong() {
