@@ -25,13 +25,14 @@
         function getMapData() {
             $http.get('http://localhost:3005/mapsData')
                 .then(function success(response) {
-                        console.log(response.data);
+                        // console.log(response.data);
+
                         response.data.forEach(function (addressObject) {
                             data.push(addressObject);
                         })
                     },
                     function error(response) {
-                        console.log(response.statusText);
+                        // console.log(response.statusText);
                     });
         }
 
@@ -61,17 +62,46 @@
             $http.post('http://localhost:3005/mapsData', JSON.stringify(newAddressAddedData), config)
                 .then(function success(response) {
                         // console.log(response.data)
+                        console.log('Adding new address in DB succeeded!')
 
                     },
                     function error(response) {
-                        // console.log(response.statusText);
+                        console.log('Adding new address in DB failed!')
+
                     });
 
         }
 
         function deleteLocations() {
 
+            //Update UI.
             data = [];
+
+            //Update DB.
+            $http.get('http://localhost:3005/mapsData')
+                .then(function success(response) {
+                        console.log(response.data);
+
+                        response.data.forEach(function (addressObject) {
+                            var currentObjectIdToDelete = addressObject.id;
+
+                            $http.delete('http://localhost:3005/mapsData/' + currentObjectIdToDelete)
+                                .then(function success(response) {
+                                        // console.log(response.data)
+                                        console.log('Deleting all addresses in DB succeeded!')
+
+                                    },
+                                    function error(response) {
+                                        console.log('Deleting all addresses in DB failed!')
+
+                                    });
+
+                        })
+
+                    },
+                    function error(response) {
+                        console.log(response.statusText);
+                    });
 
             return data;
 
@@ -95,11 +125,13 @@
             // Update database.
             $http.delete('http://localhost:3005/mapsData/' + nameToDelete.toLowerCase())
                 .then(function success(response) {
-                        console.log(response.data)
+                        // console.log(response.data)
+                        console.log('Deleting a certain address in DB succeeded!')
 
                     },
                     function error(response) {
-                        console.log(response.statusText);
+                        // console.log(response.statusText);
+                        console.log('Deleting a certain address in DB succeeded!')
                     });
 
 
