@@ -27,10 +27,10 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'NgMap', 'mapService'];
+    controller.$inject = ['$scope', '$http', 'NgMap', 'mapService'];
 
 
-    function controller($scope, NgMap, mapService) {
+    function controller($scope, $http, NgMap, mapService) {
 
         $scope.mapService = mapService;
 

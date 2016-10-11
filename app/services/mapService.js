@@ -1,7 +1,9 @@
 (function (angular) {
     'use strict';
 
-    var id = 'b';
+    var id = 'b',
+        data = [];
+
 
     angular
         .module('app')
@@ -21,61 +23,77 @@
         };
 
         function getMapData() {
-            $http.get('data/db.json')
+            $http.get('http://localhost:3005/mapsData')
                 .then(function success(response) {
-                        // console.log(response.data)
-                        response.data.mapsData.forEach(function (addressObject) {
-                            console.log(addressObject);
+                        console.log(response.data)
+                        response.data.forEach(function (addressObject) {
                             data.push(addressObject);
                         })
                     },
                     function error(response) {
-                        console.log(response.statusText)
+                        console.log(response.statusText);
                     })
         }
-    }
-
-    var data = [];
 
 
-    function addNewLocation(lastAddressPicked, lastNameGiven, lastDescriptionGiven) {
+        function addNewLocation(lastAddressPicked, lastNameGiven, lastDescriptionGiven) {
 
-        data.push({
-            id: id + '1',
-            name: lastNameGiven,
-            address: lastAddressPicked,
-            description: lastDescriptionGiven
-        });
+            var newAddressAddedData = {
+                id: id + '1',
+                name: lastNameGiven,
+                address: lastAddressPicked,
+                description: lastDescriptionGiven
+            };
 
-        id = id + '1';
-    }
-
-    function deleteLocations() {
-
-        data = [];
-
-        return data;
-    }
-
-    function deleteCertainLocation(nameToDelete) {
-
-        data.forEach(function (iteratedAddress) {
-            if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
-
-                var index = data.indexOf(iteratedAddress);
-                if (index > -1) {
-                    data.splice(index, 1);
-                } else {
-                    console.log('No such address');
+            var config = {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            }
-        })
+            };
 
-    }
+            data.push(newAddressAddedData);
 
-    // Function created for Niki to use
-    function listMapOperations() {
-        return ['Add Gym Location', 'Remove Certain Gym Location', 'Remove All Gym Locations', 'Hide All Gym Locations', 'Show All Gym Locations'];
+            $http.post('http://localhost:3005/mapsData', JSON.stringify(newAddressAddedData), config)
+                .then(function success(response) {
+                        console.log(response.data)
+
+                    },
+                    function error(response) {
+                        console.log(response.statusText);
+                    });
+
+
+            id = id + '1';
+        }
+
+        function deleteLocations() {
+
+            data = [];
+
+            return data;
+
+        }
+
+        function deleteCertainLocation(nameToDelete) {
+
+            data.forEach(function (iteratedAddress) {
+                if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
+
+                    var index = data.indexOf(iteratedAddress);
+                    if (index > -1) {
+                        data.splice(index, 1);
+                    } else {
+                        console.log('No such address');
+                    }
+                }
+            })
+
+        }
+
+        // Function created for Niki to use
+        function listMapOperations() {
+            return ['Add Gym Location', 'Remove Certain Gym Location', 'Remove All Gym Locations', 'Hide All Gym Locations', 'Show All Gym Locations'];
+        }
     }
 
 }(angular));
