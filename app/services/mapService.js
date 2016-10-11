@@ -7,26 +7,35 @@
         .module('app')
         .factory('mapService', service);
 
-    service.$inject = [];
+    service.$inject = ['$http'];
 
-    function service() {
+    function service($http) {
 
         return {
             data: data,
+            getMapData: getMapData,
             addNewLocation: addNewLocation,
             deleteLocations: deleteLocations,
             deleteCertainLocation: deleteCertainLocation,
             listMapOperations: listMapOperations
         };
+
+        function getMapData() {
+            $http.get('data/db.json')
+                .then(function success(response) {
+                        // console.log(response.data)
+                        response.data.mapsData.forEach(function (addressObject) {
+                            console.log(addressObject);
+                            data.push(addressObject);
+                        })
+                    },
+                    function error(response) {
+                        console.log(response.statusText)
+                    })
+        }
     }
 
-    var data = [
-        {
-            id: id,
-            name: 'Gym1',
-            address: 'Bulgaria Blvd Sofia Bulgaria',
-            description: 'Number 1 Gym in Sofia..'
-        }];
+    var data = [];
 
 
     function addNewLocation(lastAddressPicked, lastNameGiven, lastDescriptionGiven) {
@@ -42,6 +51,7 @@
     }
 
     function deleteLocations() {
+
         data = [];
 
         return data;

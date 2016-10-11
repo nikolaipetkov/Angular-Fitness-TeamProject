@@ -1,0 +1,16 @@
+{
+  "mapsData": [
+    {
+      "id": "b",
+      "name": "Gym1",
+      "address": "Bulgaria Blvd Sofia Bulgaria",
+      "description": "Number 1 Gym in Sofia"
+    },
+    {
+      "id": "b2",
+      "name": "Gym2",
+      "address": "Pernik Bulgaria",
+      "description": "Number 2 Gym in Pernik"
+    }
+  ]
+}
