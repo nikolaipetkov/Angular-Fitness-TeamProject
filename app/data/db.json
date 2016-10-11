@@ -1,22 +1,3 @@
 {
-  "mapsData": [
-    {
-      "id": "b2",
-      "name": "Gym2",
-      "address": "Pernik Bulgaria",
-      "description": "Number 2 Gym in Pernik"
-    },
-    {
-      "id": "b3",
-      "name": "Gym2",
-      "address": "Sofia Bulgaria",
-      "description": "Number 2 Gym in Pernik"
-    },
-    {
-      "id": "b1",
-      "name": "dsfsd",
-      "address": "andrey lyapchev 34",
-      "description": "sdfdsf"
-    }
-  ]
+  "mapsData": []
 }

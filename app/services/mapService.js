@@ -1,8 +1,8 @@
 (function (angular) {
     'use strict';
 
-    var id = 'b',
-        data = [];
+
+    var data = [];
 
 
     angular
@@ -25,21 +25,24 @@
         function getMapData() {
             $http.get('http://localhost:3005/mapsData')
                 .then(function success(response) {
-                        console.log(response.data)
+                        console.log(response.data);
                         response.data.forEach(function (addressObject) {
                             data.push(addressObject);
                         })
                     },
                     function error(response) {
                         console.log(response.statusText);
-                    })
+                    });
         }
 
 
         function addNewLocation(lastAddressPicked, lastNameGiven, lastDescriptionGiven) {
 
             var newAddressAddedData = {
-                id: id + '1',
+                // ID needs to be a string for marker to work properly.
+                // Why not use the name of the gym, nothing better than that, right??
+                // TODO: When enough time, drop the name altogether and use the id only in the HTML too.
+                id: lastNameGiven.toLowerCase(),
                 name: lastNameGiven,
                 address: lastAddressPicked,
                 description: lastDescriptionGiven
@@ -51,19 +54,19 @@
                 }
             };
 
+            // Update UI.
             data.push(newAddressAddedData);
 
+            // Update DB.
             $http.post('http://localhost:3005/mapsData', JSON.stringify(newAddressAddedData), config)
                 .then(function success(response) {
-                        console.log(response.data)
+                        // console.log(response.data)
 
                     },
                     function error(response) {
-                        console.log(response.statusText);
+                        // console.log(response.statusText);
                     });
 
-
-            id = id + '1';
         }
 
         function deleteLocations() {
@@ -76,6 +79,7 @@
 
         function deleteCertainLocation(nameToDelete) {
 
+            // Update UI.
             data.forEach(function (iteratedAddress) {
                 if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
 
@@ -86,7 +90,18 @@
                         console.log('No such address');
                     }
                 }
-            })
+            });
+
+            // Update database.
+            $http.delete('http://localhost:3005/mapsData/' + nameToDelete.toLowerCase())
+                .then(function success(response) {
+                        console.log(response.data)
+
+                    },
+                    function error(response) {
+                        console.log(response.statusText);
+                    });
+
 
         }
 
