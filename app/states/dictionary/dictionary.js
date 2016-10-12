@@ -33,11 +33,15 @@
         $scope.service = dictionary;
 
         $scope.add = function() {
-            dictionary.add($scope.name, $scope.description);
+            dictionary.post($scope.name, $scope.description);
             $scope.name = '';
             $scope.description = '';
+
         }
 
+    
+
+        dictionary.get()
 
     }
 
