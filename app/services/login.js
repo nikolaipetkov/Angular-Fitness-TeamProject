@@ -42,11 +42,11 @@
                 } else {
                     notify.info('Found');
                     conf.user = res.data[0];
-                    //$timeout(redirectHome(),500);
+                    $timeout(redirectHome,3500);
                 }
                 
             }, function errorCallback(res) {
-                notify.error('noooo!');   
+                notify.error('Server Error! Sorry!');   
             })
         }
 
