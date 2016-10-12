@@ -24,10 +24,7 @@
             menu: [
                 {label: 'Home', state: 'home'}, 
             ],
-            user: {
-                id: 1, 
-                name: "qqq"
-            }
+            user: {}
         };
 
         function get() {

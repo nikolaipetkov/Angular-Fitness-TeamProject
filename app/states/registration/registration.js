@@ -3,22 +3,22 @@
 
     angular
         .module('app')
-        .directive('login', login)
+        .directive('registration', registration)
         .config(config);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
-            .state('login', {
-                url: '/login',
-                template: '<login name="\'login\'"></login>',
+            .state('registration', {
+                url: '/registration',
+                template: '<registration name="\'registration\'"></registration>',
                 params: {site: ''}
             });
     }
 
-    function login() {
+    function registration() {
         var directive = {
-            templateUrl: './states/login/login.html',
+            templateUrl: './states/registration/registration.html',
             restrict: 'E',
             controller: controller,
             scope: {
@@ -30,10 +30,9 @@
     }
 
 
-//injecting Login service in the scope
-    controller.$inject = ['$scope', 'login', 'conf'];
-    function controller($scope, login, conf) {
-        $scope.service = login;
+//injecting registration service in the scope
+    controller.$inject = ['$scope', 'conf'];
+    function controller($scope, conf) {
         $scope.conf = conf;
 
     }
