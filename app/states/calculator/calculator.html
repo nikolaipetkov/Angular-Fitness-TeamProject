@@ -1,56 +1,79 @@
 <div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h2>Training calculator</h2>
-            <p>Enter your weight, height, age and gender below and choose type of training</p>
-        </div>
-        <div class="panel-body">
-            <form class="form-inline" ng-submit="checkTraining(user)">
-                <div class="form-group">
-                    <label for="weight">Weight:</label>
-                    <input ng-model="user.weight" type="number" class="form-control" id="weight" placeholder="Enter weight in kg" required>
-                </div>
-                <div class="form-group">
-                    <label for="height">Height:</label>
-                    <input ng-model="user.height" type="number" class="form-control" id="height" placeholder="Enter height in cm" required>
-                </div>
-                <div class="form-group">
-                    <label for="age">Age:</label>
-                    <input ng-model="user.age" type="number" class="form-control" id="age" placeholder="Enter age" required>
-                </div>
-                <div class="radio">
-                    <label>Gender:</label>
-                    <label><input ng-model="user.gender" type="radio" name="gender" value="Male" required>Male</label>
-                    <label><input ng-model="user.gender" type="radio" name="gender" value="Female" required>Female</label>
-                </div>
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">Check it!</button>
-            </form>
-            <div class="well">
-                <div class="row">
-                    <div class="col-md-3">Your weight is: {{user.weight}}</div>
-                    <div class="col-md-3">Your height is: {{user.height}}</div>
-                    <div class="col-md-3">Your age is: {{user.age}}</div>
-                    <div class="col-md-3">Your gender is: {{user.gender}}</div>
-                </div>
-            </div>
-            <div id="resultModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">The best training for you is:</h4>
-                        </div>
-                        <div class="modal-body">
-                            <ul>
-                                <li ng-repeat="train in training">{{train}}</li>
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h2>Training calculator</h2>
+			<p>Enter your weight, age and gender below and choose what transformation of your body you prefer</p>
+		</div>
+		<div class="panel-body">
+			<form class="form-inline" ng-submit="checkTraining(user)">
+				<div class="well">
+					<div class="form-group">
+						<label for="weight">Weight:</label>
+						<input ng-model="user.weight" type="number" class="form-control" id="weight" placeholder="Enter weight in kg" required>
+					</div>
+					<div class="form-group">
+						<label for="age">Age:</label>
+						<input ng-model="user.age" type="number" class="form-control" id="age" placeholder="Enter age" required>
+					</div>
+					<div class="radio">
+						<label>Gender:</label>
+						<label><input ng-model="user.gender" type="radio" name="gender" value="male" required>Male</label>
+						<label><input ng-model="user.gender" type="radio" name="gender" value="female" required>Female</label>
+					</div>
+				</div>
+				<div class="alert alert-info">
+					<div class="row">
+						<div class="col-md-12"><label>What is your aim:</label></div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"><label><input ng-model="user.trainingType" type="radio" name="trainingType" value="loose" required>Loose weight</label></div>
+						<div class="col-md-4"><label><input ng-model="user.trainingType" type="radio" name="trainingType" value="strength" required>Evolve your strenght</label></div>
+						<div class="col-md-4"><label><input ng-model="user.trainingType" type="radio" name="trainingType" value="stamina" required>Increase your body stamina</label></div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">Check it!</button>
+			</form>
+
+			<div id="resultModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">The best training for you is:</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="well">
+										<div class="row">
+											<div class="col-md-12"><span class="glyphicon glyphicon-user"></span>User parameters:</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">Weight: {{user.weight}}</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">Age: {{user.age}}</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">Gender: {{user.gender}}</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h4>User aim: {{user.trainingType}}</h4>
+									<ul>
+										<li ng-repeat="train in training">{{train}}</li>
+									</ul>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

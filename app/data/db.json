@@ -1,0 +1,268 @@
+{
+  "trainings": {
+    "male": {
+      "gtFourty": {
+        "gt120": {
+          "loose": [
+            "30 push-ups",
+            "30 crunches",
+            "15km run",
+            "20km cycling",
+            "5km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 15 push-ups",
+            "Abdominals: 4 series 15 crunches",
+            "Biceps: 4 series 6 pulls",
+            "Legs: 4 series 15 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 35 push-ups",
+            "Abdominals: 3 series 35 crunches",
+            "Biceps: 3 series 10 pulls",
+            "Legs: 3 series 25 squads",
+            "15km run"
+          ]
+        },
+        "gt70": {
+          "loose": [
+            "20 push-ups",
+            "20 crunches",
+            "5km run",
+            "10km cycling",
+            "4km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 25 push-ups",
+            "Abdominals: 4 series 25 crunches",
+            "Biceps: 4 series 8 pulls",
+            "Legs: 4 series 25 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 45 push-ups",
+            "Abdominals: 3 series 45 crunches",
+            "Biceps: 3 series 15 pulls",
+            "Legs: 3 series 35 squads",
+            "15km run"
+          ]
+        },
+        "lt70": {
+          "loose": [
+            "10 push-ups",
+            "10 crunches",
+            "3km run",
+            "8km cycling",
+            "2km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 15 push-ups",
+            "Abdominals: 4 series 15 crunches",
+            "Biceps: 4 series 6 pulls",
+            "Legs: 4 series 15 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 35 push-ups",
+            "Abdominals: 3 series 35 crunches",
+            "Biceps: 3 series 10 pulls",
+            "Legs: 3 series 25 squads",
+            "15km run"
+          ]
+        }
+      },
+      "gtTwenty": {
+        "gt120": {
+          "loose": [
+            "40 push-ups",
+            "40 crunches",
+            "25km run",
+            "30km cycling",
+            "10km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 25 push-ups",
+            "Abdominals: 4 series 25 crunches",
+            "Biceps: 4 series 8 pulls",
+            "Legs: 4 series 25 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 45 push-ups",
+            "Abdominals: 3 series 45 crunches",
+            "Biceps: 3 series 15 pulls",
+            "Legs: 3 series 25 squads",
+            "25km run"
+          ]
+        },
+        "gt70": {
+          "loose": [
+            "30 push-ups",
+            "30 crunches",
+            "15km run",
+            "20km cycling",
+            "8km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 35 push-ups",
+            "Abdominals: 4 series 35 crunches",
+            "Biceps: 4 series 10 pulls",
+            "Legs: 4 series 35 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 55 push-ups",
+            "Abdominals: 3 series 55 crunches",
+            "Biceps: 3 series 25 pulls",
+            "Legs: 3 series 45 squads",
+            "25km run"
+          ]
+        },
+        "lt70": {
+          "loose": [
+            "20 push-ups",
+            "20 crunches",
+            "5km run",
+            "10km cycling",
+            "4km swimming"
+          ],
+          "strength": [
+            "Chests: 4 series 25 push-ups",
+            "Abdominals: 4 series 35 crunches",
+            "Biceps: 4 series 8 pulls",
+            "Legs: 4 series 25 squads"
+          ],
+          "stamina": [
+            "Chests: 3 series 55 push-ups",
+            "Abdominals: 3 series 45 crunches",
+            "Biceps: 3 series 20 pulls",
+            "Legs: 3 series 35 squads",
+            "35km run"
+          ]
+        }
+      }
+    },
+    "female":{
+      "gtFourty": {
+        "gt120": {
+          "loose": [
+            "10 push-ups",
+            "10 crunches",
+            "5km run",
+            "10km cycling",
+            "1km swimming"
+          ],
+          "strength": [
+            "10 crunches",
+            "Abdominals: 3 series 15 crunches",
+            "Legs: 3 series 10 squads"
+          ],
+          "stamina": [
+            "Jump rope: 10 minutes",
+            "Abdominals: 2 series 25 crunches",
+            "Legs: 2 series 25 squads",
+            "8km run"
+          ]
+        },
+        "gt70": {
+          "loose": [
+            "15 push-ups",
+            "15 crunches",
+            "8km run",
+            "15km cycling",
+            "2km swimming"
+          ],
+          "strength": [
+            "15 crunches",
+            "Abdominals: 4 series 15 crunches",
+            "Legs: 4 series 10 squads"
+          ],
+          "stamina": [
+            "Jump rope: 20 minutes",
+            "Abdominals: 3 series 25 crunches",
+            "Legs: 3 series 25 squads",
+            "15km run"
+          ]
+        },
+        "lt70": {
+          "loose": [
+            "20 push-ups",
+            "20 crunches",
+            "15km run",
+            "25km cycling",
+            "4km swimming"
+          ],
+          "strength": [
+            "20 crunches",
+            "Abdominals: 5 series 15 crunches",
+            "Legs: 5 series 15 squads"
+          ],
+          "stamina": [
+            "Jump rope: 25 minutes",
+            "Abdominals: 3 series 25 crunches",
+            "Legs: 3 series 35 squads",
+            "25km run"
+          ]
+        }
+      },
+      "gtTwenty": {
+        "gt120": {
+          "loose": [
+            "20 push-ups",
+            "20 crunches",
+            "10km run",
+            "15km cycling",
+            "3km swimming"
+          ],
+          "strength": [
+            "20 crunches",
+            "Abdominals: 3 series 25 crunches",
+            "Legs: 3 series 20 squads"
+          ],
+          "stamina": [
+            "Jump rope: 20 minutes",
+            "Abdominals: 2 series 30 crunches",
+            "Legs: 2 series 30 squads",
+            "11km run"
+          ]
+        },
+        "gt70": {
+          "loose": [
+            "25 push-ups",
+            "25 crunches",
+            "12km run",
+            "18km cycling",
+            "3km swimming"
+          ],
+          "strength": [
+            "18 crunches",
+            "Abdominals: 4 series 20 crunches",
+            "Legs: 4 series 15 squads"
+          ],
+          "stamina": [
+            "Jump rope: 30 minutes",
+            "Abdominals: 3 series 35 crunches",
+            "Legs: 3 series 35 squads",
+            "22km run"
+          ]
+        },
+        "lt70": {
+          "loose": [
+            "22 push-ups",
+            "22 crunches",
+            "12km run",
+            "22km cycling",
+            "2.4km swimming"
+          ],
+          "strength": [
+            "22 crunches",
+            "Abdominals: 5 series 12 crunches",
+            "Legs: 5 series 12 squads"
+          ],
+          "stamina": [
+            "Jump rope: 22 minutes",
+            "Abdominals: 3 series 22 crunches",
+            "Legs: 3 series 32 squads",
+            "22km run"
+          ]
+        }
+      }
+    }
+  }
+}

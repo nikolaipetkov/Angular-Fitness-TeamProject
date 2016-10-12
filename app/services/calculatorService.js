@@ -8,45 +8,309 @@
         .module('app')
         .factory('calculatorService', service);
 
-    service.$inject = [];
-    function service() {
-        //Declare training arrays
-        var lightTraining = ['15 push-ups', '15 crunches', '5km run'];
-        var middleTraining = ['25 push-ups', '25 crunches', '10km run'];
-        var hardTraining = ['35 push-ups', '35 crunches', '15km run'];
+    service.$inject = ['$http'];
+    function service($http) {
 
+        var data = {};
+        //var res = {};
         return {
-            //Array with soft training
-            lightTraining: lightTraining,
-            //Array with middle training
-            middleTraining: middleTraining,
-            //Array with hard training
-            hardTraining: hardTraining,
-            //Function for checking training
+            data: data,
+            get: get,
             checkTraining: checkTraining,
             //Function for functionalitist
             listWithFunctionalities: listWithFunctionalities
         };
 
+        function get() {
+            return $http({
+                method: 'GET',
+                url: 'http://localhost:3001/trainings'
+            }).then(function (res) {
+                _.assign(data, res.data);
+            });
+        }
+
         //Function that check training
         function checkTraining(user) {
             var result = [];
-            if (user.age != null && user.age != undefined) {
-                result = checkAge(user.age);
-            };
+            if (user.gender == "male") {
+                result = checkMaleParams(user.age, user.weight, user.trainingType);
+            } else if (user.gender == "female") {
+                result = checkFemaleParams(user.age, user.weight, user.trainingType);
+            }
             return result;
         };
 
-        //Function that check age to output training
-        function checkAge(age) {
-            var result = hardTraining;
+        //Function that checks male parameters
+        function checkMaleParams(age, weight, trainingType) {
+            var result;
+            //Group equal or greater than 40 years
             if (age >= 40) {
-                result = lightTraining;
-            } else if (age >= 30) {
-                result = middleTraining;
+                //Weight equal or greater than 120
+                if (weight >= 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtFourtyGt120(trainingType);
+
+                    //Weight greater than 70 and less than 120 kilograms
+                } else if (weight >= 70 && weight < 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtFourtyGt70(trainingType);
+
+                    //Wweight less than 70
+                } else if (weight < 70) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtFourtyLt70(trainingType);
+                }
+                //Group between 20 and 40 years
+            } else if (age >= 20 && age < 40) {
+                //Weight equal or greater than 120
+                if (weight >= 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtTwentyGt120(trainingType);
+
+                    //Weight greater than 70 and less than 120 kilograms
+                } else if (weight >= 70 && weight < 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtTwentyGt70(trainingType);
+
+                    //Weight less than 70
+                } else if (weight < 70) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseMaleTrainGtTwentyLt70(trainingType);
+                }
             }
             return result;
         }
+
+        //
+        //Functions that output types ot trainings for group 40+ men
+        //
+
+        //Function greater than 120 kilograms)
+        function chooseMaleTrainGtFourtyGt120(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtFourty.gt120.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtFourty.gt120.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtFourty.gt120.stamina;
+            }
+            return result;
+        }
+        //Function greater than 70 kilograms 
+        function chooseMaleTrainGtFourtyGt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtFourty.gt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtFourty.gt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtFourty.gt70.stamina;
+            }
+            return result;
+        }
+        //Function less than 70 kilograms
+        function chooseMaleTrainGtFourtyLt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtFourty.lt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtFourty.lt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtFourty.lt70.stamina;
+            }
+            return result;
+        }
+
+
+        //
+        //Functions that output types ot trainings for group between 20 and 40 men
+        //
+
+        //Function for group greater than 120 kilograms
+        function chooseMaleTrainGtTwentyGt120(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtTwenty.gt120.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtTwenty.gt120.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtTwenty.gt120.stamina;
+            }
+            return result;
+        }
+        //Function greater than 90 kilograms 
+        function chooseMaleTrainGtTwentyGt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtTwenty.gt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtTwenty.gt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtTwenty.gt70.stamina;
+            }
+            return result;
+        }
+        //Function less than 70 kilograms
+        function chooseMaleTrainGtTwentyLt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.male.gtTwenty.lt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.male.gtTwenty.lt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.male.gtTwenty.lt70.stamina;
+            }
+            return result;
+        }
+
+
+
+
+
+
+
+        //Function that check female parameters
+        function checkFemaleParams(age, weight, trainingType) {
+            var result;
+            //Group equal or greater than 40 years
+            if (age >= 40) {
+                //Weight equal or greater than 120
+                if (weight >= 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtFourtyGt120(trainingType);
+
+                    //Weight greater than 70 and less than 120 kilograms
+                } else if (weight >= 70 && weight < 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtFourtyGt70(trainingType);
+
+                    //Wweight less than 70
+                } else if (weight < 70) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtFourtyLt70(trainingType);
+                }
+            }
+            //Group between 20 and 40 years
+            if (age >= 20 && age < 40) {
+                //Weight equal or greater than 120
+                if (weight >= 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtTwentyGt120(trainingType);
+
+                    //Weight greater than 70 and less than 120 kilograms
+                } else if (weight >= 70 && weight < 120) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtTwentyGt70(trainingType);
+
+                    //Weight less than 70
+                } else if (weight < 70) {
+                    //Assign to result function that pass as parameter 
+                    //type of training that user has chosen
+                    result = chooseFemaleTrainGtTwentyLt70(trainingType);
+                }
+            }
+            return result;
+        }
+
+        //
+        //Functions that output types ot trainings for group 40+ women
+        //
+
+        //Function greater than 120 kilograms)
+        function chooseFemaleTrainGtFourtyGt120(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtFourty.gt120.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtFourty.gt120.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtFourty.gt120.stamina;
+            }
+            return result;
+        }
+        //Function greater than 70 kilograms 
+        function chooseFemaleTrainGtFourtyGt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtFourty.gt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtFourty.gt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtFourty.gt70.stamina;
+            }
+            return result;
+        }
+        //Function less than 70 kilograms
+        function chooseFemaleTrainGtFourtyLt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtFourty.lt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtFourty.lt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtFourty.lt70.stamina;
+            }
+            return result;
+        }
+
+
+        //
+        //Functions that output types ot trainings for group between 20 and 40 women
+        //
+
+        //Function for group greater than 120 kilograms
+        function chooseFemaleTrainGtTwentyGt120(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtTwenty.gt120.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtTwenty.gt120.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtTwenty.gt120.stamina;
+            }
+            return result;
+        }
+        //Function greater than 70 kilograms 
+        function chooseFemaleTrainGtTwentyGt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtTwenty.gt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtTwenty.gt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtTwenty.gt70.stamina;
+            }
+            return result;
+        }
+        //Function less than 70 kilograms
+        function chooseFemaleTrainGtTwentyLt70(trainingType) {
+            var result;
+            if (trainingType == "loose") {
+                result = data.female.gtTwenty.lt70.loose;
+            } else if (trainingType == "strength") {
+                result = data.female.gtTwenty.lt70.strength;
+            } else if (trainingType == "stamina") {
+                result = data.female.gtTwenty.lt70.stamina;
+            }
+            return result;
+        }
+
+
+
+
         //Function that output the functionalities of the calculator
         function listWithFunctionalities() {
             return ["User enter parameters in fields", "Click button check it", "Receive correct training"];

@@ -28,11 +28,13 @@
     controller.$inject = ['$scope', 'calculatorService'];
 
     function controller($scope, calculatorService) {
+       
         $scope.user = {};
         $scope.training = [];
         $scope.checkTraining = function (user) {
             $scope.training = calculatorService.checkTraining(user);
         };
+        calculatorService.get();
     };
 })(angular);
 
