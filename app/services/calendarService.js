@@ -10,7 +10,8 @@
     function service($http) {
         //Object with all days of week.
         var data = {};
-        get();
+
+        getAllEvents();
 
         //Return from all factory with name 'calendarData' one object with days and two function.
         return {
@@ -26,10 +27,38 @@
             deleteWorkout: deleteWorkout
         };
 
-        function get() {
+        //Function which generate id for each events and call function addDiscipline.
+        function getLastEventsId(selectedDayFromUser, selectedDisciplineFromUser, userId) {
+            var currentEventId = {};
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/eventsId'
+            }).then(function successCallback(response) {
+                _.assign(currentEventId, response.data);
+                var eventsId = (currentEventId.id) + 1;
+                // console.log(currentEventId);
+                // debugger;
+                // console.log(eventsId);
+                // debugger;
+                var obj = {"id": eventsId, "dayId": selectedDayFromUser, "name": selectedDisciplineFromUser, "userId": userId}
+                debugger;
+                //Update events id.
+                updateEventsId(eventsId);
+                debugger;
+                addDiscipline(obj);
+                
+              }, function errorCallback(response) {
+                alert(response)
+              });
+        }
+
+        
+
+        function getAllEvents() {
             return $http({
                         method: 'GET',
-                        url: 'http://localhost:3001/calendar'
+                        url: 'http://localhost:3001/events'
                     }).then(function successCallback(response) {
                         _.assign(data, response.data);
                       }, function errorCallback(response) {
@@ -37,20 +66,31 @@
                       });
         }
 
-        function addDisciplines() {
+        function addDiscipline(obj) {
             return $http({
                         method: 'POST',
-                        url: 'http://localhost:3001/calendar',
-                        data: {}
+                        url: 'http://localhost:3001/events',
+                        data: JSON.stringify(obj),
+                        headers: {'Content-Type': 'application/json'}
                     }).then(function successCallback(response) {
-                        data = response.calendar;
+                        console.log("Discipline has been saved!");
                       }, function errorCallback(response) {
                         alert(response)
                       });
         }
 
-        function put() {
-            
+        function updateEventsId(newEventsId) {
+            var newId = {"id": newEventsId}
+            return $http({
+                        method: 'PUT',
+                        url: 'http://localhost:3001/eventsId',
+                        data: JSON.stringify(newId),
+                        headers: {'Content-Type': 'application/json'}
+                    }).then(function successCallback(response) {
+                        console.log("New ID has been saved!");
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
         }
 
 
@@ -60,15 +100,15 @@
 
         //Function for adding training in calendar.
         function addWorkoutInCalendar(inputs) {
-            //Variable with name 'dayOfWeek' contains arrey of all disciplines for this day.
-            var dayOfWeek = data[inputs.Day];
-            //If current discipline is not in the table added him.
-            if (dayOfWeek.indexOf(inputs.Training) === -1) {
-                dayOfWeek.push(inputs.Training);
-            } else {
-                //Check if current discipline it is on the calendar. Show mesagge. 
-                 alert('This discipline has been added!')
-            }
+            var selectedDayFromUser = inputs.Day;
+            var selectedDisciplineFromUser = inputs.Training;
+
+            getLastEventsId(selectedDayFromUser, selectedDisciplineFromUser, 8);
+
+
+
+            
+
         }
         //Function for deleting all disciplines from calendar.
         function deleteWorkout(inputsDel) {

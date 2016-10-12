@@ -1,18 +1,68 @@
 {
-    "users": [
-    	
-    ],
-
-    "days": [
-    	{"id": 1, "name": "Monday"},
-    	{"id": 2, "name": "Tuesday"},
-    	{"id": 3, "name": "Wednesday"},
-    	{"id": 4, "name": "Thursday"},
-    	{"id": 5, "name": "Friday"},
-    	{"id": 6, "name": "Saturday"},
-    	{"id": 7, "name": "Sunday"}
-    ],
-    "events": [
-    	{"id": 1, "dayId":1, "name": "running", "userId": 1}
-    ]
+  "users": [],
+  "eventsId": {
+    "id": 7
+  },
+  "days": [
+    {
+      "id": 1,
+      "name": "Monday"
+    },
+    {
+      "id": 2,
+      "name": "Tuesday"
+    },
+    {
+      "id": 3,
+      "name": "Wednesday"
+    },
+    {
+      "id": 4,
+      "name": "Thursday"
+    },
+    {
+      "id": 5,
+      "name": "Friday"
+    },
+    {
+      "id": 6,
+      "name": "Saturday"
+    },
+    {
+      "id": 7,
+      "name": "Sunday"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "dayId": 6,
+      "name": "Running",
+      "userId": 8
+    },
+    {
+      "id": 2,
+      "dayId": 5,
+      "name": "Fitness",
+      "userId": 8
+    },
+    {
+      "id": 3,
+      "dayId": 7,
+      "name": "Swimming",
+      "userId": 7
+    },
+    {
+      "id": 11,
+      "dayId": 2,
+      "name": "Swimming",
+      "userId": 8
+    },
+    {
+      "id": 7,
+      "dayId": 5,
+      "name": "Running",
+      "userId": 8
+    }
+  ]
 }

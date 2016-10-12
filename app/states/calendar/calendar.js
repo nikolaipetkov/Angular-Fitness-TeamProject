@@ -1,4 +1,4 @@
-(function (angular) {
+ (function (angular) {
     'use strict';
     //Get 'app' mpdule and create directive with name 'calendar'.
     angular
