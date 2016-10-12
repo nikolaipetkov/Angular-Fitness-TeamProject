@@ -12,10 +12,7 @@
         //data array containing all the data used in the service
         var data = [
             'login(username,password)',
-            'showWrong',
-            'showSuccess',
             'redirectHome',
-            'hideWrong'
         ]
 
         
@@ -23,10 +20,7 @@
         //return functions in the service
         return {
           login: login,
-          showWrong: showWrong,
-          showSuccess: showSuccess,
           redirectHome: redirectHome,
-          hideWrong: hideWrong
         };
 
 
@@ -42,7 +36,7 @@
                 } else {
                     notify.info('Found');
                     conf.user = res.data[0];
-                    $timeout(redirectHome,3500);
+                    //$timeout(redirectHome,3500);
                 }
                 
             }, function errorCallback(res) {
@@ -51,25 +45,9 @@
         }
 
 
-
-        //shows a div that tells the user username/pass is wrong
-        function showWrong() {
-            document.getElementById('wrong').style.display = 'block';
-        }
-
-        //shows a div that tells the user username/pass is correct
-        function showSuccess() {
-            document.getElementById('success').style.display = 'block';
-        }
-
         //function that redirects to the home page
         function redirectHome() {
             window.location.hash = '#/home';
-        }
-
-        //function that hides the div that tells username/pass is wrong and shows the correct one
-        function hideWrong() {
-            document.getElementById('wrong').style.display = 'none';
         }
 
 
