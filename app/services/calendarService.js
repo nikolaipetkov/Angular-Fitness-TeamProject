@@ -5,18 +5,32 @@
         .module('app')
         .factory('calendarService', service);
 
-    service.$inject = ['$http'];
+    service.$inject = ['$http', 'conf'];
     //Service 'factory'function
-    function service($http) {
+    function service($http, conf) {
         //Object with all days of week.
-        var data = {};
+        var currentUserId = conf.user.id;
+        var allDays = [];
+        var informationForCurrentUser = {
+            Monday: [],
+            Tuesday: [],
+            Wednesday: [],
+            Thursday: [],
+            Friday: [],
+            Saturday: [],
+            Sunday: []
+        }
 
-        getAllEvents();
+        var dataFromDb = [];
+
+        getAllEventsForCurrentUser();
+        //getAllDaysFromDb();
+        //getAllEvents();
 
         //Return from all factory with name 'calendarData' one object with days and two function.
         return {
             //Return data object with disciplines of each day.
-            days: data,
+            days: informationForCurrentUser,
             //Function for get currentData.
             calendarDisciplines: currentDisciplines,
             //Function for get operations.
@@ -55,18 +69,28 @@
 
         
 
-        function getAllEvents() {
-            return $http({
-                        method: 'GET',
-                        url: 'http://localhost:3001/events'
-                    }).then(function successCallback(response) {
-                        _.assign(data, response.data);
-                      }, function errorCallback(response) {
-                        alert(response)
-                      });
-        }
+        // function getAllEvents() {
+        //     return $http({
+        //                 method: 'GET',
+        //                 url: 'http://localhost:3001/events'
+        //             }).then(function successCallback(response) {
+        //                 console.log(response.data);
+        //                 _.each(response.data, function(val, key) {
+        //                     dataFromDb.push(val);
+        //                 });
+        //                 console.log(dataFromDb);
+        //               }, function errorCallback(response) {
+        //                 alert(response)
+        //               });
+        // }
 
         function addDiscipline(obj) {
+            //add
+            console.log(dataFromDb);
+            //debugger;
+            dataFromDb.push(obj);
+            console.log(dataFromDb);
+            //debugger;
             return $http({
                         method: 'POST',
                         url: 'http://localhost:3001/events',
@@ -106,25 +130,74 @@
             getLastEventsId(selectedDayFromUser, selectedDisciplineFromUser, 8);
 
 
-
-            
-
         }
         //Function for deleting all disciplines from calendar.
         function deleteWorkout(inputsDel) {
             //Check if arrey for this day is empty(which means that there is no discipline in this day).
-            if (data[inputsDel].length === 0) {
+            if (dataFromDb[inputsDel].length === 0) {
                 alert('No disciplinies in this day!');
                 //If length is greater than zero delete disciplines.
             } else {
                 //Delete all discipline from current day.
-                data[inputsDel] = [];
+                dataFromDb[inputsDel] = [];
             }
         }
 
+// =========================================================================================================
+
+
+        function getAllEventsForCurrentUser() {
+            return $http({
+                        method: 'GET',
+                        url: 'http://localhost:3001/days'
+                    }).then(function successCallback(response) {
+                        //console.log(response.data);
+                        _.each(response.data, function(val, key) {
+                            allDays.push(val);
+                        });
+                        console.log(allDays);
+                        printAllDisciplinesForCurrentUser();
+                        //console.log(allDays);
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
+        }
+
+
+
+        function printAllDisciplinesForCurrentUser() {
+            _.each(allDays, function(val, key) {
+                            var currentDayOfWeek = val.id;
+                            var nameOfCurrentDay = val.name;
+
+
+                            setTimeout(function(){
+                                $http({
+                                method: 'GET',
+                                url: 'http://localhost:3001/events?userId=' + currentUserId + '&dayId='+ currentDayOfWeek
+                            }).then(function successCallback(response) {
+                                console.log(response.data);
+                                debugger;
+                                _.each(response.data, function(val, key) {
+                                    informationForCurrentUser[nameOfCurrentDay].push(val.name);
+                                });
+                                console.log(informationForCurrentUser[nameOfCurrentDay]);
+                                debugger;
+                              }, function errorCallback(response) {
+                                alert(response)
+                              });
+                            }, 1000);
+                        });
+            console.log(informationForCurrentUser);
+        }
+
+
+// =========================================================================================================
+
+
         function currentDisciplines() {
             var disciplinesCount = 0;
-            _.each(data, function(val, key) {
+            _.each(dataFromDb, function(val, key) {
                 _.each(val, function(v) {
                     disciplinesCount += 1;
                 })

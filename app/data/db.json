@@ -1,7 +1,6 @@
 {
-  "users": [],
   "eventsId": {
-    "id": 7
+    "id": 14
   },
   "days": [
     {
@@ -38,19 +37,19 @@
       "id": 1,
       "dayId": 6,
       "name": "Running",
-      "userId": 8
+      "userId": 1
     },
     {
       "id": 2,
       "dayId": 5,
       "name": "Fitness",
-      "userId": 8
+      "userId": 1
     },
     {
       "id": 3,
       "dayId": 7,
       "name": "Swimming",
-      "userId": 7
+      "userId": 1
     },
     {
       "id": 11,
@@ -62,6 +61,36 @@
       "id": 7,
       "dayId": 5,
       "name": "Running",
+      "userId": 8
+    },
+    {
+      "id": 8,
+      "dayId": 7,
+      "name": "Swimming",
+      "userId": 8
+    },
+    {
+      "id": 9,
+      "dayId": 1,
+      "name": "Fitness",
+      "userId": 8
+    },
+    {
+      "id": 12,
+      "dayId": 3,
+      "name": "Swimming",
+      "userId": 8
+    },
+    {
+      "id": 13,
+      "dayId": 7,
+      "name": "Fitness",
+      "userId": 8
+    },
+    {
+      "id": 14,
+      "dayId": 5,
+      "name": "Swimming",
       "userId": 8
     }
   ]
