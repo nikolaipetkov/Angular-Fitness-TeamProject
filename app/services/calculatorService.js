@@ -12,8 +12,9 @@
     function service($http) {
 
         var data = {};
-        //var res = {};
         return {
+            addUser:addUser,
+            getUser:getUser,
             data: data,
             get: get,
             checkTraining: checkTraining,
@@ -29,7 +30,24 @@
                 _.assign(data, res.data);
             });
         }
-
+        function addUser(user) {
+            return $http({
+                method: 'POST',
+                url: 'http://localhost:3001/calculatedTrainings',
+                data: JSON.stringify(user),
+                headers: {'Content-Type': 'application/json'},
+            }).then(function (response) {
+                console.log("Response was succesful! -> "+response);
+            }, function (response) {
+                alert(response);
+            });
+        }
+        function getUser() {
+            return $http({
+                method: 'GET',
+                url: 'http://localhost:3001/calculatedTrainings?userId=1'
+            });
+        }
         //Function that check training
         function checkTraining(user) {
             var result = [];

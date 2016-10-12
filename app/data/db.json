@@ -1,4 +1,13 @@
 {
+  "calculatedTrainings": [
+    {
+      "id": 1,
+      "weight": 100,
+      "age": 56,
+      "gender": "male",
+      "trainingType": "strength"
+    }
+  ],
   "trainings": {
     "male": {
       "gtFourty": {
@@ -138,7 +147,7 @@
         }
       }
     },
-    "female":{
+    "female": {
       "gtFourty": {
         "gt120": {
           "loose": [

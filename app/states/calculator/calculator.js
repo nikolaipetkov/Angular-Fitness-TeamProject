@@ -25,16 +25,29 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'calculatorService'];
+    controller.$inject = ['$scope', 'calculatorService', 'conf'];
 
-    function controller($scope, calculatorService) {
-       
+    function controller($scope, calculatorService, conf) {
+
         $scope.user = {};
+        //Function that get id from conf
+        function getId() {
+            return conf.user.id;
+        };
+        //Assign id from function getId to id property of user
+        $scope.user.id = getId();
         $scope.training = [];
         $scope.checkTraining = function (user) {
             $scope.training = calculatorService.checkTraining(user);
+            $scope.addNew = calculatorService.addUser(user);
         };
         calculatorService.get();
+        //Post request to json server to get user data
+        calculatorService.getUser().then(function (res) {
+            if (res.data[0] != "undefined"){
+                _.assign($scope.user, res.data[0]);
+            }
+        });
     };
 })(angular);
 

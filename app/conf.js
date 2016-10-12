@@ -25,6 +25,10 @@
                 {label: 'Home', state: 'home'}, 
             ],
             get: get(),
+            user:{
+                id:1,
+                name: ""
+            }
         };
 
         function get() {
