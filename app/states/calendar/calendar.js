@@ -42,6 +42,7 @@
         //Add to scope two function - for add and for delete.
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
+        $scope.deleteAllDisciplines = deleteAllDisciplines;
         
         //Function For add training in calendar. 
         function addDisciplineInProgram() {
@@ -59,6 +60,10 @@
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
             $scope.deleteAllWorkoutsForDay.$setPristine();
+        }
+
+        function deleteAllDisciplines() {
+            calendarService.deleteAllWorkoutFromCalendar();
         }
     }
 }(angular));

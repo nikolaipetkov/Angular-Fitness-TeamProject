@@ -34,7 +34,9 @@
             //Function for add disciplines
             addWorkoutInCalendar: addWorkoutInCalendar,
             //Function for remove disciplines from one day of week.
-            deleteWorkout: deleteWorkout
+            deleteWorkout: deleteWorkout,
+            //Delete all disciplines from calendar.
+            deleteAllWorkoutFromCalendar: deleteAllWorkoutFromCalendar
         };
 
         //Function for adding training in calendar.
@@ -211,6 +213,70 @@
                 alert(response)
               });
         }
+
+//========================== DELETE ALL DISC ================================================
+
+
+        //Function for deleting all disciplines from calendar.
+        function deleteAllWorkoutFromCalendar() {
+            var isEmpty = 0;
+            _.each(informationForCurrentUser, function(val, key) {
+                console.log(val.length);
+                debugger;
+                    if (val.length === 0) {
+                        isEmpty += 1;
+                    }
+                });
+            console.log(isEmpty);
+            debugger;
+            //Check if each day in calendar is empty(which means that there is no discipline in table).
+            if (isEmpty === 7) {
+                alert('No disciplinies in table!');
+                //If length is greater than zero delete disciplines.
+            } else {
+                //Delete all discipline from table(In local variable).
+                informationForCurrentUser.Monday = [];
+                informationForCurrentUser.Tuesday = [];
+                informationForCurrentUser.Wednesday = [];
+                informationForCurrentUser.Thursday = [];
+                informationForCurrentUser.Friday = [];
+                informationForCurrentUser.Saturday = [];
+                informationForCurrentUser.Sunday = [];
+                //Delete all discipline from table(remotely).
+                deleteAllDisciplinesFromTable();
+
+            }
+        }
+        //
+        function deleteAllDisciplinesFromTable() {
+            var allEventsFromTable = [];
+            //Get all disciplines for selected day and save in variable.
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/events?userId=' + currentUserId
+            }).then(function successCallback(response) {
+                _.each(response.data, function(val, key) {
+                    allEventsFromTable.push(val);
+                });
+                //Delete one by one all disciplines with DELETE request.
+                _.each(allEventsFromTable, function(val, key) {
+                    //Get ID for current event.
+                    var dayIdDelete = val.id;
+                    $http({
+                        method: 'DELETE',
+                        url: 'http://localhost:3001/events/' + dayIdDelete
+                    }).then(function successCallback(response) {
+                        console.log('All discipline from table has been deleted!')
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
+                    });
+              }, function errorCallback(response) {
+                alert(response)
+              });
+        }
+
+
 
 
         //Change value of variable from number to string(name of day).
