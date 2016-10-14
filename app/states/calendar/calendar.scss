@@ -53,10 +53,6 @@
 			margin-bottom: 1%;
 		}
 	}
-
-	.table-row {
-		margin-top: 5%;
-	}
 	// Stylize error message.
 	.errorMes {
 		color: red;
@@ -68,15 +64,28 @@
 	}
 	// Stylize table with training information.
 	table {
+		width: 100%;
+		margin: 3%;
+		thead {
+			border-bottom: 2px solid #31B0D5;
+		}
 		th {
 			font-family: Papyrus, fantasy;
 			font-size: 2em;
 		}
+
+		td {
+			text-align: center;
+		}
+
+		tbody td {
+			border-bottom: 2px solid #31B0D5;
+		}
+
 		div {
 			font-family: Papyrus, fantasy;
 			font-size: 2em;
 			font-weight: bold;
-			background-color: #e6ffe6;
 			margin: 1%;
 		}
 	}
@@ -114,18 +123,52 @@
 		.errorMes {
 			display: inline;
 		}
-		// Stylize table with training information.
-		table {
-		th {
-			font-family: Papyrus, fantasy;
-			font-size: 1em;
-		}
-		div {
-			font-family: Papyrus, fantasy;
-			font-size: 1em;
-			margin: 1%;
-		}
 	}
+
+	// Stylize table with training information.
+	@media only screen and (max-width: 1200px) {
+
+		//Force table to not be like tables anymore.
+		table, thead, tbody, th, td, tr { 
+			display: block;
+			font-family: Papyrus, fantasy;
+			font-size: 1em; 
+		}
+		
+		//Hide table headers (but not display: none;, for accessibility)
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		td { 
+			border: 1px solid #31B0D5;
+			border-radius: 5px;
+			position: relative; 
+			left: 0;
+			margin: 1%;
+			padding: 2%;
+			text-align: center;
+		}
+
+		table {
+			div {
+				display: inline;
+				font-family: Papyrus, fantasy;
+				font-size: 1em;
+				margin: 1%;
+				background-color: white;
+			}
+		}
+		
+		td:nth-of-type(1):before { content: "Monday: "; padding-left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(2):before { content: "Tuesday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(3):before { content: "Wednesday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(4):before { content: "Thursday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(5):before { content: "Friday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(6):before { content: "Saturday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
+		td:nth-of-type(7):before { content: "Sunday: "; left: 0; color: #31B0D5; display: block; text-align: center; }
 	}
 }
 

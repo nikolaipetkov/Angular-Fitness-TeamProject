@@ -68,15 +68,15 @@
         function updateEventsId(newEventsId) {
             var newId = {"id": newEventsId}
             return $http({
-                        method: 'PUT',
-                        url: 'http://localhost:3001/eventsId',
-                        data: JSON.stringify(newId),
-                        headers: {'Content-Type': 'application/json'}
-                    }).then(function successCallback(response) {
-                        console.log("New ID has been saved!");
-                      }, function errorCallback(response) {
-                        alert(response)
-                      });
+                method: 'PUT',
+                url: 'http://localhost:3001/eventsId',
+                data: JSON.stringify(newId),
+                headers: {'Content-Type': 'application/json'}
+            }).then(function successCallback(response) {
+                console.log("New ID has been saved!");
+              }, function errorCallback(response) {
+                alert(response)
+              });
         }
 
         //Check user input and if data is valid call function to add discipline.
@@ -91,12 +91,12 @@
             }).then(function successCallback(response) {
                 var isAdded = false;
                 _.each(response.data, function(val, key) {
-                            var checkCurrentDay = val.name;
-                            //Check whether selected discipline is already added.
-                            if (selectedDisciplineFromUser === checkCurrentDay) {
-                                isAdded = true;
-                            }
-                        });
+                    var checkCurrentDay = val.name;
+                    //Check whether selected discipline is already added.
+                    if (selectedDisciplineFromUser === checkCurrentDay) {
+                        isAdded = true;
+                    }
+                });
                 if (isAdded) {
                     alert('This discipline has already added');
                 } else {
@@ -117,83 +117,102 @@
             informationForCurrentUser[day].push(obj.name);
             //Add discipline in db file with GET request.
             return $http({
-                        method: 'POST',
-                        url: 'http://localhost:3001/events',
-                        data: JSON.stringify(obj),
-                        headers: {'Content-Type': 'application/json'}
-                    }).then(function successCallback(response) {
-                        console.log("Discipline has been saved!");
-                      }, function errorCallback(response) {
-                        alert(response)
-                      });
+                method: 'POST',
+                url: 'http://localhost:3001/events',
+                data: JSON.stringify(obj),
+                headers: {'Content-Type': 'application/json'}
+            }).then(function successCallback(response) {
+                console.log("Discipline has been saved!");
+              }, function errorCallback(response) {
+                alert(response)
+              });
         }
 
         //Get all days from db file and call function to get and print on the table all events.
         function getAllEventsForCurrentUser() {
             //Get with request all days.
             return $http({
-                        method: 'GET',
-                        url: 'http://localhost:3001/days'
-                    }).then(function successCallback(response) {
-                        _.each(response.data, function(val, key) {
-                            allDays.push(val);
-                        });
-                        printAllDisciplinesForCurrentUser();
-                      }, function errorCallback(response) {
-                        alert(response)
-                      });
+                method: 'GET',
+                url: 'http://localhost:3001/days'
+            }).then(function successCallback(response) {
+                _.each(response.data, function(val, key) {
+                    allDays.push(val);
+                });
+                printAllDisciplinesForCurrentUser();
+              }, function errorCallback(response) {
+                alert(response)
+              });
         }
         //Print user disciplines on table.
         function printAllDisciplinesForCurrentUser() {
             _.each(allDays, function(val, key) {
-                            //For request link.
-                            var currentDayOfWeek = val.id;
-                            var nameOfCurrentDay = val.name;
+                //For request link.
+                var currentDayOfWeek = val.id;
+                var nameOfCurrentDay = val.name;
 
-                            setTimeout(function(){
-                                $http({
-                                method: 'GET',
-                                url: 'http://localhost:3001/events?userId=' + currentUserId + '&dayId='+ currentDayOfWeek
-                            }).then(function successCallback(response) {
-                                //With this loop fill properties of 'informationForCurrentUser' object.
-                                _.each(response.data, function(val, key) {
-                                    informationForCurrentUser[nameOfCurrentDay].push(val.name);
-                                });
-                              }, function errorCallback(response) {
-                                alert(response)
-                              });
-                            }, 200);
-                        });
+                setTimeout(function(){
+                    $http({
+                    method: 'GET',
+                    url: 'http://localhost:3001/events?userId=' + currentUserId + '&dayId='+ currentDayOfWeek
+                }).then(function successCallback(response) {
+                    //With this loop fill properties of 'informationForCurrentUser' object.
+                    _.each(response.data, function(val, key) {
+                        informationForCurrentUser[nameOfCurrentDay].push(val.name);
+                    });
+                  }, function errorCallback(response) {
+                    alert(response)
+                  });
+                }, 200);
+            });
         }
 
         
-// =========================================================================================================
         //Function for deleting all disciplines from calendar.
         function deleteWorkout(inputsDel) {
+            var inputsUserForDelete = +inputsDel;
+            var currentDayForDelete = changeValue(inputsUserForDelete);
             //Check if arrey for this day is empty(which means that there is no discipline in this day).
-            if (dataFromDb[inputsDel].length === 0) {
+            if (informationForCurrentUser[currentDayForDelete].length === 0) {
                 alert('No disciplinies in this day!');
                 //If length is greater than zero delete disciplines.
             } else {
-                //Delete all discipline from current day.
-                dataFromDb[inputsDel] = [];
+                //Delete all discipline from current day(In local variable).
+                informationForCurrentUser[currentDayForDelete] = [];
+                //Delete all discipline from current day(remotely).
+                deleteAllDisciplinesFromSelectedDay(inputsUserForDelete);
+
             }
         }
         //
-        function del() {
-            
+        function deleteAllDisciplinesFromSelectedDay(dayIdForDelete) {
+            var allEventsForCurrentDay = [];
+            //Get all disciplines for selected day and save in variable.
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/events?userId=' + currentUserId + '&dayId='+ dayIdForDelete
+            }).then(function successCallback(response) {
+                _.each(response.data, function(val, key) {
+                    allEventsForCurrentDay.push(val);
+                });
+                //Delete one by one all disciplines with DELETE request.
+                _.each(allEventsForCurrentDay, function(val, key) {
+                    //Get ID for current event.
+                    var dayIdDelete = val.id;
+                    $http({
+                        method: 'DELETE',
+                        url: 'http://localhost:3001/events/' + dayIdDelete
+                    }).then(function successCallback(response) {
+                        console.log('Discipline has been deleted!')
+                      }, function errorCallback(response) {
+                        alert(response)
+                      });
+                    });
+              }, function errorCallback(response) {
+                alert(response)
+              });
         }
 
 
-
-        
-
-
-
-        
-
-
-// =========================================================================================================
         //Change value of variable from number to string(name of day).
         function changeValue(dayId) {
             switch (dayId) {
