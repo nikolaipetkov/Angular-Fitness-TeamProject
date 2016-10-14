@@ -53,16 +53,17 @@
             $scope.currentSelection.Training = undefined;
             $scope.trainingProgramForm.$setPristine();
         }
-        //Function to delete all trainings from one day ion calendar.
+        //Function to delete all trainings from one day in calendar.
         function deleteWorkoutInCalendar() {
-            //Call this function and remove from selected day all disciplines
+            //Call this function and remove from selected day all disciplines.
             calendarService.deleteWorkout($scope.selected.dayForDeleting);
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
             $scope.deleteAllWorkoutsForDay.$setPristine();
         }
-
+        //Function to delete all trainings in calendar.
         function deleteAllDisciplines() {
+            //Call this function and remove from calendar all disciplines.
             calendarService.deleteAllWorkoutFromCalendar();
         }
     }

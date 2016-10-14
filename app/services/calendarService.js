@@ -213,10 +213,8 @@
                 alert(response)
               });
         }
-
-//========================== DELETE ALL DISC ================================================
-
-
+        
+        //DELETE ALL DISCIPLINES IN TABLE.
         //Function for deleting all disciplines from calendar.
         function deleteAllWorkoutFromCalendar() {
             var isEmpty = 0;
