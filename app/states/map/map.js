@@ -45,15 +45,15 @@
         // Marker on-click function that shows details for gym location.
         $scope.showDetail = function (e, item) {
 
-            $scope.currentAddress = item.address;
-            $scope.currentId = item.id;
-            $scope.currentName = item.name;
-            $scope.currentDescription = item.description;
+            $scope.currentAddress = item.Address;
+            $scope.currentId = item.Id;
+            $scope.currentName = item.Name;
+            $scope.currentDescription = item.Description;
 
             // The info window gets positioned on the
             // correct marker due to the unique id
             // generated every time.
-            $scope.map.showInfoWindow('pop-up', item.id);
+            $scope.map.showInfoWindow('pop-up', item.Id);
 
         };
 

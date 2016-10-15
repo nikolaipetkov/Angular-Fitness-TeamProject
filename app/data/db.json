@@ -1,3 +1,16 @@
 {
-  "mapsData": []
+  "mapsData": [
+    {
+      "id": "werwer",
+      "name": "werwer",
+      "address": "Sofia, Bulgaria",
+      "description": "werwer"
+    },
+    {
+      "id": "werewrwe",
+      "name": "werewrwe",
+      "address": "Pernik, bUlgari",
+      "description": "asdasd"
+    }
+  ]
 }
