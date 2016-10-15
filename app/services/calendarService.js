@@ -8,9 +8,11 @@
     service.$inject = ['$http', 'conf'];
     //Service 'factory'function
     function service($http, conf) {
-        //Object with all days of week.
+        //Save in this variable current user id.
         var currentUserId = conf.user.id;
+        //Object with all days of week.
         var allDays = [];
+        //Save all disciplines for each day of week.
         var informationForCurrentUser = {
             Monday: [],
             Tuesday: [],
@@ -20,7 +22,10 @@
             Saturday: [],
             Sunday: []
         }
+        //With this variable update ebents ID.
         var eventsId = 0;
+
+        //Fill table with all disciplines for current user.
         getAllEventsForCurrentUser();
 
         //Return from all factory with name 'calendarData' one object with days and two function.
@@ -213,7 +218,7 @@
                 alert(response)
               });
         }
-        
+
         //DELETE ALL DISCIPLINES IN TABLE.
         //Function for deleting all disciplines from calendar.
         function deleteAllWorkoutFromCalendar() {
