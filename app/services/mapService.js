@@ -46,10 +46,10 @@
                 // ID needs to be a string for marker to work properly.
                 // Why not use the name of the gym, nothing better than that, right??
                 // TODO: When enough time, drop the name altogether and use the id only in the HTML too.
-                Id: lastNameGiven.toLowerCase(),
-                Name: lastNameGiven,
-                Address: lastAddressPicked,
-                Description: lastDescriptionGiven
+                id: lastNameGiven.toLowerCase(),
+                name: lastNameGiven,
+                address: lastAddressPicked,
+                description: lastDescriptionGiven
             };
 
             var config = {
@@ -62,7 +62,7 @@
             data.push(newAddressAddedData);
 
             // Update DB.
-            $http.post('http://localhost:3005/mapsData', JSON.stringify(newAddressAddedData), config)
+            $http.post('http://localhost:8080/api/maps', JSON.stringify(newAddressAddedData), config)
                 .then(function success(response) {
                         // console.log(response.data)
                         console.log('Adding new address in DB succeeded!')
