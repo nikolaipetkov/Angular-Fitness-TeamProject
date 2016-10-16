@@ -81,14 +81,14 @@
             data = [];
 
             //Update DB.
-            $http.get('http://localhost:3005/mapsData')
+            $http.get('http://localhost:8080/api/maps')
                 .then(function success(response) {
                         console.log(response.data);
 
                         response.data.forEach(function (addressObject) {
-                            var currentObjectIdToDelete = addressObject.Id;
+                            var currentObjectIdToDelete = addressObject.id;
 
-                            $http.delete('http://localhost:3005/mapsData/' + currentObjectIdToDelete)
+                            $http.delete('http://localhost:8080/api/maps/' + currentObjectIdToDelete)
                                 .then(function success(response) {
                                         // console.log(response.data)
                                         console.log('Deleting all addresses in DB succeeded!')
@@ -114,7 +114,7 @@
 
             // Update UI.
             data.forEach(function (iteratedAddress) {
-                if (nameToDelete.toLowerCase() === iteratedAddress.Name.toLowerCase()) {
+                if (nameToDelete.toLowerCase() === iteratedAddress.name.toLowerCase()) {
 
                     var index = data.indexOf(iteratedAddress);
                     if (index > -1) {
@@ -126,7 +126,7 @@
             });
 
             // Update database.
-            $http.delete('http://localhost:3005/mapsData/' + nameToDelete.toLowerCase())
+            $http.delete('http://localhost:8080/api/maps/' + nameToDelete.toLowerCase())
                 .then(function success(response) {
                         // console.log(response.data)
                         console.log('Deleting a certain address in DB succeeded!')
@@ -134,7 +134,7 @@
                     },
                     function error(response) {
                         // console.log(response.statusText);
-                        console.log('Deleting a certain address in DB succeeded!')
+                        console.log('Deleting a certain address in DB failed!')
                     });
 
 
