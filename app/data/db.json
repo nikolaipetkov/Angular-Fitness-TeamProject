@@ -1,13 +1,12 @@
 {
-  "calculatedTrainings": [
+  "users": [
     {
       "id": 1,
-      "weight": 100,
-      "age": 56,
-      "gender": "male",
-      "trainingType": "strength"
+      "username": "admin",
+      "password": "admin"
     }
   ],
+  "calculatedTrainings": [],
   "trainings": {
     "male": {
       "gtFourty": {
@@ -17,7 +16,14 @@
             "30 crunches",
             "15km run",
             "20km cycling",
-            "5km swimming"
+            "5km swimming",
+            {
+              "images": [
+                "c:/users/user/documents/angularJS_Demo/app/data/images/ramena.png",
+                "c:/users/user/documents/angularJS_Demo/app/data/images/ramena.png",
+                "c:/users/user/documents/angularJS_Demo/app/data/images/ramena.png"
+              ]
+            }
           ],
           "strength": [
             "Chests: 4 series 15 push-ups",

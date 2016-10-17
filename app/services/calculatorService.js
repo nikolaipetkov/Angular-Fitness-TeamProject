@@ -1,6 +1,3 @@
-
-//Service for functionality
-
 (function (angular) {
     'use strict';
 
@@ -18,37 +15,40 @@
             data: data,
             get: get,
             checkTraining: checkTraining,
-            //Function for functionalitist
             listWithFunctionalities: listWithFunctionalities
         };
-
+        //Function that gets the appropriate training for the user, from json server
         function get() {
             return $http({
                 method: 'GET',
                 url: 'http://localhost:3001/trainings'
             }).then(function (res) {
+                //Assign all of the right object into left object (mutate it)
                 _.assign(data, res.data);
             });
         }
+        //Function that add user to the json server
         function addUser(user) {
             return $http({
                 method: 'POST',
                 url: 'http://localhost:3001/calculatedTrainings',
+                //Convert js value to JSON string
                 data: JSON.stringify(user),
                 headers: {'Content-Type': 'application/json'},
             }).then(function (response) {
-                console.log("Response was succesful! -> "+response);
+                console.log("Response was succesful!");
             }, function (response) {
                 alert(response);
             });
         }
+        //Function that gets saved user from the db.json file and outputs all information
         function getUser() {
             return $http({
                 method: 'GET',
                 url: 'http://localhost:3001/calculatedTrainings?userId=1'
             });
         }
-        //Function that check training
+        //Function that checks training
         function checkTraining(user) {
             var result = [];
             if (user.gender == "male") {
@@ -164,7 +164,7 @@
             }
             return result;
         }
-        //Function greater than 90 kilograms 
+        //Function for group greater than 90 kilograms 
         function chooseMaleTrainGtTwentyGt70(trainingType) {
             var result;
             if (trainingType == "loose") {
@@ -188,11 +188,6 @@
             }
             return result;
         }
-
-
-
-
-
 
 
         //Function that check female parameters
@@ -325,11 +320,7 @@
             }
             return result;
         }
-
-
-
-
-        //Function that output the functionalities of the calculator
+        //Function that output list with functionalities of the calculator
         function listWithFunctionalities() {
             return ["User enter parameters in fields", "Click button check it", "Receive correct training"];
         }

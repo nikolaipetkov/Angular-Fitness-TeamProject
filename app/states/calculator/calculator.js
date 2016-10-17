@@ -36,13 +36,20 @@
         };
         //Assign id from function getId to id property of user
         $scope.user.id = getId();
+        console.log($scope.user.id);
+        
         $scope.training = [];
         $scope.checkTraining = function (user) {
+            //Check for the approparite training related to the current user
             $scope.training = calculatorService.checkTraining(user);
+            //Add new user to json server 
             $scope.addNew = calculatorService.addUser(user);
         };
+        
+        //Load all trainings from json server
         calculatorService.get();
-        //Post request to json server to get user data
+       
+        //Get request to json server to get user data
         calculatorService.getUser().then(function (res) {
             if (res.data[0] != "undefined"){
                 _.assign($scope.user, res.data[0]);
