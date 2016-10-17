@@ -23,20 +23,22 @@
         };
 
         function getMapData() {
-            $http.get('http://localhost:8080/api/maps',{headers: {
-                'Content-Type': 'application/json'
-            }})
+            $http.get('http://localhost:8080/api/maps', {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
                 .then(function success(response) {
 
-                        response.data.forEach(function (addressObject) {
-                            data.push(addressObject);
-                        });
+                    response.data.forEach(function (addressObject) {
+                        data.push(addressObject);
+                    });
 
                     console.log(data);
-                    },
-                    function error(response) {
-                        // console.log(response.statusText);
-                    });
+                },
+                function error(response) {
+                    // console.log(response.statusText);
+                });
         }
 
 
@@ -64,14 +66,14 @@
             // Update DB.
             $http.post('http://localhost:8080/api/maps', JSON.stringify(newAddressAddedData), config)
                 .then(function success(response) {
-                        // console.log(response.data)
-                        console.log('Adding new address in DB succeeded!')
+                    // console.log(response.data)
+                    console.log('Adding new address in DB succeeded!')
 
-                    },
-                    function error(response) {
-                        console.log('Adding new address in DB failed!')
+                },
+                function error(response) {
+                    console.log('Adding new address in DB failed!')
 
-                    });
+                });
 
         }
 
@@ -81,30 +83,17 @@
             data = [];
 
             //Update DB.
-            $http.get('http://localhost:8080/api/maps')
+
+            $http.delete('http://localhost:8080/api/maps/')
                 .then(function success(response) {
-                        console.log(response.data);
+                    // console.log(response.data)
+                    console.log('All addresses deletion in DB succeeded!')
 
-                        response.data.forEach(function (addressObject) {
-                            var currentObjectIdToDelete = addressObject.id;
+                },
+                function error(response) {
+                    console.log('All addresses deletion in DB failed!')
 
-                            $http.delete('http://localhost:8080/api/maps/' + currentObjectIdToDelete)
-                                .then(function success(response) {
-                                        // console.log(response.data)
-                                        console.log('Deleting all addresses in DB succeeded!')
-
-                                    },
-                                    function error(response) {
-                                        console.log('Deleting all addresses in DB failed!')
-
-                                    });
-
-                        })
-
-                    },
-                    function error(response) {
-                        console.log(response.statusText);
-                    });
+                });
 
             return data;
 
@@ -128,14 +117,14 @@
             // Update database.
             $http.delete('http://localhost:8080/api/maps/' + nameToDelete.toLowerCase())
                 .then(function success(response) {
-                        // console.log(response.data)
-                        console.log('Deleting a certain address in DB succeeded!')
+                    // console.log(response.data)
+                    console.log('Deleting a certain address in DB succeeded!')
 
-                    },
-                    function error(response) {
-                        // console.log(response.statusText);
-                        console.log('Deleting a certain address in DB failed!')
-                    });
+                },
+                function error(response) {
+                    // console.log(response.statusText);
+                    console.log('Deleting a certain address in DB failed!')
+                });
 
 
         }
@@ -146,4 +135,4 @@
         }
     }
 
-}(angular));
+} (angular));
