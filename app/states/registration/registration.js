@@ -31,11 +31,12 @@
 
 
 //injecting registration service in the scope
-    controller.$inject = ['$scope', 'conf', 'notify', '$http'];
-    function controller($scope, conf, notify, $http) {
+    controller.$inject = ['$scope', 'conf', 'notify', '$http', 'login'];
+    function controller($scope, conf, notify, $http, login) {
         $scope.conf = conf;
         $scope.register = register;
         $scope.notify = notify;
+        $scope.login = login;
 
    
         //register function : 
@@ -49,7 +50,8 @@
                 },
                 data: {username: $scope.username, password: $scope.password}
             }).then(function success() {
-                    notify.info('Registered Successfully!');               
+                    notify.info('Registered Successfully!');
+                    conf.user = login.login($scope.username, $scope.password);               
              }, function errorCallback() {
                 notify.error('Server Error! Sorry!');   
             })

@@ -19,6 +19,11 @@ login {
         width: 100%;
     }
 
+    #loginButton:hover {
+        background-color: #32CD32;
+        border-radius: 10px;
+    }
+
     .imgcontainer {
         text-align: center;
         margin: 24px 0 12px 0;
@@ -33,11 +38,16 @@ login {
         padding: 16px;
     }
 
-    .alert-danger {
-        display: none;
+
+    #registerButton {
+        width: 15%;
+        background-color: orange;
+        color: white;
+        float: right;
     }
 
-    .alert-success {
-        display: none;
+    #registerButton:hover {
+        background-color: green;
+        border-radius: 25px;
     }
 }

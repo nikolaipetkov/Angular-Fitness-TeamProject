@@ -34,9 +34,8 @@
                 if (_.isEmpty(res.data)) {
                     notify.error('User Not Found!');
                 } else {
-                    notify.info('Success! You are now Logged In !');
                     conf.user = res.data[0];
-                    //$timeout(redirectHome,3500);
+                    $timeout(redirectHome,2200);
                 }
                 
             }, function errorCallback(res) {

@@ -43,7 +43,6 @@
         $rootScope.$on('$stateChangeStart', 
         function(event, toState, toParams, fromState, fromParams, options){
         if (toState.name == 'registration') {
-            //$state.transitionTo('registration'); - tova vodi do maximum call stack size exceeded? transitionTo e problema ?
             window.location.hash = '#/registration';
 
         }  else if (toState.name != 'login' && !conf.user.id) {
