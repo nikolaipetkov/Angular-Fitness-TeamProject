@@ -7,10 +7,7 @@
 
     service.$inject = ["$http"];
 
-    function service($http) {
-
-
-       
+    function service($http) {       
 
         var current = {};
 
@@ -66,12 +63,17 @@
         function edit(x) {
             current = angular.copy(x);
             x.editMode = true;
+            
         };
 
        
-
          function save(x) {
                 x.editMode = false;
+                $http({
+                    method: 'PUT',
+                    url: 'http://localhost:3001/dictionary/'+x.id,
+                    data: {name: x.name, description: x.description}
+                 })
             };
 
         function remove(id) {
