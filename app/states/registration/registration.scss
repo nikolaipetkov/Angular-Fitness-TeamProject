@@ -1,0 +1,48 @@
+registration {
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+
+    #submitter {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 5px;
+        margin-top: 35px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 15%;
+        border-radius: 50%;
+    }
+
+    #form_container {
+        padding: 16px;
+        border: 1px solid gray;
+        background-color: lightGray;
+    }
+
+
+
+
+    .error-container {
+        height: 27px;
+        color: maroon;
+        padding: 3px;
+        position: relative;
+    }
+
+}

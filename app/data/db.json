@@ -1,5 +1,90 @@
 {
-  "music": [
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "test": "test",
+      "id": 2
+    },
+    {
+      "username": "data.username",
+      "password": "data.password",
+      "id": 3
+    },
+    {
+      "username": "data.username",
+      "password": "data.password",
+      "id": 4
+    },
+    {
+      "username": "data.username",
+      "password": "data.password",
+      "id": 5
+    },
+    {
+      "username": "test",
+      "password": "test",
+      "id": 6
+    },
+    {
+      "username": "username",
+      "password": "password",
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "username": "dada",
+      "password": "dadada",
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "username": "nenene",
+      "password": "parolka",
+      "id": 17
+    },
+    {
+      "username": "arede",
+      "password": "arede2",
+      "id": 18
+    },
+    {
+      "username": "denicacica",
+      "password": "parola",
+      "id": 19
+    },
+    {
+      "username": "dadada",
+      "password": "dadada",
+      "id": 20
+    }
+  ],
+    "music": [
     {
       "id": 3,
       "name": "asd",
@@ -13,6 +98,5 @@
       "author": "asd",
       "duration": "asd",
       "date": "asd"
-    }
-  ]
+    }]
 }

@@ -34,6 +34,15 @@
         $httpBackend.whenDELETE(rx('.*'))
         .passThrough();
 
+        $httpBackend.whenPOST(rx('.*'))
+            .passThrough();
+
+        $httpBackend.whenPUT(rx('.*'))
+            .passThrough();
+
+        $httpBackend.whenDELETE(rx('.*'))
+            .passThrough();
+
         /**
          * Real apis
          */
