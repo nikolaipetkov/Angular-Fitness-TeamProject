@@ -42,6 +42,7 @@
         $scope.checkTraining = function (user) {
             //Check for the approparite training related to the current user
             $scope.training = calculatorService.checkTraining(user);
+            console.log($scope.training );
             //Add new user to json server 
             $scope.addNew = calculatorService.addUser(user);
         };
