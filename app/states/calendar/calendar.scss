@@ -123,6 +123,25 @@
 		.errorMes {
 			display: inline;
 		}
+		.addForm {
+			button {
+				width: 100%;
+				padding: 8%;
+			}
+		}
+		.dellForm {
+			button {
+				width: 60%;
+				padding: 3%;
+			}	
+		}
+		.deleteAllTrain {
+			button {
+				width: 50%;
+				padding: 4%;
+			}
+		}
+		
 	}
 
 	// Stylize table with training information.
