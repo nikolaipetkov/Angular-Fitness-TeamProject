@@ -1,6 +1,6 @@
 {
   "eventsId": {
-    "id": 1
+    "id": 11
   },
   "days": [
     {
@@ -34,9 +34,9 @@
   ],
   "events": [
     {
-      "id": 1,
+      "id": 11,
       "dayId": 1,
-      "name": "Running",
+      "name": "Fitness",
       "userId": 1
     }
   ]

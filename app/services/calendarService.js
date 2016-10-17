@@ -237,14 +237,21 @@
                 alert('No disciplinies in table!');
                 //If length is greater than zero delete disciplines.
             } else {
+                
+                // informationForCurrentUser.Monday = [];
+                // informationForCurrentUser.Tuesday = [];
+                // informationForCurrentUser.Wednesday = [];
+                // informationForCurrentUser.Thursday = [];
+                // informationForCurrentUser.Friday = [];
+                // informationForCurrentUser.Saturday = [];
+                // informationForCurrentUser.Sunday = [];
+                
                 //Delete all discipline from table(In local variable).
-                informationForCurrentUser.Monday = [];
-                informationForCurrentUser.Tuesday = [];
-                informationForCurrentUser.Wednesday = [];
-                informationForCurrentUser.Thursday = [];
-                informationForCurrentUser.Friday = [];
-                informationForCurrentUser.Saturday = [];
-                informationForCurrentUser.Sunday = [];
+                _.each(informationForCurrentUser, function(val, key) {
+                    informationForCurrentUser.val = [];
+                });
+
+
                 //Delete all discipline from table(remotely).
                 deleteAllDisciplinesFromTable();
 
