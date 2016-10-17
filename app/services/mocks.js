@@ -37,8 +37,6 @@
         $httpBackend.whenDELETE(rx('.*'))
             .passThrough();
 
-
-
         /**
          * Real apis
          */
