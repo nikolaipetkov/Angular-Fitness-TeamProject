@@ -32,9 +32,9 @@
                 url: 'http://localhost:3001/users?username='+username+'&password='+password,
             }).then(function successCallback(res) {
                 if (_.isEmpty(res.data)) {
-                    notify.error('Not Found');
+                    notify.error('User Not Found!');
                 } else {
-                    notify.info('Found');
+                    notify.info('Success! You are now Logged In !');
                     conf.user = res.data[0];
                     //$timeout(redirectHome,3500);
                 }
@@ -49,6 +49,8 @@
         function redirectHome() {
             window.location.hash = '#/home';
         }
+
+
 
 
     };

@@ -11,7 +11,8 @@
         'backand',
         'uiGmapgoogle-maps',
         'ngMap',
-        'ngMessages'
+        'ngMessages',
+        'ui.validate'
     ])
     .config(config)
     .run(run);
@@ -32,18 +33,27 @@
         .preferredLanguage('en');
     }
 
-    run.$inject = ['$rootScope', 'mocks', 'conf', '$state'];
-    function run($rootScope, mocks, conf, $state) {
+    run.$inject = ['$rootScope', 'mocks', 'conf', '$state', 'notify'];
+    function run($rootScope, mocks, conf, $state, notify) {
         $rootScope.conf = conf;
+        $rootScope.notify = notify;
+
+
+        //ui function for preventing redirection without logging in
         $rootScope.$on('$stateChangeStart', 
-        function(event, toState, toParams, fromState, fromParams, options){ 
-            //event.preventDefault(); 
-            // transitionTo() promise will be rejected with 
-            // a 'transition prevented' error
-            if (toState.name != 'login' && !conf.user.id) {
-                // $state.transitionTo('login');
+        function(event, toState, toParams, fromState, fromParams, options){
+        if (toState.name == 'registration') {
+            //$state.transitionTo('registration'); - tova vodi do maximum call stack size exceeded? transitionTo e problema ?
+            window.location.hash = '#/registration';
+
+        }  else if (toState.name != 'login' && !conf.user.id) {
+            event.preventDefault();
+            notify.info('Please Log In or Register!')
+            $state.transitionTo('login');
             }
-})
+
+            })
+
 
     }
 

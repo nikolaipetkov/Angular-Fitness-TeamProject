@@ -31,10 +31,35 @@
 
 
 //injecting registration service in the scope
-    controller.$inject = ['$scope', 'conf'];
-    function controller($scope, conf) {
+    controller.$inject = ['$scope', 'conf', 'notify', '$http'];
+    function controller($scope, conf, notify, $http) {
         $scope.conf = conf;
+        $scope.register = register;
+        $scope.notify = notify;
 
+   
+        //register function : 
+        //parameters: username,password
+        function register(username, password) {
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3001/users',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {username: $scope.username, password: $scope.password}
+            }).then(function success() {
+                    notify.info('Registered Successfully!');               
+             }, function errorCallback() {
+                notify.error('Server Error! Sorry!');   
+            })
+        }
+    
     }
 
+
+
 }(angular));
+
+
+//need bower install angular-ui-validate and ui.validate in app.js

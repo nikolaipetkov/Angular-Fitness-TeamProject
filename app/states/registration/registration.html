@@ -4,17 +4,19 @@
   </div>
 
 <div id="form_container">
-<form name="registrationForm" ng-submit="submit()" novalidate>
+<form ng-submit="registrationForm.$valid && register()" novalidate name="registrationForm" novalidate >
 	<div class="control-group">
 		<div class="row">
 			<div class="col-md-6">
 				<label for="firstName"> First Name: </label>
 				<input type="text" name="firstName" ng-model="data.firstName" ng-minlength="2" ng-maxlength="10" required>
 
+				<div class="error-container">
 				<div ng-messages="registrationForm.firstName.$error" ng-if="registrationForm.firstName.$touched || registrationForm.$submitted">
-					<div ng-message="required"> Enter Username! </div>
+					<div ng-message="required"> Enter First Name! </div>
 					<div ng-message="minlength"> Too Short! </div>
 					<div ng-message="maxlength"> Too Long! </div>
+				</div>
 				</div>
 			</div>
 
@@ -24,7 +26,7 @@
 
 				<div class="error-container">
 				<div ng-messages="registrationForm.lastName.$error" ng-if="registrationForm.lastName.$touched || registrationForm.$submitted">
-					<div ng-message="required"> Enter Username! </div>
+					<div ng-message="required"> Enter Last Name! </div>
 					<div ng-message="minlength"> Too Short! </div>
 					<div ng-message="maxlength"> Too Long! </div>
 				</div>
@@ -38,17 +40,53 @@
 		<div class="row">
 			<div class="col-md-6">
 				<label for="username"> Username: </label>
-				<input type="text" name="username" ng-model="data.username" required ng-minlength="4" ng-maxlength="10">
+				<input type="text" name="username" ng-model="username" required ng-minlength="4" ng-maxlength="10">
 
+				<div class="error-container">
 				<div ng-messages="registrationForm.username.$error" ng-if="registrationForm.username.$touched || registrationForm.$submitted">
 					<div ng-message="required"> Enter Username! </div>
 					<div ng-message="minlength"> Too Short! </div>
 					<div ng-message="maxlength"> Too Long! </div>
 				</div>
+				</div>
 
 			</div>
 		</div>
 	</div>
+
+
+	<div class="control-group">
+		<div class="row">
+			<div class="col-md-6"> 
+				<label for="password"> Password: </label>
+				<input type="password" name="password" ng-model="password" required ng-minlength="6" ng-maxlength="10">
+
+				<div class="error-container">
+				<div ng-messages="registrationForm.password.$error" ng-if="registrationForm.password.$touched || registrationForm.$submitted">
+					<div ng-message="required"> Enter Password! </div>
+					<div ng-message="minlength"> Too Short! </div>
+					<div ng-message="maxlength"> Too Long! </div>
+				</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<label for="repeatedPassword"> Repeat Password: </label>
+				<input type="password" name="repeatedPassword" ng-model="repeatedPassword" ui-validate=" '$value==password' "
+       ui-validate-watch=" 'password' ">
+        
+
+				<div class="error-container">
+				<div ng-messages="registrationForm.repeatedPassword.$error.validator" ng-if="registrationForm.repeatedPassword.$touched || registrationForm.$submitted">
+					<!--HOW DO I DISPLAY THIS - WHAT IS THE WORD FOR THE NG-MESSAGE? ASK TODOR <div ng-message="validator">no match </div>   -->
+					<span ng-show='registrationForm.repeatedPassword.$error.validator'>Passwords do not match!</span>
+				</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
 	<button class="form-control" type="submit" id="submitter"> Submit </button>
 </div>
 
