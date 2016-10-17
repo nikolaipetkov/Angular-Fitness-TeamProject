@@ -1,6 +1,6 @@
 {
   "eventsId": {
-    "id": 11
+    "id": 1
   },
   "days": [
     {
@@ -34,39 +34,9 @@
   ],
   "events": [
     {
-      "id": 6,
-      "dayId": 2,
-      "name": "Running",
-      "userId": 1
-    },
-    {
-      "id": 7,
-      "dayId": 1,
-      "name": "Swimming",
-      "userId": 1
-    },
-    {
-      "id": 8,
+      "id": 1,
       "dayId": 1,
       "name": "Running",
-      "userId": 1
-    },
-    {
-      "id": 9,
-      "dayId": 1,
-      "name": "Tae Bo",
-      "userId": 1
-    },
-    {
-      "id": 10,
-      "dayId": 1,
-      "name": "Yoga",
-      "userId": 1
-    },
-    {
-      "id": 11,
-      "dayId": 1,
-      "name": "Cycling",
       "userId": 1
     }
   ]
