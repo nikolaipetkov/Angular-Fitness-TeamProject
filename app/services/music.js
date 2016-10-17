@@ -11,6 +11,7 @@
 
     var id = 0;
     var data = [];
+    var itemRef;
        $http.get("http://localhost:3001/music")
             .then(function success(response) {
                      console.log(response.data);
@@ -22,14 +23,14 @@
                         console.log(response.statusText);
                     });
 
-
         return {
-            data:data,
-            addSong:addSong,
-            //editSong: editSong,
-            removeSong:removeSong,
-            getTotalSongs:getTotalSongs,
-            returnOperations:returnOperations
+            data: data,
+            addSong: addSong,
+            editSong: editSong,
+            submitChange: submitChange,
+            removeSong: removeSong,
+            getTotalSongs: getTotalSongs,
+            returnOperations: returnOperations
             };
 
         var config = {
@@ -49,6 +50,7 @@
             duration:item.duration,
             date:item.date
          };
+
         //add to UI
             data.push(newSong);
         //add to DB
@@ -57,14 +59,13 @@
                         // console.log(response.data)
                         console.log('Added successfuly!')
                     },
-                    function error(response) {
+                    function error(response) { 
                         console.log('Adding failed!')
                     });
             }else{
                 alert('Please fill in name and author');
             }
         }
-
 
         //Remove existing song
         function removeSong(item) {
@@ -78,10 +79,28 @@
                 },
                 function error(response) {
                     console.log('Deleting failed!')
-
                 });
         };
 
+        //Edit song 
+        function editSong(item) {
+        itemRef = item;
+        item =  angular.copy(item);
+        };
+
+          function submitChange (item) {
+          itemRef.name = item.name;
+          itemRef.author = item.author;
+          $http.put('http://localhost:3001/music', itemRef, config)
+           .then(function success(response) {
+               console.log('Update successfuly!')
+               console.log(response);
+           },
+           function error(response) {
+               console.log('Update failed!')
+               console.log(response);
+           });
+        };
         //Total amount of songs in the songs array
         function getTotalSongs(songs) {
             return data.length;

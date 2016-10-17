@@ -29,55 +29,85 @@
             </div>
         </div>
     </nav> 
-    <div class="row">
-      <div class="container">
-          <div id="music" class="col-lg-5 col-md-5 col-sm-6 col-xs-12" >
 
-            <div class="row">
+
+<form name="myForm">
+      <div class="row" >
+        <div class="container">
+            <div id="music" class="col-lg-5 col-md-5 col-sm-6 col-xs-12" >
+
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                <h1>Music to add</h1>
-                </div>
-              </div>
-              <div class="row">
-                <div class=" input-info ">
-                  <input type="text" id="name" ng-model="item.name" 
-                  placeholder="Name of the song?"/>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <h1>Music to add</h1>
+                  </div>
                 </div>
                 <div class="row">
-                <div class=" input-info ">
-                  <input type="text" id="author" ng-model="item.author" 
-                  placeholder="Author?" />
+                  <div class=" input-info" >
+                    <input type="text" id="name" name="songName" ng-minlength="5" 
+                    ng-maxlength="20" 
+                    ng-model="item.name" 
+                    placeholder="Name of the song?"/>
+                  </div>
+                  <div ng-messages="myForm.songName.$error" style="color:maroon" role="alert">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength">Your field is too short</div>
+    <div ng-message="maxlength">Your field is too long</div>
+  </div>
+                  <div class="row">
+                  <div class=" input-info ">
+                    <input type="text" id="author" name="songAuthor" ng-model="item.author"
+                    ng-minlength="5"
+                    ng-maxlength="20"
+                    placeholder="Author?" />
+                  </div>
+                  <div ng-messages="myForm.songAuthor.$error" style="color:maroon" role="alert">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength">Your field is too short</div>
+    <div ng-message="maxlength">Your field is too long</div>
+  </div>
+                  </div>
+                  <div class="row">
+                  <div class=" input-info ">
+                    <input type="text" ng-model="item.duration"  name="songDuration"
+                    ng-minlength="5"
+                    ng-maxlength="20"
+                    placeholder="Duration?" />
+                  </div>
+                  <div ng-messages="myForm.songDuration.$error" style="color:maroon" role="alert">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength">Your field is too short</div>
+    <div ng-message="maxlength">Your field is too long</div>
+  </div>
+                  </div>
+                  <div class="row">
+                  <div class=" input-info ">
+                    <input type="text" ng-model="item.date" name="songDate"
+                    ng-minlength="5"
+                    ng-maxlength="20"
+                    placeholder="Date?" />
+                  </div>
+                  <div ng-messages="myForm.songDate.$error" style="color:maroon" role="alert">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength">Your field is too short</div>
+    <div ng-message="maxlength">Your field is too long</div>
+  </div>
                 </div>
                 </div>
+                <div class="clearfix"></div>
                 <div class="row">
-                <div class=" input-info ">
-                  <input type="text" ng-model="item.duration" 
-                  placeholder="Duration?" />
-                </div>
-                </div>
-                <div class="row">
-                <div class=" input-info ">
-                  <input type="text" ng-model="item.date" 
-                  placeholder="Date?" />
+                  <div class="col-lg-12 col-md-12 col-sm-12 center-block">
+                    <button class="btn-lg" ng-class="clicked ? 'btn-primary' : 'btn-success'" ng-click="clicked ? submit(item) : add(item)" >
+                    {{text}}
+                    </button>
+                  </div>
                 </div>
               </div>
-              </div>
-              <div class="clearfix"></div>
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 center-block">
-                  <button class="btn-lg" ng-class="clicked ? 'btn-primary' : 'btn-success'" ng-click="clicked ? submitChange() : add(item)" >
-                  {{text}}
-                  </button>
-                </div>
-              </div>
-            </div>
-    </div>
+      </div>
+</form>
 
     <!-- Divider for the fields -->
     <div id="divider" class="col-lg-2 col-md-2 col-sm-2"></div>
-
-
     <div class="container">
       <div  id="player" class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <div class="row">
@@ -101,7 +131,7 @@
               <h4><span class="text-muted">duration:</span> {{song.duration}}</h4></span>
               <h4><span class="text-muted">date:</span> {{song.date}}</h4></span>
               <h4>id: {{song.id}}</h4></span>
-              <button class="btn-xs btn-danger" ng-click="remove(song)">Remove</button>
+              <button class="btn-xs btn-danger" ng-click="delete(song)">Remove</button>
               <button class="btn-xs btn-info" ng-click="edit(song)">Edit</button>
               </div>
           </li>

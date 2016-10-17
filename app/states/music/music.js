@@ -36,36 +36,26 @@
             $scope.text = 'Add new song';
             $scope.music = music;
             $scope.songs = music.data;
-            $scope.editSong = editSong;
         //CRUD Model
-        $scope.remove = function(item) {
+        $scope.delete = function(item) {
             music.removeSong(item);
         };
         $scope.add = function(item) {
             music.addSong(item);
         }
-        // $scope.edit = function (item) {
-        //     $scope.clicked = true;
-        //     var doc = document.getElementById('name').focus();
-        //     music.editSong(item);
-        //     $scope.text = 'Submit';            
-        // };
 
-        //Edit existing song
-        function editSong(item) {
-            $scope.itemRef = item;
-            $scope.item = angular.copy(item);  
-        };
-        //Submit change on existing song
-        function submitChange (item) {
+        $scope.edit = function (item) {
+            $scope.clicked = true;
+            music.editSong(item);
+            var doc = document.getElementById('name').focus();
+            $scope.text = 'Submit';
+        }
 
-                $scope.itemRef.name = $scope.item.name;
-                $scope.itemRef.author = $scope.item.author;
-                $scope.clicked = false;
-                $scope.item.name = '';
-                $scope.item.author = '';
-                $scope.text = 'Add new song';
-        };
+        $scope.submit = function (item) {
+            music.submitChange(item);
+            $scope.clicked = false;
+            $scope.text = 'Add new song';
+        }
 
         //Volume slider with jqueryUI
         $("#volume").slider({
