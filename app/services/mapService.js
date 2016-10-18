@@ -1,10 +1,7 @@
 (function (angular) {
     'use strict';
 
-
     var data = [];
-
-
     angular
         .module('app')
         .factory('mapService', service);
@@ -23,7 +20,7 @@
         };
 
         function getMapData() {
-            $http.get('http://localhost:8080/api/maps', {
+            $http.get('http://localhost:4816/api/maps', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -64,7 +61,7 @@
             data.push(newAddressAddedData);
 
             // Update DB.
-            $http.post('http://localhost:8080/api/maps', JSON.stringify(newAddressAddedData), config)
+            $http.post('http://localhost:4816/api/maps', JSON.stringify(newAddressAddedData), config)
                 .then(function success(response) {
                     // console.log(response.data)
                     console.log('Adding new address in DB succeeded!')
@@ -84,7 +81,7 @@
 
             //Update DB.
 
-            $http.delete('http://localhost:8080/api/maps/')
+            $http.delete('http://localhost:4816/api/maps/')
                 .then(function success(response) {
                     // console.log(response.data)
                     console.log('All addresses deletion in DB succeeded!')
@@ -115,7 +112,7 @@
             });
 
             // Update database.
-            $http.delete('http://localhost:8080/api/maps/' + nameToDelete.toLowerCase())
+            $http.delete('http://localhost:4816/api/maps/' + nameToDelete.toLowerCase())
                 .then(function success(response) {
                     // console.log(response.data)
                     console.log('Deleting a certain address in DB succeeded!')
@@ -125,8 +122,6 @@
                     // console.log(response.statusText);
                     console.log('Deleting a certain address in DB failed!')
                 });
-
-
         }
 
         // Function created for Niki to use
