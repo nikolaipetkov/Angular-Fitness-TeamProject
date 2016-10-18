@@ -33,15 +33,31 @@
         return data;
     };
 
-//$http.get('http://localhost:3001/users').then(function  success(response) {
-//    response.data.forEach(function (users) {
-//        data.push(users);
-//    })
-//    },
-//        function error (response) {
-//            console.log('error');
-//        }
-//);
+        function add(username, id) {
+            data.push({username: username, id: id});
+
+        }
+
+        function edit(x) {
+            current = angular.copy(x);
+            x.editMode = true;
+        };
+
+         function save(x) {
+                x.editMode = false;
+            };
+
+         function remove(index) {
+            data.splice(index, 1);
+        };
+
+         function cancel(x) {
+            x.editMode = false;
+            x.username = current.username;
+            x.id = current.id;
+        }
+
+
     
 
 
