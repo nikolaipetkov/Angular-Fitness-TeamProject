@@ -38,9 +38,7 @@
             $scope.description = '';
 
         }
-
-    
-
+        
         dictionary.get()
 
     }

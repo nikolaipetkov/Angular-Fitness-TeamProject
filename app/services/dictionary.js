@@ -77,16 +77,16 @@
             };
 
         function remove(id) {
-            data.splice(id, 1);
+            _.each(data, function (val, key) {
+                if (val.id === id) {
+                    data.splice(key, 1);                    
+                };
+            })
             return $http({
                 method: 'DELETE',
                 url: 'http://localhost:3001/dictionary/'+id,
             })
         };
-
-        // function remove(index) {
-          //  data.splice(index, 1);
-       // };
 
          function cancel(x) {
             x.editMode = false;
