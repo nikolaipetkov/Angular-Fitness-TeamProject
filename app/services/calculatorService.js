@@ -34,6 +34,7 @@
                 url: 'http://localhost:3001/calculatedTrainings',
                 //Convert js value to JSON string
                 data: JSON.stringify(user),
+                //Set the content type to app json
                 headers: {'Content-Type': 'application/json'},
             }).then(function (response) {
                 console.log("Response was succesful!");
