@@ -8,13 +8,12 @@
     </div>
         <table class="table">
         <tr>
-            <th width="60%"> Username </th>
+            <th width="75%"> Username </th>
             <th width="25%"> Id </th>
-            <th width="15%"> Edit </th>
 
         </tr>
 
-          <tr ng-repeat="user in allUsers | orderBy:sortOrder | limitTo:pageSize | filter:query" >
+          <tr ng-repeat="user in allUsers | startFrom:currentPage*pageSize | orderBy:sortOrder | limitTo:pageSize | filter:query" >
             <td>{{ user.username }} </td>
             <td>{{ user.id }} </td>
           </tr>

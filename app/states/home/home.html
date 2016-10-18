@@ -26,9 +26,8 @@
      <img src="states/home/assets/musicPic.jpg" class="img-responsive margin" style="height: 150px"  alt="Image"> </img>
     </a>
       <p> To-Do List Style with CRUD operations </p>
-      <p> Count is: {{music.data[0]}} </p>
-      <p> Limit is: {{music.data[1]}} </p>
-      <p> available operations: {{music.data[2]}} , {{music.data[3]}}, {{music.data[4]}} </p>
+      <p> Count is: {{music.data.length}} </p>
+      <p> available operations: {{music.returnOperations()[0]}}, {{music.returnOperations()[1]}}, {{music.returnOperations()[2]}}, {{music.returnOperations()[3]}} </p>
      </div>
     </div>
 
