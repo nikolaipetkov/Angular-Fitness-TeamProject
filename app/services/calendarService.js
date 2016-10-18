@@ -21,8 +21,8 @@
             Friday: [],
             Saturday: [],
             Sunday: []
-        }
-        //With this variable update ebents ID.
+        };
+        //With this variable update events ID.
         var eventsId = 0;
 
         //Fill table with all disciplines for current user.
@@ -66,21 +66,6 @@
                 
                 //Call this function to check user input is valid and add discipline.
                 validateDataFromUser(obj);
-              }, function errorCallback(response) {
-                alert(response)
-              });
-        }
-
-        //This function update userId property in db.json file(Save last user ID). 
-        function updateEventsId(newEventsId) {
-            var newId = {"id": newEventsId}
-            return $http({
-                method: 'PUT',
-                url: 'http://localhost:3001/eventsId',
-                data: JSON.stringify(newId),
-                headers: {'Content-Type': 'application/json'}
-            }).then(function successCallback(response) {
-                console.log("New ID has been saved!");
               }, function errorCallback(response) {
                 alert(response)
               });
@@ -135,6 +120,21 @@
               });
         }
 
+        //This function update userId property in db.json file(Save last user ID). 
+        function updateEventsId(newEventsId) {
+            var newId = {"id": newEventsId}
+            return $http({
+                method: 'PUT',
+                url: 'http://localhost:3001/eventsId',
+                data: JSON.stringify(newId),
+                headers: {'Content-Type': 'application/json'}
+            }).then(function successCallback(response) {
+                console.log("New ID has been saved!");
+              }, function errorCallback(response) {
+                alert(response)
+              });
+        }
+
         //Get all days from db file and call function to get and print on the table all events.
         function getAllEventsForCurrentUser() {
             //Get with request all days.
@@ -146,6 +146,7 @@
                     allDays.push(val);
                 });
                 printAllDisciplinesForCurrentUser();
+                
               }, function errorCallback(response) {
                 alert(response)
               });
@@ -222,41 +223,36 @@
         //DELETE ALL DISCIPLINES IN TABLE.
         //Function for deleting all disciplines from calendar.
         function deleteAllWorkoutFromCalendar() {
-            var isEmpty = 0;
+               var isEmpty = 0;
             _.each(informationForCurrentUser, function(val, key) {
-                console.log(val.length);
-                debugger;
                     if (val.length === 0) {
                         isEmpty += 1;
                     }
                 });
-            console.log(isEmpty);
-            debugger;
             //Check if each day in calendar is empty(which means that there is no discipline in table).
             if (isEmpty === 7) {
                 alert('No disciplinies in table!');
                 //If length is greater than zero delete disciplines.
             } else {
-                
-                // informationForCurrentUser.Monday = [];
-                // informationForCurrentUser.Tuesday = [];
-                // informationForCurrentUser.Wednesday = [];
-                // informationForCurrentUser.Thursday = [];
-                // informationForCurrentUser.Friday = [];
-                // informationForCurrentUser.Saturday = [];
-                // informationForCurrentUser.Sunday = [];
-                
                 //Delete all discipline from table(In local variable).
-                _.each(informationForCurrentUser, function(val, key) {
-                    informationForCurrentUser.val = [];
-                });
-
+                informationForCurrentUser.Monday = [];
+                informationForCurrentUser.Tuesday = [];
+                informationForCurrentUser.Wednesday = [];
+                informationForCurrentUser.Thursday = [];
+                informationForCurrentUser.Friday = [];
+                informationForCurrentUser.Saturday = [];
+                informationForCurrentUser.Sunday = [];
+                
+                // _.each(informationForCurrentUser, function(val, key) {
+                //     informationForCurrentUser.val = [];
+                // });
 
                 //Delete all discipline from table(remotely).
                 deleteAllDisciplinesFromTable();
 
             }
         }
+
         //
         function deleteAllDisciplinesFromTable() {
             var allEventsFromTable = [];
@@ -285,9 +281,6 @@
                 alert(response)
               });
         }
-
-
-
 
         //Change value of variable from number to string(name of day).
         function changeValue(dayId) {

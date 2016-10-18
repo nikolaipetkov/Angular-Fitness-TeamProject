@@ -4,7 +4,7 @@
     angular
         .module('app')
         .directive('calendar', calendar)
-        //With 'config' declare routing for this state.
+        //With 'config' block declare routing for this state.
         .config(config);
 
     config.$inject = ['$stateProvider'];
@@ -39,7 +39,7 @@
         $scope.selected = {
             dayForDeleting: undefined
         };
-        //Add to scope two function - for add and for delete.
+        //Add to scope three function - for add and for delete.
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
         $scope.deleteAllDisciplines = deleteAllDisciplines;
@@ -60,11 +60,19 @@
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
             $scope.deleteAllWorkoutsForDay.$setPristine();
+
         }
-        //Function to delete all trainings in calendar.
-        function deleteAllDisciplines() {
-            //Call this function and remove from calendar all disciplines.
-            calendarService.deleteAllWorkoutFromCalendar();
+
+        //Function to delete all disciplines in calendar.
+        function deleteAllDisciplines(userChoice) {
+            //deleteAllDisciplines()
+            if (userChoice) {
+                //Call this function and remove from calendar all disciplines.
+                calendarService.deleteAllWorkoutFromCalendar();
+                
+            } else {
+                console.log('The user does not want to delete disciplines')
+            }
         }
     }
 }(angular));
