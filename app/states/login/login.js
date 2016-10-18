@@ -31,9 +31,10 @@
 
 
 //injecting Login service in the scope
-    controller.$inject = ['$scope', 'login'];
-    function controller($scope, login) {
+    controller.$inject = ['$scope', 'login', 'conf'];
+    function controller($scope, login, conf) {
         $scope.service = login;
+        $scope.conf = conf;
 
     }
 

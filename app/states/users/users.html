@@ -1,23 +1,33 @@
 <div>
     <h2>Users</h2>
-    <input type="text" ng-model="query" placeholder="name/date of birth/email" />
+    <input type="text" ng-model="query" placeholder="username/id" />
+    <div class="alert alert-info"><p>Sort by: <select ng-model="sortOrder"> 
+        <option value="username">Username</option>
+        <option value="id"> ID </option>
+        </select> </p>
+    </div>
         <table class="table">
         <tr>
-            <th> First Name </th>
-            <th> Last Name </th>
-            <th> Date of birth </th>
-            <th> Email </th>
+            <th width="75%"> Username </th>
+            <th width="25%"> Id </th>
 
         </tr>
 
-          <tr ng-repeat="user in users | filter:query" >
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.date }} </td>
-            <td>{{ user.email }} </td>
+          <tr ng-repeat="user in allUsers | startFrom:currentPage*pageSize | orderBy:sortOrder | limitTo:pageSize | filter:query" >
+            <td>{{ user.username }} </td>
+            <td>{{ user.id }} </td>
           </tr>
+
+                    <div>
+              <button type="button" class="btn-info" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+              Previous</button>
+                {{currentPage+1}}/{{numberOfPages()}}
+              <button  class="btn-info" ng-disabled="currentPage >= users.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                Next
+            </button>
+          </div>
     </table>
 
-
+<!--| startFrom:currentPage*pageSize - ask mitko -->
 
 </div>

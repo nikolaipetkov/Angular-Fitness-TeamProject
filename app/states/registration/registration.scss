@@ -1,29 +1,29 @@
-login {
+registration {
     input[type=text], input[type=password] {
         width: 100%;
         padding: 12px 20px;
-        margin: 8px 0;
         display: inline-block;
         border: 1px solid #ccc;
         box-sizing: border-box;
+        border-radius: 4px;
     }
 
 
-    button {
+    #submitter {
         background-color: #4CAF50;
         color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
+        padding: 5px 5px;
+        margin-top: 35px;
         border: none;
         cursor: pointer;
         width: 100%;
     }
 
-    #loginButton:hover {
-        background-color: #32CD32;
-        border-radius: 10px;
+    #submitter:hover {
+    background-color: #32CD32;
+    border-radius: 10px;
     }
-
+    
     .imgcontainer {
         text-align: center;
         margin: 24px 0 12px 0;
@@ -34,20 +34,20 @@ login {
         border-radius: 50%;
     }
 
-    .container {
+    #form_container {
         padding: 16px;
+        border: 1px solid gray;
+        background-color: lightGray;
     }
 
 
-    #registerButton {
-        width: 15%;
-        background-color: orange;
-        color: white;
-        float: right;
+
+
+    .error-container {
+        height: 27px;
+        color: maroon;
+        padding: 3px;
+        position: relative;
     }
 
-    #registerButton:hover {
-        background-color: green;
-        border-radius: 25px;
-    }
 }

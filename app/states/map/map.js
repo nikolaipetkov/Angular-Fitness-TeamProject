@@ -27,10 +27,10 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'NgMap', 'mapService'];
+    controller.$inject = ['$scope', '$http', 'NgMap', 'mapService'];
 
 
-    function controller($scope, NgMap, mapService) {
+    function controller($scope, $http, NgMap, mapService) {
 
         $scope.mapService = mapService;
 
@@ -39,7 +39,8 @@
         });
 
         // Initial addresses received from service.
-        // $scope.addresses = mapService.data;
+        $scope.mapService.getMapData();
+
 
         // Marker on-click function that shows details for gym location.
         $scope.showDetail = function (e, item) {

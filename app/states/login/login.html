@@ -3,15 +3,7 @@
     <img src="states/login/assets/loginPic.png" alt="Avatar" class="avatar">
   </div>
 
-<!--Wrong Message -->
-  <div class="container">
-    <div id="wrong" class="alert alert-danger">
-       <strong>Wrong Username or Password!
-    </div>
- <!--Correct Message -->   
-    <div id="success" class="alert alert-success">
-      <strong>Success! You will be redirected in a second! 
-    </div>
+
 
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" ng-model='username' required>
@@ -19,5 +11,7 @@
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" ng-model='password' required>
 
-    <button type="submit" ng-click='service.login(username,password)'>Login</button>
+    <button id="loginButton" type="submit" ng-click='service.login(username,password)'>Login</button>
+
+    <button id="registerButton" ui-sref="registration"> Register! </button>
   </div>
