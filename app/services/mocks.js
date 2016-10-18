@@ -27,6 +27,12 @@
         // Account confuration
         $httpBackend.whenGET(rx('users'))
             .respond(mockData.users);
+        $httpBackend.whenPOST(rx('.*'))
+        .passThrough();
+        $httpBackend.whenPUT(rx('.*'))
+        .passThrough();
+        $httpBackend.whenDELETE(rx('.*'))
+        .passThrough();
 
         $httpBackend.whenPOST(rx('.*'))
             .passThrough();

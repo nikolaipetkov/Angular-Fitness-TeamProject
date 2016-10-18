@@ -29,88 +29,33 @@
         return directive;
     }
 
-    controller.$inject = ['$scope', 'survey', '$timeout'];
-        function controller($scope, survey, $timeout) {
+    controller.$inject = ['$scope', 'survey', 'music'];
+        function controller($scope, survey, music) {
+
             //Text on the large button
             $scope.text = 'Add new song';
-
-            var id = 1;
-            //Array with songs of the player.
-            var songs = [
-            {
-                id: 0,
-                name: 'nameofsong1',
-                author: 'some author1',
-                duration: '3:20',
-                date: '01-02-2016',
-                url: 'some/url/with/songs'
-            },{
-                id: 1,
-                name: 'nameofsong1',
-                author: 'some author1',
-                duration: '3:20',
-                date: '01-02-2016',
-                url: 'some/url/with/songs'
-            }];
-
-        //Adding functions and the array to the scope.
-        $scope.songs = songs;
-        $scope.addSong = addSong;
-        $scope.removeSong = removeSong;
-        $scope.editSong = editSong;
-        $scope.submitChange = submitChange;
-
-        //Add new song
-        function addSong() {
-        if($scope.item.name !== '' && $scope.item.author !== ''){
-            id++;
-            $scope.songs.push(
-                {
-                    id: id,
-                    name:$scope.item.name,
-                    author:$scope.item.author,
-                    duration:$scope.songDuration,
-                    date:$scope.songDate,
-                    done:false
-                });
-
-        $scope.songName = '';
-        $scope.songAuthor = '';
-        $scope.songDate = '';
-        $scope.songDuration = '';
-            }else{
-                
-                alert('Please fill in name and author');
-            }
+            $scope.music = music;
+            $scope.songs = music.data;
+        //CRUD Model
+        $scope.delete = function(item) {
+            music.removeSong(item);
         };
-        
-        //Remove existing song
-        function removeSong(item) {
-        var index = $scope.songs.indexOf(item);
-        $scope.songs.splice(index,1);
-        };    
+        $scope.add = function(item) {
+            music.addSong(item);
+        }
 
-        //Edit existing song
-        function editSong(item) {
-            
+        $scope.edit = function (item) {
             $scope.clicked = true;
+            music.editSong(item);
             var doc = document.getElementById('name').focus();
-            $scope.itemRef = item;
-            $scope.item = angular.copy(item);
             $scope.text = 'Submit';
-        };
+        }
 
-        //Submit change on existing song
-        function submitChange (item) {
-
-                $scope.itemRef.name = $scope.item.name;
-                $scope.itemRef.author = $scope.item.author;
-                $scope.clicked = false;
-                $scope.item.name = '';
-                $scope.item.author = '';
-                $scope.text = 'Add new song';
-                 console.log(getTotalSongs(songs))
-        };
+        $scope.submit = function (item) {
+            music.submitChange(item);
+            $scope.clicked = false;
+            $scope.text = 'Add new song';
+        }
 
         //Volume slider with jqueryUI
         $("#volume").slider({
@@ -121,8 +66,7 @@
             animate: true,
         slide: function(event, ui) {
           setVolume((ui.value) / 100);
-        }
-      });
+        }});
 
         //Filling the new color when sliding
         var myMedia = document.createElement('audio');

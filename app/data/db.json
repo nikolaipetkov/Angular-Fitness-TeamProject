@@ -74,5 +74,20 @@
       "password": "parola",
       "id": 15
     }
-  ]
+  ],
+    "music": [
+    {
+      "id": 3,
+      "name": "asd",
+      "author": "asd",
+      "duration": "asd",
+      "date": "asd"
+    },
+    {
+      "id": 4,
+      "name": "asd",
+      "author": "asd",
+      "duration": "asd",
+      "date": "asd"
+    }]
 }
