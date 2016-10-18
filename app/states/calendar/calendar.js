@@ -31,6 +31,7 @@
     function controller($scope, calendarService) {
         //Get all days of week in this variable.
         $scope.days = calendarService.days;
+        console.log($scope.days.lenght);
 
         $scope.currentSelection = {
             Day: undefined,
@@ -43,6 +44,7 @@
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
         $scope.deleteAllDisciplines = deleteAllDisciplines;
+        $scope.isEmpty = isEmpty;
         
         //Function For add training in calendar. 
         function addDisciplineInProgram() {
@@ -52,6 +54,7 @@
             $scope.currentSelection.Day = undefined;
             $scope.currentSelection.Training = undefined;
             $scope.trainingProgramForm.$setPristine();
+            console.log($scope.days);
         }
         //Function to delete all trainings from one day in calendar.
         function deleteWorkoutInCalendar() {
@@ -73,6 +76,15 @@
             } else {
                 console.log('The user does not want to delete disciplines')
             }
+        }
+
+        function isEmpty() {
+            let empty = true;
+            _.each($scope.days, function (day) {
+                if (!_.isEmpty(day)) empty = false;
+            })
+
+            return empty;
         }
     }
 }(angular));
