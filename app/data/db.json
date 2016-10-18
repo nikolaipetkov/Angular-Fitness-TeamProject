@@ -1025,5 +1025,19 @@
       "description": "Move your arms out by your sides, away from the body. Position your hands such that your palms are facing upwards. Applying the force from your heels, raise your hips in the upward direction. Keep raising your glutes in the upward direction until your thighs, hips and back are in a straight line."
     }
   ],
-  "events": []
+  "events": [],
+  "mapsData": [
+    {
+      "id": "werwer",
+      "name": "werwer",
+      "address": "Sofia, Bulgaria",
+      "description": "werwer"
+    },
+    {
+      "id": "werewrwe",
+      "name": "werewrwe",
+      "address": "Pernik, bUlgari",
+      "description": "asdasd"
+    }
+  ]
 }

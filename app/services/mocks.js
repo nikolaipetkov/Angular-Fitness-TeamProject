@@ -52,12 +52,22 @@
         $httpBackend.whenDELETE(rx('.*'))
         .passThrough();
 
+        $httpBackend.whenPOST(rx('.*'))
+            .passThrough();
+
+        $httpBackend.whenPUT(rx('.*'))
+            .passThrough();
+
+        $httpBackend.whenDELETE(rx('.*'))
+            .passThrough();
+
         /**
          * Real apis
          */
         // do not mock the htmls and other state resources
         $httpBackend.whenGET(rx('\./*'))
                 .passThrough();
+
 
         $httpBackend.whenGET(rx('.*backand\.com.*'))
                 .passThrough();
