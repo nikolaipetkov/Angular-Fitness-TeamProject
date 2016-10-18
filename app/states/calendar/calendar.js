@@ -1,10 +1,10 @@
-(function (angular) {
+ (function (angular) {
     'use strict';
     //Get 'app' mpdule and create directive with name 'calendar'.
     angular
         .module('app')
         .directive('calendar', calendar)
-        //With 'config' declare routing for this state.
+        //With 'config' block declare routing for this state.
         .config(config);
 
     config.$inject = ['$stateProvider'];
@@ -31,6 +31,7 @@
     function controller($scope, calendarService) {
         //Get all days of week in this variable.
         $scope.days = calendarService.days;
+        console.log($scope.days.lenght);
 
         $scope.currentSelection = {
             Day: undefined,
@@ -39,9 +40,11 @@
         $scope.selected = {
             dayForDeleting: undefined
         };
-        //Add to scope two function - for add and for delete.
+        //Add to scope three function - for add and for delete.
         $scope.addDisciplineInProgram = addDisciplineInProgram;
         $scope.deleteWorkoutInCalendar = deleteWorkoutInCalendar;
+        $scope.deleteAllDisciplines = deleteAllDisciplines;
+        $scope.isEmpty = isEmpty;
         
         //Function For add training in calendar. 
         function addDisciplineInProgram() {
@@ -51,14 +54,37 @@
             $scope.currentSelection.Day = undefined;
             $scope.currentSelection.Training = undefined;
             $scope.trainingProgramForm.$setPristine();
+            console.log($scope.days);
         }
-        //Function to delete all trainings from one day ion calendar.
+        //Function to delete all trainings from one day in calendar.
         function deleteWorkoutInCalendar() {
-            //Call this function and remove from selected day all disciplines
+            //Call this function and remove from selected day all disciplines.
             calendarService.deleteWorkout($scope.selected.dayForDeleting);
             //Unchecked radio buttons in this form.
             $scope.selected.dayForDeleting = undefined;
             $scope.deleteAllWorkoutsForDay.$setPristine();
+
+        }
+
+        //Function to delete all disciplines in calendar.
+        function deleteAllDisciplines(userChoice) {
+            //deleteAllDisciplines()
+            if (userChoice) {
+                //Call this function and remove from calendar all disciplines.
+                calendarService.deleteAllWorkoutFromCalendar();
+                
+            } else {
+                console.log('The user does not want to delete disciplines')
+            }
+        }
+
+        function isEmpty() {
+            let empty = true;
+            _.each($scope.days, function (day) {
+                if (!_.isEmpty(day)) empty = false;
+            })
+
+            return empty;
         }
     }
 }(angular));
