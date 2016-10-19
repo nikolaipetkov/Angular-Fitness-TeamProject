@@ -75,7 +75,7 @@
       "id": 15
     }
   ],
-    "music": [
+  "music": [
     {
       "id": 3,
       "name": "asd",
@@ -89,8 +89,17 @@
       "author": "asd",
       "duration": "asd",
       "date": "asd"
-    }],
-  "calculatedTrainings": [],
+    }
+  ],
+  "calculatedTrainings": [
+    {
+      "id": 1,
+      "weight": 68,
+      "age": 25,
+      "gender": "female",
+      "trainingType": "stamina"
+    }
+  ],
   "trainings": {
     "male": {
       "gtFourty": {
@@ -982,7 +991,7 @@
     }
   },
   "eventsId": {
-    "id": 21
+    "id": 44
   },
   "days": [
     {
@@ -1012,17 +1021,18 @@
     {
       "id": 7,
       "name": "Sunday"
-    }],
-    "dictionary": [
+    }
+  ],
+  "dictionary": [
     {
       "id": 1,
       "name": "Air Bike",
       "description": "Raise your knees up in the air to the extent that your thighs make a right angle with the floor and your calves are exactly parallel to the floor. Start paddling your legs, as if you’re riding a bicycle in the air."
     },
     {
-      "id": 2,
       "name": "Butt Lift (Bridge)",
-      "description": "Move your arms out by your sides, away from the body. Position your hands such that your palms are facing upwards. Applying the force from your heels, raise your hips in the upward direction. Keep raising your glutes in the upward direction until your thighs, hips and back are in a straight line."
+      "description": "Move your arms out by your sides, away from the body. Position your hands such that your palms are facing upwards. Applying the force from your heels, raise your hips in the upward direction. Keep raising your glutes in the upward direction until your thighs, hips and back are in a straight line.z",
+      "id": 2
     }
   ],
   "events": [],

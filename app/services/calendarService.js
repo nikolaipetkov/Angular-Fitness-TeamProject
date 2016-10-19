@@ -41,7 +41,7 @@
             //Function for remove disciplines from one day of week.
             deleteWorkout: deleteWorkout,
             //Delete all disciplines from calendar.
-            deleteAllWorkoutFromCalendar: deleteAllWorkoutFromCalendar
+            deleteAllDisciplinesFromTable: deleteAllDisciplinesFromTable
         };
 
         //Function for adding training in calendar.
@@ -222,30 +222,10 @@
 
         //DELETE ALL DISCIPLINES IN TABLE.
         //Function for deleting all disciplines from calendar.
-        function deleteAllWorkoutFromCalendar() {
-               var isEmpty = 0;
+        function deleteAllDisciplinesFromTable() {
             _.each(informationForCurrentUser, function(val, key) {
-                    if (val.length === 0) {
-                        isEmpty += 1;
-                    }
-                });
-            //Check if each day in calendar is empty(which means that there is no discipline in table).
-            if (isEmpty === 7) {
-                alert('No disciplinies in table!');
-                //If length is greater than zero delete disciplines.
-            } else {
-                _.each(informationForCurrentUser, function(val, key) {
                     _.remove(informationForCurrentUser[key]);
                 });
-
-                //Delete all discipline from table(remotely).
-                deleteAllDisciplinesFromTable();
-
-            }
-        }
-
-        //
-        function deleteAllDisciplinesFromTable() {
             var allEventsFromTable = [];
             //Get all disciplines for selected day and save in variable.
             $http({

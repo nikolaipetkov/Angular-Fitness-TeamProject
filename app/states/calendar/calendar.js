@@ -20,8 +20,7 @@
         var directive = {
             templateUrl: './states/calendar/calendar.html',
             restrict: 'E',
-            controller: controller,
-            scope: {}
+            controller: controller
         };
 
         return directive;
@@ -31,7 +30,6 @@
     function controller($scope, calendarService) {
         //Get all days of week in this variable.
         $scope.days = calendarService.days;
-        console.log($scope.days.lenght);
 
         $scope.currentSelection = {
             Day: undefined,
@@ -71,13 +69,13 @@
             //deleteAllDisciplines()
             if (userChoice) {
                 //Call this function and remove from calendar all disciplines.
-                calendarService.deleteAllWorkoutFromCalendar();
+                calendarService.deleteAllDisciplinesFromTable();
                 
             } else {
                 console.log('The user does not want to delete disciplines')
             }
         }
-
+        //This function change status from activ to inactiv and back of button to delete all info in table. 
         function isEmpty() {
             let empty = true;
             _.each($scope.days, function (day) {
